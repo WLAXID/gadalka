@@ -51,5 +51,8 @@ wallets/
 .DS_Store
 Thumbs.db
 
+# Claude Code local settings (персональные, не в репо)
+.claude/settings.local.json
+
 # OS
 desktop.ini
