@@ -1,0 +1,233 @@
+# 🔍 Фаза 0 — Discovery
+
+**Срок:** 3–5 дней
+**Капитал:** $0
+**Статус:** 🟡 На верификации пользователя
+
+---
+
+## 🎯 Цели фазы
+
+К концу фазы мы должны иметь точные ответы на:
+
+1. **Какие данные** доступны бесплатно через Polymarket API без auth?
+2. **Можно ли** реконструировать **price-history до резолва** для исторических рынков? (критично для бэктеста)
+3. **Сколько** резолвнутых рынков в каждой категории, какая ликвидность, fees, спред?
+4. **Какие 2–3 кандидата edge-гипотез** имеют смысл тестировать в Фазе 1?
+5. **Geo-доступность:** работает ли read-only API из РФ без VPN?
+6. **Go/no-go:** идём ли в Фазу 1?
+
+## 🚫 Что мы НЕ делаем в Фазе 0
+
+- ❌ Не пишем торгового бота
+- ❌ Не строим ML-модель (это Фаза 1)
+- ❌ Не делаем full бэктест (только feasibility check)
+- ❌ Не заводим деньги, не подключаем кошелёк
+- ❌ Не делаем UI / dashboard'ы
+
+Цель фазы — **знание**, а не код. Код только тот, что нужен для добычи знания.
+
+---
+
+## 📅 День 1 — API exploration + dataset map
+
+### Задачи
+
+- [ ] Поднять Python 3.11+ venv, поставить `requirements.txt`
+- [ ] Базовый HTTP-клиент `src/api/client.py`:
+  - `httpx.AsyncClient` с пулом
+  - Rate-limiter (token bucket): отдельные buckets под Gamma/CLOB/Data
+  - Retry с exponential backoff на 429/5xx (`tenacity`)
+  - Локальный кэш ответов в `data/cache/` (по URL + params хэш) — экономит при пере-проходах
+- [ ] **Sample-запросы** ко всем трём API:
+  - Gamma: `/markets`, `/markets?closed=true`, `/events`, `/events?closed=true`, `/markets/search`
+  - CLOB: `/markets/{condition_id}`, `/book`, `/price`, `/midpoint`, `/trades`
+  - Data: `/trades`, `/positions`, `/holders`, `/value`
+  - TimeSeries: `/prices-history?market={id}&interval=1h` (КЛЮЧЕВОЙ для Фазы 1)
+- [ ] Задокументировать поля каждого ответа в `docs/api-schemas.md`
+- [ ] Проверить geo-блок: работает ли API без VPN из текущей локации
+
+### Артефакты
+
+- `src/api/client.py` — базовый клиент с rate-limit
+- `notebooks/01_api_exploration.ipynb` — все sample-запросы с пояснениями
+- `docs/api-schemas.md` — схемы полей, типы, какие поля иногда пустые
+- `docs/geo-check.md` — что работает с какой локации
+
+### Критерии завершения дня
+
+- ✅ Все три API дают ответы, схемы зафиксированы
+- ✅ Rate-limit логика проверена (намеренно прёмся в 429, ловим, восстанавливаемся)
+- ✅ Geo-block ситуация ясна
+
+---
+
+## 📅 День 2 — Historical markets collector
+
+### Задачи
+
+- [ ] Сборщик `src/collectors/gamma_markets.py`:
+  - Пагинация по `/markets?closed=true` (limit/offset, до конца)
+  - Параллельно собирать `/events` для context
+  - Сохранять в `data/raw/markets_<date>.parquet` (одна запись = один market)
+  - Минимум полей: `id`, `condition_id`, `slug`, `question`, `category`, `outcomes`, `end_date`, `closed_at`, `volume_total`, `liquidity`, `fee_rate`, `resolution_outcome`, `resolution_price`
+- [ ] DuckDB-схема в `src/storage/schema.sql`
+- [ ] Loader: `data/raw/*.parquet` → DuckDB-таблица `markets`
+- [ ] Бюджет запросов: `/markets` лимит 300 req/10s → бьёмся в 200 req/10s для запаса. На 50k рынков с пагинацией по 500 = ~100 запросов, 5–10 секунд работы
+
+### Артефакты
+
+- `src/collectors/gamma_markets.py` — сборщик
+- `src/storage/duckdb_loader.py` — parquet → duckdb
+- `data/raw/markets_<YYYY-MM-DD>.parquet` — сырой дамп
+- `data/processed/gadalka.duckdb` — рабочая БД
+- `notebooks/02_first_dataset_look.ipynb` — что мы скачали
+
+### Критерии завершения дня
+
+- ✅ Скачано все резолвнутые рынки (target: ≥10k)
+- ✅ DuckDB-таблица грузится, SQL-запросы работают
+- ✅ Понятно, какие поля иногда NULL, какие всегда заполнены
+
+---
+
+## 📅 День 3 — Price history feasibility check ⚠️ КРИТИЧНЫЙ ДЕНЬ
+
+Без price-history до резолва **бэктест построить нельзя**. Этот день решает, идём ли мы вообще дальше.
+
+### Задачи
+
+- [ ] **Источник 1: Polymarket TimeSeries `/prices-history`**
+  - Для выборки из 20 случайных закрытых рынков → запросить историю с интервалами `1m`, `1h`, `6h`
+  - Понять: какая максимальная глубина? Какая гранулярность?
+  - Замерить: для рынка с volume <$10k — есть ли история, или только для топов?
+- [ ] **Источник 2: On-chain Polygon RPC**
+  - Найти адрес контракта CTF Exchange (`0x4bFb...` — уточнить)
+  - Через бесплатный RPC (Alchemy free / Chainstack / public) запросить event logs `OrderFilled` для одного condition_id
+  - Прикинуть стоимость и время для full reconstruction price-curve по 20 рынкам
+- [ ] **Источник 3: Dune Analytics**
+  - Поискать community queries на `polymarket`, `polymarket_polygon`
+  - Проверить наличие готовых price snapshots
+- [ ] **Источник 4: pm.wiki, polymarket-analytics, сторонние агрегаторы**
+  - Быстрая проверка, есть ли публичные dumps
+
+### Критерии успеха
+
+Должна быть возможность для **≥500 рынков** получить price snapshot за **T-1h, T-6h, T-24h, T-7d до резолва** одним из источников. Желательно — комбинируя.
+
+### Артефакты
+
+- `notebooks/03_price_history_feasibility.ipynb` — все эксперименты с источниками
+- `docs/price-history-sources.md` — вердикт: какой источник используем, плюсы/минусы
+- `src/collectors/price_history.py` — прототип сборщика для выбранного источника
+
+### 🚨 Gate: go / no-go
+
+- ✅ Нашли источник pre-resolution price на ≥500 рынков → **GO** в День 4
+- ⚠️ Только для топ-100 рынков → **PARTIAL GO** — ограничиваемся high-volume категориями
+- ❌ Никак нельзя получить historical prices → **STOP**, обсуждаем pivot
+
+---
+
+## 📅 День 4 — EDA на закрытых рынках
+
+### Задачи
+
+- [ ] EDA в `notebooks/04_eda.ipynb`:
+  - Распределение по категориям (Politics, Crypto, Sports, Science, etc.)
+  - Гистограмма volume_total, liquidity → где толстый хвост, где длинный
+  - Hit rate `YES` vs `NO` outcomes (есть ли bias датасета?)
+  - Распределение времени жизни рынка
+  - Распределение **финальной цены за T-1h до резолва** (favorite-longshot histogram)
+  - Корреляция volume vs точность рынка (правда ли что high-volume рынки точнее?)
+- [ ] **Анализ longshot-гипотезы** (отдельно):
+  - Возьми все случаи где цена за T-24h была <$0.10
+  - Сколько резолвнулось `YES`? Какой средний выигрыш?
+  - То же для порогов $0.05, $0.15, $0.20
+  - **Это первичный sanity check** longshot-стратегии до полного бэктеста
+- [ ] **Анализ favorite-bias:**
+  - Цена ≥$0.90 за T-24h: какой % резолвится `NO`?
+- [ ] Описать **3 candidate edge-гипотезы** для Фазы 1
+
+### Артефакты
+
+- `notebooks/04_eda.ipynb` — графики и таблицы
+- `plans/phase-0-findings.md` — выводы: статистика, longshot sanity check, candidate hypotheses
+
+### Критерии завершения
+
+- ✅ Распределения понятны
+- ✅ Longshot sanity check: есть ли наивный позитивный EV или нет
+- ✅ Сформулированы 3 гипотезы для Фазы 1 с предполагаемым размером EV
+
+---
+
+## 📅 День 5 — Go/no-go и план Фазы 1
+
+### Задачи
+
+- [ ] Свести всё в итоговый отчёт `plans/phase-0-findings.md`
+- [ ] Написать `plans/phase-1-backtest.md` — детальный план Фазы 1
+- [ ] **Решение go/no-go** (мы вдвоём): идём в Фазу 1 или нет
+
+### Артефакты
+
+- `plans/phase-0-findings.md` — финальные данные Фазы 0
+- `plans/phase-1-backtest.md` — план следующей фазы (на верификацию)
+
+---
+
+## 🚧 Риски и митигации
+
+| Риск | Вероятность | Импакт | Митигация |
+|------|-------------|--------|-----------|
+| Geo-блок read API из РФ | Низкая | Высокий | Day 1 проверка; если блок — VPN на собственном VPS |
+| Pre-resolution price недоступна | Средняя | Критичный | Day 3 — fallback через on-chain Polygon |
+| Survivorship bias в metadata | Высокая | Средний | Day 4 — explicitly смотреть только на закрытые-резолвнутые, не отменённые |
+| Look-ahead bias (поля обновляются post-resolution) | Средняя | Высокий | Day 1 — внимательно смотреть какие поля могут меняться после end_date |
+| Polymarket меняет API без уведомления | Низкая | Средний | Сохраняем сырые ответы в parquet, чтобы можно было пере-парсить |
+| Очень мало данных в нужной категории | Средняя | Высокий | Не фиксируем категорию заранее, выбираем по факту из EDA |
+
+## 📊 Известные параметры (для контекста)
+
+### Rate limits Polymarket API
+
+| API | Общий | Узкие места |
+|-----|-------|-------------|
+| Gamma | 4000 req / 10s | `/events` 500/10s, `/markets` 300/10s, search 350/10s |
+| CLOB | 9000 req / 10s | `/book` `/price` `/midpoint` 1500/10s; batch 500/10s |
+| Data | 1000 req / 10s | `/trades` 200/10s, `/positions` 150/10s |
+
+Глобальный потолок Cloudflare: 15k req/10s.
+429 → exponential backoff + jitter.
+
+### Auth
+
+- Read endpoints (Gamma, CLOB market data, Data API) — **public, без auth**.
+- Только запись ордеров требует HMAC + EIP-712 signing. В Фазе 0 не нужно.
+
+### Юрисдикция
+
+- Polymarket официально blocked for US persons (CFTC settlement 2022).
+- Read API доступен глобально, но **trade-flow требует non-US wallet**.
+- Для РФ: торговля не запрещена явно. Доступ к UI / API — проверяем в Day 1.
+
+---
+
+## ✅ Чек-лист завершения Фазы 0
+
+- [ ] API exploration done, схемы зафиксированы
+- [ ] Скачан полный dataset закрытых рынков (≥10k)
+- [ ] Решена feasibility price-history (Gate Day 3)
+- [ ] Сделан EDA, longshot sanity check выполнен
+- [ ] Сформулированы 3 candidate edge-гипотезы для Фазы 1
+- [ ] Написан `plans/phase-1-backtest.md`
+- [ ] Принято go/no-go решение
+
+---
+
+## 🔄 Журнал изменений плана
+
+| Дата | Изменение | Автор |
+|------|-----------|-------|
+| 2026-05-23 | Первая версия плана, статус: на верификации | Claude |
