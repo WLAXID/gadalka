@@ -59,29 +59,39 @@ from src.tg.keyboards import (
 
 
 WELCOME = (
-    "👋 <b>Привет!</b> Я гадалка — paper-трейдер по Polymarket.\n\n"
-    "Я каждые 15 минут сканирую активные рынки и записываю виртуальные "
-    "ставки по стратегии H1 (Buy YES когда цена в полосе 0.50–0.85 за "
-    "24 часа до резолва). Когда рынок резолвится, считаю реальный P&L.\n\n"
-    "Пользуйся кнопками ниже 👇"
+    "👋 <b>Привет!</b> Я — гадалка.\n\n"
+    "Слежу за рынками <a href='https://polymarket.com'>Polymarket</a> "
+    "и делаю <b>виртуальные ставки</b> (без реальных денег) по проверенной "
+    "стратегии. Когда рынок закрывается — считаю, прав я был или нет.\n\n"
+    "Цель: 4 недели накопить статистику и убедиться, что стратегия "
+    "реально работает на живых рынках. Если работает — потом можно "
+    "запустить с настоящими деньгами.\n\n"
+    "📊 Жми кнопки ниже чтобы посмотреть что происходит 👇"
 )
 
 HELP = (
-    "<b>Команды:</b>\n"
-    "/stats — сводка по всем ставкам\n"
-    "/scan — что я видел в последнем скане (рынки)\n"
-    "/pending — открытые ставки\n"
-    "/recent — последние резолвы\n"
-    "/health — статус loops\n"
-    "/events — журнал последних событий бота\n"
-    "/pause /resume — пауза/возобновить новые ставки\n"
-    "/settings — настройки\n"
-    "/dump — скачать БД (DuckDB-файл или CSV-архив)\n\n"
-    "<b>Логика:</b>\n"
-    "• Каждые 15 мин — скан 100 топ-active рынков\n"
-    "• Если цена YES @ T-24h в полосе [0.50, 0.85] → ставка\n"
-    "• Каждый час — проверка резолвов pending\n"
-    "• 23:59 UTC — ежедневный отчёт\n"
+    "<b>Что умеют кнопки:</b>\n\n"
+    "📊 <b>Итоги</b> — сколько ставок сделано, сколько выиграл/проиграл, "
+    "общая прибыль (виртуальная)\n\n"
+    "🔍 <b>Что вижу</b> — какие рынки я сейчас сканирую и почему "
+    "не делаю/делаю ставку\n\n"
+    "⏳ <b>Ждут результата</b> — открытые ставки на рынках, которые "
+    "ещё не закрылись\n\n"
+    "✅ <b>Закрытые ставки</b> — последние 10 завершённых ставок с "
+    "результатом (выиграл/проиграл)\n\n"
+    "🩺 <b>Состояние</b> — работает ли бот, когда сканировал в последний "
+    "раз, есть ли ошибки\n\n"
+    "📋 <b>События</b> — журнал последних 20 действий бота "
+    "(сканы, ставки, резолвы, ошибки)\n\n"
+    "⏸ <b>Пауза / ▶ Запустить</b> — остановить или возобновить новые ставки\n\n"
+    "⚙ <b>Настройки</b> — какая сейчас стратегия и параметры\n\n"
+    "💾 <b>Скачать данные</b> — забрать всю базу ставок к себе "
+    "(DuckDB-файл или CSV для Excel)\n\n"
+    "<b>Как работает:</b>\n"
+    "• Каждые 15 минут смотрю топ-100 активных рынков\n"
+    "• Если цена «Да» за 24ч до закрытия в полосе 50¢–85¢ → ставлю $1\n"
+    "• Каждый час проверяю — закрылся рынок или нет\n"
+    "• В 23:59 UTC шлю краткий отчёт за день\n"
 )
 
 
@@ -205,14 +215,15 @@ class GadalkaBot:
     async def on_pause(self, m: Message) -> None:
         self.state.set_paused(True)
         await m.answer(
-            "⏸ Поставил на паузу — новых ставок не будет.",
+            "⏸ Поставил на паузу. Новых ставок делать не буду.\n"
+            "Уже открытые ставки буду проверять как обычно.",
             reply_markup=main_keyboard(paused=True),
         )
 
     async def on_resume(self, m: Message) -> None:
         self.state.set_paused(False)
         await m.answer(
-            "▶ Запустил скан рынков.",
+            "▶ Возобновил работу. При следующем скане буду снова искать сигналы.",
             reply_markup=main_keyboard(paused=False),
         )
 
@@ -298,36 +309,74 @@ class GadalkaBot:
         n_total = s["pending"] + s["resolved"]
         wr = s.get("win_rate")
         ev = s.get("ev_per_dollar")
-        return (
-            "📊 <b>Сводка</b>\n"
-            "━━━━━━━━━━━━━━━━━\n"
-            f"💼 Открытых: <b>{s['pending']}</b> (вложено ${s['pending_cost']:.2f})\n"
-            f"✔ Резолвнутых: <b>{s['resolved']}</b>\n"
-            f"━━━━━━━━━━━━━━━━━\n"
-            + (
-                f"📊 Win rate: <b>{wr:.1%}</b> ({s['wins']}/{s['wins']+s['losses']})\n"
-                if wr is not None
-                else "📊 Win rate: <i>пока нет резолвов</i>\n"
-            )
-            + f"💰 Всего PnL: <b>${s['total_pnl']:+.2f}</b>\n"
-            + (
-                f"📈 EV / $1 invested: <b>{ev:+.2%}</b>"
-                if ev is not None
-                else "📈 EV / $: <i>—</i>"
-            )
+
+        lines = [
+            "📊 <b>Итоги</b>",
+            "━━━━━━━━━━━━━━━━━",
+            "",
+            f"📝 <b>Всего ставок:</b> {n_total}",
+            f"   • ждут результата: <b>{s['pending']}</b>  "
+            f"(вложено ${s['pending_cost']:.2f})",
+            f"   • уже закрыты: <b>{s['resolved']}</b>",
+            "",
+        ]
+
+        if s["resolved"] > 0:
+            lines.extend([
+                "<b>Из закрытых ставок:</b>",
+                f"   ✅ выиграно: <b>{s['wins']}</b>",
+                f"   ❌ проиграно: <b>{s['losses']}</b>",
+            ])
+            if wr is not None:
+                lines.append(f"   📊 % успешных: <b>{wr:.1%}</b>")
+            lines.append("")
+            lines.extend([
+                "<b>💰 Виртуальная прибыль:</b>",
+                f"   • всего: <b>${s['total_pnl']:+.2f}</b>",
+            ])
+            if ev is not None:
+                pct = ev * 100
+                emoji = "📈" if pct > 0 else "📉"
+                lines.append(
+                    f"   {emoji} в среднем на каждый $1 ставки: <b>{pct:+.1f}¢</b>"
+                )
+                lines.append(
+                    "      <i>(если число положительное — стратегия зарабатывает)</i>"
+                )
+        else:
+            lines.append("<i>Пока ни одна ставка не закрылась — нужно подождать. "
+                         "Резолв обычно занимает от часов до недель в зависимости от рынка.</i>")
+
+        lines.append("")
+        lines.append(
+            "ℹ <i>Деньги виртуальные. Цель — накопить ~100 ставок и сравнить "
+            "результат с бэктестом (там было +13.5%).</i>"
         )
+        return "\n".join(lines)
 
     def _format_pending(self) -> str:
         rows = self.state.pending_summary(limit=15)
         if not rows:
-            return "💼 <b>Открытые</b>\n\n<i>Пока ни одной ставки.</i>"
-        lines = ["💼 <b>Открытые</b>\n━━━━━━━━━━━━━━━━━"]
+            return (
+                "⏳ <b>Ждут результата</b>\n\n"
+                "<i>Открытых ставок пока нет.</i>\n\n"
+                "Это значит, что подходящих рынков для стратегии "
+                "сейчас не нашлось. Жми <b>🔍 Что вижу</b> чтобы "
+                "узнать почему."
+            )
+        lines = [
+            "⏳ <b>Ждут результата</b>",
+            "━━━━━━━━━━━━━━━━━",
+            f"<i>{len(rows)} открытых ставок. Закроются когда рынок резолвится.</i>",
+            "",
+        ]
         for r in rows:
             end = (r.get("end_date_iso") or "?")[:10]
-            q = _short(r.get("market_question") or "", 60)
+            q = _short(r.get("market_question") or "", 65)
             lines.append(
-                f"#{r['trade_id']} <b>{r['entry_price']:.3f}</b> → {end}  "
-                f"vol ${(r.get('volume') or 0):,.0f}\n"
+                f"<b>#{r['trade_id']}</b>  поставил по <b>{r['entry_price']:.3f}¢</b>  "
+                f"закрытие до {end}\n"
+                f"  объём рынка ${(r.get('volume') or 0):,.0f}\n"
                 f"  <i>{html.escape(q)}</i>"
             )
         return "\n".join(lines)
@@ -335,14 +384,24 @@ class GadalkaBot:
     def _format_recent(self) -> str:
         rows = self.state.recent_resolutions(limit=10)
         if not rows:
-            return "📜 <b>Последние резолвы</b>\n\n<i>Пока пусто.</i>"
-        lines = ["📜 <b>Последние резолвы</b>\n━━━━━━━━━━━━━━━━━"]
+            return (
+                "✅ <b>Закрытые ставки</b>\n\n"
+                "<i>Пока ни одна ставка не закрылась.</i>\n\n"
+                "Когда рынок резолвится (закрывается с результатом), "
+                "ставка переедет сюда."
+            )
+        lines = [
+            "✅ <b>Закрытые ставки</b> — последние 10",
+            "━━━━━━━━━━━━━━━━━",
+        ]
         for r in rows:
-            emoji = "✅" if (r.get("pnl") or 0) > 0 else "❌"
-            q = _short(r.get("market_question") or "", 60)
-            res = "YES" if r.get("resolved_yes") else "NO"
+            pnl = r.get("pnl") or 0
+            emoji = "✅" if pnl > 0 else "❌"
+            q = _short(r.get("market_question") or "", 65)
+            res = "Да" if r.get("resolved_yes") else "Нет"
             lines.append(
-                f"{emoji} #{r['trade_id']} {res} pnl <b>{r['pnl']:+.4f}</b>\n"
+                f"{emoji} <b>#{r['trade_id']}</b>  итог: <b>{res}</b>  "
+                f"прибыль: <b>${pnl:+.4f}</b>\n"
                 f"  <i>{html.escape(q)}</i>"
             )
         return "\n".join(lines)
@@ -357,53 +416,58 @@ class GadalkaBot:
 
         def _ago(ts_str: str | None) -> str:
             if not ts_str:
-                return "<i>никогда</i>"
+                return "<i>пока не запускалось</i>"
             try:
                 ago = now - int(ts_str)
                 if ago < 60:
-                    return f"{ago}s назад"
+                    return f"{ago} сек назад"
                 if ago < 3600:
-                    return f"{ago // 60}мин назад"
-                return f"{ago // 3600}ч назад"
+                    return f"{ago // 60} мин назад"
+                return f"{ago // 3600} ч назад"
             except Exception:
                 return "?"
 
-        scan_block = ""
+        lines = [
+            "🩺 <b>Состояние</b>",
+            "━━━━━━━━━━━━━━━━━",
+            "",
+            f"⚡ <b>Бот:</b> {'⏸ на паузе' if paused else '▶ работает'}",
+            "",
+            "<b>Когда что делал в последний раз:</b>",
+            f"  🔍 Сканировал рынки: {_ago(last_etl)}",
+            f"  ✅ Проверял закрылись ли ставки: {_ago(last_resolve)}",
+        ]
+
         if last_scan_raw:
             try:
                 s = _json.loads(last_scan_raw)
-                scan_block = (
-                    "\n<b>Последний скан:</b>\n"
-                    f"• активных: <b>{s.get('total_active', 0)}</b>\n"
-                    f"• кандидатов: {s.get('candidates', 0)} "
-                    f"(низ. volume отброшено: {s.get('skip_low_volume', 0)})\n"
-                    f"• цена ниже {self.cfg.strategy_low:.2f}: <b>{s.get('skip_below', 0)}</b>\n"
-                    f"• цена ≥ {self.cfg.strategy_high:.2f}: <b>{s.get('skip_above', 0)}</b>\n"
-                    f"• ⭐ <b>в диапазоне: {s.get('in_range', 0)}</b>\n"
-                    f"• нет 24h истории: {s.get('skip_no_history', 0)}\n"
-                    f"• уже взяли: {s.get('skip_already_taken', 0)}\n"
-                    f"• длительность скана: {s.get('duration_s', 0):.1f}s"
-                )
+                lines.extend([
+                    "",
+                    "<b>Что видел в последний раз:</b>",
+                    f"  📊 Просмотрел рынков: <b>{s.get('total_active', 0)}</b>",
+                    f"  🎯 Подходят по цене (50¢–85¢): <b>{s.get('in_range', 0)}</b>",
+                    f"  ⏬ Слишком дёшево (<50¢): {s.get('skip_below', 0)}",
+                    f"  ⏫ Слишком дорого (≥85¢): {s.get('skip_above', 0)}",
+                ])
+                if s.get("skip_no_history", 0) > 0:
+                    lines.append(
+                        f"  ⏳ Слишком новые рынки (<24ч): {s.get('skip_no_history', 0)}"
+                    )
             except Exception:
                 pass
 
         errs = self.state.last_events(limit=3, level="ERROR")
-        err_block = ""
         if errs:
-            err_block = "\n<b>⚠ Ошибки:</b>\n" + "\n".join(
-                f"• {html.escape(e['component'])}: {html.escape(_short(e['message'], 80))}"
-                for e in errs
-            )
+            lines.extend(["", "<b>⚠ Свежие ошибки:</b>"])
+            for e in errs:
+                lines.append(
+                    f"  • {html.escape(e['component'])}: "
+                    f"{html.escape(_short(e['message'], 90))}"
+                )
+        else:
+            lines.append("\n✅ <i>Ошибок нет, всё работает штатно.</i>")
 
-        return (
-            "❤️ <b>Здоровье</b>\n"
-            "━━━━━━━━━━━━━━━━━\n"
-            f"⏯ Статус: <b>{'⏸ Пауза' if paused else '▶ Активен'}</b>\n"
-            f"🔄 Последний ETL: {_ago(last_etl)}\n"
-            f"🎯 Последний резолв-чек: {_ago(last_resolve)}"
-            + scan_block
-            + err_block
-        )
+        return "\n".join(lines)
 
     def _format_scan(self) -> str:
         import json as _json
@@ -414,64 +478,89 @@ class GadalkaBot:
         if last_etl:
             try:
                 a = now - int(last_etl)
-                ago = f"{a}s" if a < 60 else f"{a // 60}мин" if a < 3600 else f"{a // 3600}ч"
+                ago = (
+                    f"{a} сек назад" if a < 60
+                    else f"{a // 60} мин назад" if a < 3600
+                    else f"{a // 3600} ч назад"
+                )
             except Exception:
                 pass
 
         if not last_scan_raw:
             return (
-                "🔍 <b>Что вижу</b>\n\n<i>Скан ещё не был выполнен. Подожди до 15 минут.</i>"
+                "🔍 <b>Что вижу</b>\n\n"
+                "<i>Сканирование ещё не запускалось. Подожди до 15 минут — "
+                "первый скан будет автоматически.</i>"
             )
         try:
             s = _json.loads(last_scan_raw)
         except Exception:
-            return "🔍 <b>Что вижу</b>\n\n<i>Не удалось распарсить данные скана.</i>"
+            return "🔍 <b>Что вижу</b>\n\n<i>Не удалось прочитать данные скана.</i>"
 
+        lo = self.cfg.strategy_low
+        hi = self.cfg.strategy_high
         lines = [
-            f"🔍 <b>Последний скан</b> ({ago} назад)",
+            f"🔍 <b>Что вижу</b>",
             "━━━━━━━━━━━━━━━━━",
-            f"📊 Топ-{s.get('total_active', 0)} активных рынков отсканировано",
-            f"🎯 Стратегия: <b>цена YES @ T-24h ∈ [{self.cfg.strategy_low:.2f}, {self.cfg.strategy_high:.2f})</b>",
+            f"<i>Последний раз смотрел: {ago}</i>",
             "",
-            f"📈 <b>Воронка:</b>",
-            f"• Скачано: <b>{s.get('total_active', 0)}</b>",
-            f"• Прошли фильтр volume ≥ ${self.cfg.min_market_volume:.0f}: <b>{s.get('candidates', 0)}</b>",
-            f"  ↳ откинуто volume: {s.get('skip_low_volume', 0)}",
-            f"  ↳ битые токены: {s.get('skip_no_token', 0)}",
-            f"  ↳ уже наша ставка: {s.get('skip_already_taken', 0)}",
-            f"• Из кандидатов с историей: <b>"
-            f"{s.get('candidates', 0) - s.get('skip_no_history', 0)}</b>",
-            f"  ↳ моложе 24h: {s.get('skip_no_history', 0)}",
-            f"",
-            f"📉 <b>По цене:</b>",
-            f"• Слишком дёшево (< {self.cfg.strategy_low:.2f}): <b>{s.get('skip_below', 0)}</b>",
-            f"• Слишком дорого (≥ {self.cfg.strategy_high:.2f}): <b>{s.get('skip_above', 0)}</b>",
-            f"• ⭐ <b>В диапазоне: {s.get('in_range', 0)}</b>",
+            f"🎯 <b>Я ищу рынки</b>, где цена «Да» стоит между "
+            f"<b>{int(lo*100)}¢</b> и <b>{int(hi*100)}¢</b> "
+            f"за 24 часа до закрытия рынка.",
+            "",
+            "<b>📊 Что было в последнем скане:</b>",
+            "",
+            f"1️⃣ Скачал самые активные рынки: <b>{s.get('total_active', 0)}</b>",
+            f"2️⃣ Отбросил с малым объёмом (&lt;$100): {s.get('skip_low_volume', 0)}",
+            f"3️⃣ Отбросил без нормальных токенов: {s.get('skip_no_token', 0)}",
+            f"4️⃣ Отбросил рынки, где уже ставил: {s.get('skip_already_taken', 0)}",
+            f"5️⃣ Отбросил слишком новые (моложе 24ч): {s.get('skip_no_history', 0)}",
+            "",
+            "<b>📉 Из оставшихся — по цене «Да»:</b>",
+            f"   ⏬ Слишком дёшево (&lt;{int(lo*100)}¢): <b>{s.get('skip_below', 0)}</b>  "
+            f"<i>— почти точно «Нет»</i>",
+            f"   ⏫ Слишком дорого (≥{int(hi*100)}¢): <b>{s.get('skip_above', 0)}</b>  "
+            f"<i>— почти точно «Да»</i>",
+            f"   ⭐ <b>В нашем диапазоне: {s.get('in_range', 0)}</b>",
         ]
+
+        if s.get("in_range", 0) > 0:
+            lines.append("")
+            lines.append("🎉 <i>Эти рынки уже добавлены как ставки.</i>")
 
         nb = s.get("near_below") or []
         if nb:
-            lines.append(f"\n<b>↑ Близко к нижней границе (могут зайти):</b>")
+            lines.append("")
+            lines.append("<b>🔻 Чуть ниже диапазона (могут вырасти и зайти):</b>")
             for it in nb[:5]:
                 p = it.get("price_yes_t24h") or 0
                 vol = it.get("volume") or 0
-                q = _short(it.get("question") or "", 55)
-                lines.append(f"  <b>{p:.3f}</b>  vol ${vol:,.0f}\n    <i>{html.escape(q)}</i>")
+                q = _short(it.get("question") or "", 60)
+                lines.append(
+                    f"  <b>{int(p*100)}¢</b>  объём ${vol:,.0f}\n"
+                    f"    <i>{html.escape(q)}</i>"
+                )
 
         na = s.get("near_above") or []
         if na:
-            lines.append(f"\n<b>↓ Близко к верхней границе:</b>")
+            lines.append("")
+            lines.append("<b>🔺 Чуть выше диапазона (могут упасть и зайти):</b>")
             for it in na[:5]:
                 p = it.get("price_yes_t24h") or 0
                 vol = it.get("volume") or 0
-                q = _short(it.get("question") or "", 55)
-                lines.append(f"  <b>{p:.3f}</b>  vol ${vol:,.0f}\n    <i>{html.escape(q)}</i>")
+                q = _short(it.get("question") or "", 60)
+                lines.append(
+                    f"  <b>{int(p*100)}¢</b>  объём ${vol:,.0f}\n"
+                    f"    <i>{html.escape(q)}</i>"
+                )
 
-        if s.get("in_range", 0) == 0 and not nb and not na:
+        if s.get("in_range", 0) == 0:
+            lines.append("")
             lines.append(
-                "\n<i>Все рынки сейчас на крайних ценах "
-                "(<0.50 — longshots, ≥0.85 — fav). "
-                "H1 catches «середняков», их сейчас просто нет в топ-100.</i>"
+                "ℹ <i><b>Почему 0 ставок?</b> Топ-100 рынков сейчас в основном "
+                "на крайних ценах: явные фавориты (~99¢) и явные аутсайдеры (~1¢). "
+                "Стратегия ищет середнячков — это редко: 1-2 раза в день. "
+                "Жди или загляни через час.</i>"
             )
 
         return "\n".join(lines)
@@ -479,39 +568,68 @@ class GadalkaBot:
     def _format_events(self) -> str:
         events = self.state.last_events(limit=20)
         if not events:
-            return "📋 <b>Журнал</b>\n\n<i>События ещё не записаны.</i>"
+            return (
+                "📋 <b>События</b>\n\n"
+                "<i>Журнал пуст. Подожди — бот начнёт писать сюда после "
+                "первого скана.</i>"
+            )
         now = int(time.time())
-        lines = ["📋 <b>Журнал событий</b>\n━━━━━━━━━━━━━━━━━"]
+        lines = [
+            "📋 <b>События</b> — последние 20",
+            "━━━━━━━━━━━━━━━━━",
+            "<i>Что бот делал в хронологическом порядке (новые сверху).</i>",
+            "",
+        ]
+
+        # Переводим название компонента на русский
+        comp_names = {
+            "scan": "🔍 скан",
+            "etl": "🔄 сканер",
+            "resolve": "✅ проверка",
+            "resolver": "✅ проверка",
+            "scheduler": "⚙ планировщик",
+            "daily": "📅 отчёт",
+            "signal": "🎯 сигнал",
+        }
+        level_emoji = {"INFO": "•", "WARNING": "⚠️", "ERROR": "❌"}
+
         for e in events:
             ago = now - int(e["ts"])
             ago_str = (
-                f"{ago}s" if ago < 60
-                else f"{ago // 60}m" if ago < 3600
-                else f"{ago // 3600}h"
+                f"{ago} сек" if ago < 60
+                else f"{ago // 60} мин" if ago < 3600
+                else f"{ago // 3600} ч"
             )
             level = e["level"]
-            emoji = {"INFO": "•", "WARNING": "⚠", "ERROR": "❌"}.get(level, "·")
-            comp = html.escape(e["component"])
-            msg = html.escape(_short(e["message"], 90))
-            lines.append(f"{emoji} <b>{comp}</b> ({ago_str}): {msg}")
+            emoji = level_emoji.get(level, "·")
+            comp_raw = e["component"]
+            comp = comp_names.get(comp_raw, html.escape(comp_raw))
+            msg = html.escape(_short(e["message"], 110))
+            lines.append(f"{emoji} <b>{comp}</b> ({ago_str} назад)\n   {msg}")
         return "\n".join(lines)
 
     def _format_dump_info(self) -> str:
         s = self.state.summary_stats()
         try:
             size = Path(self.cfg.db_path).stat().st_size
-            size_str = f"{size / 1024:.1f} KB" if size < 1024 * 1024 else f"{size / 1024 / 1024:.2f} MB"
+            size_str = f"{size / 1024:.1f} КБ" if size < 1024 * 1024 else f"{size / 1024 / 1024:.2f} МБ"
         except OSError:
             size_str = "?"
+        total = s['pending'] + s['resolved'] + s['cancelled']
         return (
-            "🗄 <b>Дамп БД</b>\n"
+            "💾 <b>Скачать данные</b>\n"
             "━━━━━━━━━━━━━━━━━\n"
-            f"📁 Файл: <code>{self.cfg.db_path.name}</code>\n"
+            "\n"
+            f"📁 База данных: <code>{self.cfg.db_path.name}</code>\n"
             f"💾 Размер: <b>{size_str}</b>\n"
-            f"📊 Записей: {s['pending'] + s['resolved'] + s['cancelled']} "
-            f"(open {s['pending']}, done {s['resolved']})\n\n"
-            "<i>DuckDB-файл</i> — открывается DuckDB CLI / Python\n"
-            "<i>CSV-архив</i> — 4 таблицы, открывается в любом редакторе"
+            f"📊 Всего записей: <b>{total}</b> "
+            f"(ждут — {s['pending']}, закрыто — {s['resolved']})\n"
+            "\n"
+            "<b>Выбери формат:</b>\n"
+            "  <b>🗄 DuckDB-файл</b> — оригинал базы, открывается через\n"
+            "      DuckDB или Python (для технического анализа)\n"
+            "  <b>📑 CSV-архив</b> — 4 таблицы как CSV, открываются\n"
+            "      в Excel / LibreOffice / любом редакторе"
         )
 
     async def _send_dump_duckdb(self, m: Message) -> None:
@@ -561,17 +679,31 @@ class GadalkaBot:
             await m.answer(f"❌ Ошибка: <code>{html.escape(str(e))}</code>")
 
     def _format_settings(self) -> str:
+        lo = self.cfg.strategy_low
+        hi = self.cfg.strategy_high
         return (
             "⚙ <b>Настройки</b>\n"
             "━━━━━━━━━━━━━━━━━\n"
-            f"📐 Стратегия: <code>H1 [{self.cfg.strategy_low:.2f}–{self.cfg.strategy_high:.2f}] @ T-24h</code>\n"
-            f"💰 Размер ставки: <code>${self.cfg.stake_amount:.2f}</code>\n"
-            f"💸 Fee: <code>{self.cfg.fee_rate:.1%}</code>\n"
-            f"📊 Spread: <code>{self.cfg.spread_pct:.1%}</code>\n"
-            f"⏱ ETL interval: <code>{self.cfg.etl_interval_s}s</code>\n"
-            f"⏱ Resolve interval: <code>{self.cfg.resolve_interval_s}s</code>\n"
-            f"📅 Daily report: <code>{self.cfg.daily_report_time} UTC</code>\n"
-            f"⏯ <b>{'⏸ Пауза' if self.state.is_paused() else '▶ Активен'}</b>"
+            "\n"
+            "<b>🎯 Стратегия</b>\n"
+            f"   Покупаю «Да» если его цена за 24ч до закрытия рынка\n"
+            f"   в диапазоне <b>{int(lo*100)}¢ – {int(hi*100)}¢</b>\n"
+            "\n"
+            "<b>💰 Размер ставки</b>\n"
+            f"   <b>${self.cfg.stake_amount:.2f}</b> на каждый сигнал (виртуально)\n"
+            "\n"
+            "<b>💸 Учёт издержек</b>\n"
+            f"   Комиссия Polymarket: <b>{self.cfg.fee_rate:.1%}</b> от прибыли\n"
+            f"   Спред (между ценой покупки и серединой): <b>{self.cfg.spread_pct:.1%}</b>\n"
+            f"   Проскальзывание: <b>{self.cfg.slippage_pct:.1%}</b>\n"
+            "\n"
+            "<b>⏱ Периоды</b>\n"
+            f"   Сканирование рынков: каждые <b>{self.cfg.etl_interval_s // 60} мин</b>\n"
+            f"   Проверка закрытий: каждый <b>{self.cfg.resolve_interval_s // 60} мин</b>\n"
+            f"   Ежедневный отчёт: <b>{self.cfg.daily_report_time} UTC</b>\n"
+            "\n"
+            f"<b>⚡ Сейчас:</b> "
+            f"{'⏸ на паузе' if self.state.is_paused() else '▶ работает'}"
         )
 
     # ---------- Lifecycle ----------
