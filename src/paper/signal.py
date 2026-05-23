@@ -110,6 +110,10 @@ class SignalGenerator:
             if vol < self.cfg.min_market_volume:
                 stats.skip_low_volume += 1
                 continue
+            # Только рынки с активным orderbook (CLOB) — без legacy FPMM
+            if not m.get("enableOrderBook", True):
+                stats.skip_no_token += 1
+                continue
             clob_ids_raw = m.get("clobTokenIds")
             if not clob_ids_raw:
                 stats.skip_no_token += 1

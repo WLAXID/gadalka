@@ -119,14 +119,31 @@ class GadalkaBot:
         event: TelegramObject,
         data: dict[str, _Any],
     ) -> _Any:
+        # outer_middleware получает Update, у него внутри либо message,
+        # либо callback_query, либо другое. Достаём from_user из всех типов.
         user_id = None
-        if hasattr(event, "from_user") and getattr(event, "from_user"):
-            user_id = event.from_user.id
-        elif hasattr(event, "message") and event.message:
-            user_id = event.message.from_user.id
-        if user_id and int(user_id) != self.owner_id:
+        msg = getattr(event, "message", None)
+        cb = getattr(event, "callback_query", None)
+        inline = getattr(event, "inline_query", None)
+        edited = getattr(event, "edited_message", None)
+
+        if msg and msg.from_user:
+            user_id = msg.from_user.id
+        elif cb and cb.from_user:
+            user_id = cb.from_user.id
+        elif inline and inline.from_user:
+            user_id = inline.from_user.id
+        elif edited and edited.from_user:
+            user_id = edited.from_user.id
+        else:
+            fu = getattr(event, "from_user", None)
+            if fu:
+                user_id = fu.id
+
+        # fail-closed: если не смогли определить — дропаем
+        if user_id is None or int(user_id) != self.owner_id:
             logger.warning(f"[tg] drop event from {user_id}")
-            return  # игнорируем чужих
+            return
         return await handler(event, data)
 
     # ---------- Notifier ----------
@@ -291,6 +308,13 @@ class GadalkaBot:
     async def cb_refresh_events(self, cb: CallbackQuery) -> None:
         await self._edit_or_ignore(cb, self._format_events(), inline_refresh("refresh:events"))
 
+    @staticmethod
+    def _truncate(text: str) -> str:
+        """Обрезает текст до Telegram limit (4096), оставляя метку."""
+        if len(text) <= _TG_MAX:
+            return text
+        return text[: _TG_MAX - 30] + "\n…\n<i>(обрезано)</i>"
+
     async def _edit_or_ignore(self, cb: CallbackQuery, text: str, markup):
         try:
             await cb.message.edit_text(text, reply_markup=markup)
@@ -379,7 +403,7 @@ class GadalkaBot:
                 f"  объём рынка ${(r.get('volume') or 0):,.0f}\n"
                 f"  <i>{html.escape(q)}</i>"
             )
-        return "\n".join(lines)
+        return self._truncate("\n".join(lines))
 
     def _format_recent(self) -> str:
         rows = self.state.recent_resolutions(limit=10)
@@ -404,7 +428,7 @@ class GadalkaBot:
                 f"прибыль: <b>${pnl:+.4f}</b>\n"
                 f"  <i>{html.escape(q)}</i>"
             )
-        return "\n".join(lines)
+        return self._truncate("\n".join(lines))
 
     def _format_health(self) -> str:
         import json as _json
@@ -563,15 +587,7 @@ class GadalkaBot:
                 "Жди или загляни через час.</i>"
             )
 
-        # Если no_history был большой — показать первые ошибки
-        sample_errs = s.get("sample_errors") or []
-        if s.get("skip_no_history", 0) > 0 and sample_errs:
-            lines.append("")
-            lines.append("<b>⚠ Технические причины пропуска (для дебага):</b>")
-            for err in sample_errs:
-                lines.append(f"  • <code>{html.escape(_short(err, 110))}</code>")
-
-        return "\n".join(lines)
+        return self._truncate("\n".join(lines))
 
     def _format_events(self) -> str:
         events = self.state.last_events(limit=20)
@@ -614,7 +630,7 @@ class GadalkaBot:
             comp = comp_names.get(comp_raw, html.escape(comp_raw))
             msg = html.escape(_short(e["message"], 110))
             lines.append(f"{emoji} <b>{comp}</b> ({ago_str} назад)\n   {msg}")
-        return "\n".join(lines)
+        return self._truncate("\n".join(lines))
 
     def _format_dump_info(self) -> str:
         s = self.state.summary_stats()
@@ -740,3 +756,7 @@ def _short(text: str, n: int) -> str:
     if not text:
         return ""
     return text if len(text) <= n else text[: n - 1] + "…"
+
+
+# Telegram message limit = 4096 chars. Берём с запасом.
+_TG_MAX = 3900

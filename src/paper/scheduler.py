@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import asyncio
 import time
-from datetime import datetime, time as dtime, timezone
+from datetime import datetime, time as dtime, timedelta, timezone
 from typing import Awaitable, Callable
 
 from loguru import logger
@@ -164,7 +164,9 @@ class PaperScheduler:
                 second=0, microsecond=0,
             )
             if target <= now:
-                target = target.replace(day=target.day + 1)
+                # ИСПРАВЛЕНО: target.replace(day=day+1) падает 31-го числа.
+                # timedelta безопасно переходит на следующий месяц/год.
+                target = target + timedelta(days=1)
             sleep_s = (target - now).total_seconds()
             try:
                 await asyncio.wait_for(self._stop.wait(), timeout=sleep_s)
@@ -182,18 +184,24 @@ class PaperScheduler:
 
     @staticmethod
     def _format_daily_report(s: dict) -> str:
+        """Ежедневный отчёт. Безопасно для случая нулевых данных."""
         wr = s.get("win_rate")
         ev = s.get("ev_per_dollar")
-        return (
-            "📅 <b>Ежедневный отчёт</b>\n"
-            f"━━━━━━━━━━━━━━━━━\n"
-            f"💼 Открытых ставок: <b>{s['pending']}</b>\n"
-            f"✔ Резолвнутых: <b>{s['resolved']}</b>\n"
-            f"━━━━━━━━━━━━━━━━━\n"
-            f"📊 Win rate: <b>{wr:.1%}</b>" + (" \n" if wr else " (нет данных)\n")
-            + f"💰 Total PnL: <b>${s['total_pnl']:+.2f}</b>\n"
-            f"📈 EV / $: <b>{ev:+.2%}</b>" if ev is not None else ""
-        )
+        parts = [
+            "📅 <b>Ежедневный отчёт</b>",
+            "━━━━━━━━━━━━━━━━━",
+            f"💼 Открытых ставок: <b>{s.get('pending', 0)}</b>",
+            f"✔ Резолвнутых: <b>{s.get('resolved', 0)}</b>",
+            "━━━━━━━━━━━━━━━━━",
+        ]
+        if wr is not None:
+            parts.append(f"📊 % успешных: <b>{wr:.1%}</b>")
+        else:
+            parts.append("📊 % успешных: <i>пока нет резолвов</i>")
+        parts.append(f"💰 Прибыль/убыток: <b>${s.get('total_pnl', 0):+.2f}</b>")
+        if ev is not None:
+            parts.append(f"📈 EV / $1: <b>{ev:+.2%}</b>")
+        return "\n".join(parts)
 
     async def _sleep(self, seconds: int) -> None:
         """Прерываемый сон — будит self._stop."""
