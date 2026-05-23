@@ -34,7 +34,7 @@ data/cache/*
 logs/
 *.log
 
-# Секреты
+# Секреты — НИКОГДА не коммитим
 .env
 .env.*
 !.env.example
@@ -42,6 +42,13 @@ logs/
 *.pem
 credentials.json
 wallets/
+api_keys.json
+api_keys.*.json
+keys/
+secrets/
+*_secrets.json
+*_secret.json
+findings.json
 
 # IDE
 .vscode/
