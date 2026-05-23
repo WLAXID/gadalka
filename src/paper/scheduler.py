@@ -65,10 +65,31 @@ class PaperScheduler:
     # ---------- Loops ----------
 
     async def _etl_loop(self) -> None:
+        import json as _json
+        from dataclasses import asdict as _asdict
+
         while not self._stop.is_set():
             try:
-                signals = await self._sigs.scan(self._client)
+                signals, scan_stats = await self._sigs.scan(self._client)
                 self._last_etl_ts = int(time.time())
+                # Сохраняем детальную статистику последнего скана
+                self.state.set_setting(
+                    "last_scan_stats",
+                    _json.dumps(_asdict(scan_stats), ensure_ascii=False),
+                )
+                # И info-event для журнала
+                self.state.log_event(
+                    "info", "scan",
+                    (
+                        f"active={scan_stats.total_active}, "
+                        f"candidates={scan_stats.candidates}, "
+                        f"in_range={scan_stats.in_range}, "
+                        f"below={scan_stats.skip_below}, "
+                        f"above={scan_stats.skip_above}, "
+                        f"no_hist={scan_stats.skip_no_history}, "
+                        f"already_taken={scan_stats.skip_already_taken}"
+                    ),
+                )
                 for s in signals:
                     cost_model = CostModel(
                         fee_rate=self.cfg.fee_rate,

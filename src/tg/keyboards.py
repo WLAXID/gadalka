@@ -16,6 +16,8 @@ BTN_STATS = "📊 Сводка"
 BTN_PENDING = "💼 Открытые"
 BTN_RECENT = "📜 Последние"
 BTN_HEALTH = "❤️ Здоровье"
+BTN_SCAN = "🔍 Что вижу"
+BTN_EVENTS = "📋 Журнал"
 BTN_PAUSE = "⏸ Пауза"
 BTN_RESUME = "▶ Запустить"
 BTN_SETTINGS = "⚙ Настройки"
@@ -28,8 +30,9 @@ def main_keyboard(paused: bool = False) -> ReplyKeyboardMarkup:
     toggle = BTN_RESUME if paused else BTN_PAUSE
     return ReplyKeyboardMarkup(
         keyboard=[
-            [KeyboardButton(text=BTN_STATS), KeyboardButton(text=BTN_PENDING)],
-            [KeyboardButton(text=BTN_RECENT), KeyboardButton(text=BTN_HEALTH)],
+            [KeyboardButton(text=BTN_STATS), KeyboardButton(text=BTN_SCAN)],
+            [KeyboardButton(text=BTN_PENDING), KeyboardButton(text=BTN_RECENT)],
+            [KeyboardButton(text=BTN_HEALTH), KeyboardButton(text=BTN_EVENTS)],
             [KeyboardButton(text=toggle), KeyboardButton(text=BTN_SETTINGS)],
             [KeyboardButton(text=BTN_DUMP), KeyboardButton(text=BTN_HELP)],
         ],

@@ -41,12 +41,14 @@ from src.paper.config import PaperConfig
 from src.paper.state import PaperState
 from src.tg.keyboards import (
     BTN_DUMP,
+    BTN_EVENTS,
     BTN_HEALTH,
     BTN_HELP,
     BTN_PAUSE,
     BTN_PENDING,
     BTN_RECENT,
     BTN_RESUME,
+    BTN_SCAN,
     BTN_SETTINGS,
     BTN_STATS,
     inline_dump_choice,
@@ -67,14 +69,17 @@ WELCOME = (
 HELP = (
     "<b>Команды:</b>\n"
     "/stats — сводка по всем ставкам\n"
+    "/scan — что я видел в последнем скане (рынки)\n"
     "/pending — открытые ставки\n"
     "/recent — последние резолвы\n"
     "/health — статус loops\n"
+    "/events — журнал последних событий бота\n"
     "/pause /resume — пауза/возобновить новые ставки\n"
     "/settings — настройки\n"
     "/dump — скачать БД (DuckDB-файл или CSV-архив)\n\n"
     "<b>Логика:</b>\n"
-    "• Каждые 15 мин — скан рынков и новые ставки\n"
+    "• Каждые 15 мин — скан 100 топ-active рынков\n"
+    "• Если цена YES @ T-24h в полосе [0.50, 0.85] → ставка\n"
     "• Каждый час — проверка резолвов pending\n"
     "• 23:59 UTC — ежедневный отчёт\n"
 )
@@ -140,6 +145,8 @@ class GadalkaBot:
         d.message.register(self.on_settings, Command("settings"))
         d.message.register(self.on_dump, Command("dump"))
         d.message.register(self.on_dump, Command("backup"))
+        d.message.register(self.on_scan, Command("scan"))
+        d.message.register(self.on_events, Command("events"))
 
         d.message.register(self.on_stats, F.text == BTN_STATS)
         d.message.register(self.on_pending, F.text == BTN_PENDING)
@@ -149,6 +156,8 @@ class GadalkaBot:
         d.message.register(self.on_resume, F.text == BTN_RESUME)
         d.message.register(self.on_settings, F.text == BTN_SETTINGS)
         d.message.register(self.on_dump, F.text == BTN_DUMP)
+        d.message.register(self.on_scan, F.text == BTN_SCAN)
+        d.message.register(self.on_events, F.text == BTN_EVENTS)
         d.message.register(self.on_help, F.text == BTN_HELP)
 
         # Inline callbacks
@@ -161,6 +170,8 @@ class GadalkaBot:
         d.callback_query.register(self.cb_dump_duckdb, F.data == "dump:duckdb")
         d.callback_query.register(self.cb_dump_csv, F.data == "dump:csv")
         d.callback_query.register(self.cb_dump_info, F.data == "dump:info")
+        d.callback_query.register(self.cb_refresh_scan, F.data == "refresh:scan")
+        d.callback_query.register(self.cb_refresh_events, F.data == "refresh:events")
 
     # ---- Команды ----
 
@@ -214,6 +225,15 @@ class GadalkaBot:
     async def on_dump(self, m: Message) -> None:
         await m.answer(self._format_dump_info(), reply_markup=inline_dump_choice())
 
+    async def on_scan(self, m: Message) -> None:
+        await m.answer(self._format_scan(), reply_markup=inline_refresh("refresh:scan"))
+
+    async def on_events(self, m: Message) -> None:
+        await m.answer(
+            self._format_events(),
+            reply_markup=inline_refresh("refresh:events"),
+        )
+
     # ---- Callbacks ----
 
     async def cb_refresh_stats(self, cb: CallbackQuery) -> None:
@@ -253,6 +273,12 @@ class GadalkaBot:
 
     async def cb_dump_info(self, cb: CallbackQuery) -> None:
         await self._edit_or_ignore(cb, self._format_dump_info(), inline_dump_choice())
+
+    async def cb_refresh_scan(self, cb: CallbackQuery) -> None:
+        await self._edit_or_ignore(cb, self._format_scan(), inline_refresh("refresh:scan"))
+
+    async def cb_refresh_events(self, cb: CallbackQuery) -> None:
+        await self._edit_or_ignore(cb, self._format_events(), inline_refresh("refresh:events"))
 
     async def _edit_or_ignore(self, cb: CallbackQuery, text: str, markup):
         try:
@@ -322,8 +348,10 @@ class GadalkaBot:
         return "\n".join(lines)
 
     def _format_health(self) -> str:
+        import json as _json
         last_etl = self.state.get_setting("last_etl_ts")
         last_resolve = self.state.get_setting("last_resolve_ts")
+        last_scan_raw = self.state.get_setting("last_scan_stats")
         paused = self.state.is_paused()
         now = int(time.time())
 
@@ -340,6 +368,25 @@ class GadalkaBot:
             except Exception:
                 return "?"
 
+        scan_block = ""
+        if last_scan_raw:
+            try:
+                s = _json.loads(last_scan_raw)
+                scan_block = (
+                    "\n<b>Последний скан:</b>\n"
+                    f"• активных: <b>{s.get('total_active', 0)}</b>\n"
+                    f"• кандидатов: {s.get('candidates', 0)} "
+                    f"(низ. volume отброшено: {s.get('skip_low_volume', 0)})\n"
+                    f"• цена ниже {self.cfg.strategy_low:.2f}: <b>{s.get('skip_below', 0)}</b>\n"
+                    f"• цена ≥ {self.cfg.strategy_high:.2f}: <b>{s.get('skip_above', 0)}</b>\n"
+                    f"• ⭐ <b>в диапазоне: {s.get('in_range', 0)}</b>\n"
+                    f"• нет 24h истории: {s.get('skip_no_history', 0)}\n"
+                    f"• уже взяли: {s.get('skip_already_taken', 0)}\n"
+                    f"• длительность скана: {s.get('duration_s', 0):.1f}s"
+                )
+            except Exception:
+                pass
+
         errs = self.state.last_events(limit=3, level="ERROR")
         err_block = ""
         if errs:
@@ -353,9 +400,101 @@ class GadalkaBot:
             "━━━━━━━━━━━━━━━━━\n"
             f"⏯ Статус: <b>{'⏸ Пауза' if paused else '▶ Активен'}</b>\n"
             f"🔄 Последний ETL: {_ago(last_etl)}\n"
-            f"🎯 Последний резолв-чек: {_ago(last_resolve)}\n"
+            f"🎯 Последний резолв-чек: {_ago(last_resolve)}"
+            + scan_block
             + err_block
         )
+
+    def _format_scan(self) -> str:
+        import json as _json
+        last_scan_raw = self.state.get_setting("last_scan_stats")
+        last_etl = self.state.get_setting("last_etl_ts")
+        now = int(time.time())
+        ago = "—"
+        if last_etl:
+            try:
+                a = now - int(last_etl)
+                ago = f"{a}s" if a < 60 else f"{a // 60}мин" if a < 3600 else f"{a // 3600}ч"
+            except Exception:
+                pass
+
+        if not last_scan_raw:
+            return (
+                "🔍 <b>Что вижу</b>\n\n<i>Скан ещё не был выполнен. Подожди до 15 минут.</i>"
+            )
+        try:
+            s = _json.loads(last_scan_raw)
+        except Exception:
+            return "🔍 <b>Что вижу</b>\n\n<i>Не удалось распарсить данные скана.</i>"
+
+        lines = [
+            f"🔍 <b>Последний скан</b> ({ago} назад)",
+            "━━━━━━━━━━━━━━━━━",
+            f"📊 Топ-{s.get('total_active', 0)} активных рынков отсканировано",
+            f"🎯 Стратегия: <b>цена YES @ T-24h ∈ [{self.cfg.strategy_low:.2f}, {self.cfg.strategy_high:.2f})</b>",
+            "",
+            f"📈 <b>Воронка:</b>",
+            f"• Скачано: <b>{s.get('total_active', 0)}</b>",
+            f"• Прошли фильтр volume ≥ ${self.cfg.min_market_volume:.0f}: <b>{s.get('candidates', 0)}</b>",
+            f"  ↳ откинуто volume: {s.get('skip_low_volume', 0)}",
+            f"  ↳ битые токены: {s.get('skip_no_token', 0)}",
+            f"  ↳ уже наша ставка: {s.get('skip_already_taken', 0)}",
+            f"• Из кандидатов с историей: <b>"
+            f"{s.get('candidates', 0) - s.get('skip_no_history', 0)}</b>",
+            f"  ↳ моложе 24h: {s.get('skip_no_history', 0)}",
+            f"",
+            f"📉 <b>По цене:</b>",
+            f"• Слишком дёшево (< {self.cfg.strategy_low:.2f}): <b>{s.get('skip_below', 0)}</b>",
+            f"• Слишком дорого (≥ {self.cfg.strategy_high:.2f}): <b>{s.get('skip_above', 0)}</b>",
+            f"• ⭐ <b>В диапазоне: {s.get('in_range', 0)}</b>",
+        ]
+
+        nb = s.get("near_below") or []
+        if nb:
+            lines.append(f"\n<b>↑ Близко к нижней границе (могут зайти):</b>")
+            for it in nb[:5]:
+                p = it.get("price_yes_t24h") or 0
+                vol = it.get("volume") or 0
+                q = _short(it.get("question") or "", 55)
+                lines.append(f"  <b>{p:.3f}</b>  vol ${vol:,.0f}\n    <i>{html.escape(q)}</i>")
+
+        na = s.get("near_above") or []
+        if na:
+            lines.append(f"\n<b>↓ Близко к верхней границе:</b>")
+            for it in na[:5]:
+                p = it.get("price_yes_t24h") or 0
+                vol = it.get("volume") or 0
+                q = _short(it.get("question") or "", 55)
+                lines.append(f"  <b>{p:.3f}</b>  vol ${vol:,.0f}\n    <i>{html.escape(q)}</i>")
+
+        if s.get("in_range", 0) == 0 and not nb and not na:
+            lines.append(
+                "\n<i>Все рынки сейчас на крайних ценах "
+                "(<0.50 — longshots, ≥0.85 — fav). "
+                "H1 catches «середняков», их сейчас просто нет в топ-100.</i>"
+            )
+
+        return "\n".join(lines)
+
+    def _format_events(self) -> str:
+        events = self.state.last_events(limit=20)
+        if not events:
+            return "📋 <b>Журнал</b>\n\n<i>События ещё не записаны.</i>"
+        now = int(time.time())
+        lines = ["📋 <b>Журнал событий</b>\n━━━━━━━━━━━━━━━━━"]
+        for e in events:
+            ago = now - int(e["ts"])
+            ago_str = (
+                f"{ago}s" if ago < 60
+                else f"{ago // 60}m" if ago < 3600
+                else f"{ago // 3600}h"
+            )
+            level = e["level"]
+            emoji = {"INFO": "•", "WARNING": "⚠", "ERROR": "❌"}.get(level, "·")
+            comp = html.escape(e["component"])
+            msg = html.escape(_short(e["message"], 90))
+            lines.append(f"{emoji} <b>{comp}</b> ({ago_str}): {msg}")
+        return "\n".join(lines)
 
     def _format_dump_info(self) -> str:
         s = self.state.summary_stats()
