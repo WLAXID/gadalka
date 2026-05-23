@@ -1,6 +1,6 @@
 # 🔍 Фаза 0 — Discovery
 
-**Срок:** 3–5 дней
+**Срок:** 4–6 дней
 **Капитал:** $0
 **Статус:** 🟡 На верификации пользователя
 
@@ -11,11 +11,13 @@
 К концу фазы мы должны иметь точные ответы на:
 
 1. **Какие данные** доступны бесплатно через Polymarket API без auth?
-2. **Можно ли** реконструировать **price-history до резолва** для исторических рынков? (критично для бэктеста)
-3. **Сколько** резолвнутых рынков в каждой категории, какая ликвидность, fees, спред?
-4. **Какие 2–3 кандидата edge-гипотез** имеют смысл тестировать в Фазе 1?
-5. **Geo-доступность:** работает ли read-only API из РФ без VPN?
-6. **Go/no-go:** идём ли в Фазу 1?
+2. **Какие ещё API** имеет смысл подключить (новости, конкуренты-маркеты для арб, on-chain, LLM)?
+3. **Какие готовые проекты** уже работают на Polymarket — что они делают, насколько эффективно, что переиспользовать, а что не изобретать?
+4. **Можно ли** реконструировать **price-history до резолва** для исторических рынков? (критично для бэктеста)
+5. **Сколько** резолвнутых рынков в каждой категории, какая ликвидность, fees, спред?
+6. **Какие 2–3 кандидата edge-гипотез** имеют смысл тестировать в Фазе 1?
+7. **Geo-доступность:** работает ли read-only API из РФ без VPN?
+8. **Go/no-go:** идём ли в Фазу 1?
 
 ## 🚫 Что мы НЕ делаем в Фазе 0
 
@@ -29,21 +31,147 @@
 
 ---
 
-## 📅 День 1 — API exploration + dataset map
+## 📅 День 1 — Landscape research: APIs + существующие проекты
+
+> С этого дня начинаем. Прежде чем кодить — понять экосистему.
+
+### Часть А — Каталог API, которые могут пригодиться
+
+Для каждого API: URL, что даёт, цена/freе tier, лимиты, нужен ли auth, оценка «зачем нам».
+
+**Категории API для исследования:**
+
+1. **Polymarket собственные** (3 API)
+   - Gamma — metadata рынков и событий
+   - CLOB — orderbook, цены, current trades
+   - Data API — historical trades, positions, holders
+   - TimeSeries — price-history (КРИТИЧНО, см. Day 4)
+
+2. **Конкуренты-маркеты** (для cross-platform арбитража в будущем)
+   - Kalshi — US-регулируемый prediction market, REST + WS
+   - PredictIt — академический, малый объём, но другой ценовой режим
+   - Manifold Markets — play-money + реальные деньги
+   - Polymarket-Sports — спортивные рынки
+
+3. **On-chain data (Polygon)**
+   - Alchemy free tier
+   - Chainstack free tier
+   - Public Polygon RPC nodes
+   - QuickNode
+   - → нужны для backup-источника price-history через event logs CTF Exchange
+
+4. **On-chain indexers**
+   - Dune Analytics (free tier + community queries)
+   - Goldsky
+   - The Graph / Subgraphs для Polymarket
+   - Allium / Flipside Crypto
+
+5. **Новости и social**
+   - NewsAPI
+   - Tavily Search API
+   - Perplexity API
+   - Twitter/X API (платный, дорогой)
+   - Reddit API (бесплатный)
+   - RSS-агрегаторы (Feedly, custom)
+
+6. **LLM API** (для news → P(yes) features в Фазе 1)
+   - Anthropic Claude
+   - OpenAI
+   - Google Gemini
+   - Локальные (Ollama) — для дешёвой обработки большого потока
+
+7. **Котировки для арбитража со спорт-букмекерами**
+   - Pinnacle (через сторонние агрегаторы)
+   - Betfair Exchange API
+   - The Odds API
+   - → если будем смотреть Sports/Politics overlap
+
+### Часть Б — Существующие проекты для Polymarket
+
+Для каждого проекта: ссылка, статус (active/dead), подход, declared performance, открытый код или нет, что переиспользовать.
+
+**Что ищем:**
+
+1. **Open-source SDK/клиенты**
+   - `py-clob-client` (официальный)
+   - `polymarket-py` сторонние
+   - SDK на других языках (JS/TS, Go, Rust, OCaml)
+   - → возможно, не пишем HTTP-клиент с нуля
+
+2. **Open-source боты на GitHub**
+   - Топ-репозитории по запросам «polymarket bot», «polymarket trading», «polymarket arbitrage»
+   - Их подходы: arb, statistical, news-based, signals
+   - Заявленный winrate / PnL (если есть)
+   - Активность (последний commit, issues, stars)
+   - Какие edges они эксплуатируют
+
+3. **Коммерческие тулы / SaaS**
+   - Polymarket Analytics
+   - pm.wiki
+   - AgentBets.ai
+   - Crypticorn
+   - Laika Labs
+   - TradingVPS
+   - → стоимость, что дают, есть ли API
+
+4. **Telegram-каналы / signals services**
+   - Заявленный winrate
+   - Тип сигналов (longshot, arb, news)
+   - Бесплатные / платные
+   - → понять, какие edges рынок ОСОЗНАЁТ (на которых уже много игроков)
+
+5. **Академические работы и блог-посты**
+   - Medium-статьи с конкретными бэктестами
+   - arXiv по prediction markets
+   - Известные исследования mispricing на Polymarket
+   - → бесплатный transfer learning
+
+6. **Aggregators и dashboards**
+   - Polymarket positions trackers
+   - Smart money trackers для prediction markets
+   - On-chain whales на Polymarket
+
+### Методика дня
+
+- Поиск через web search (`polymarket bot github`, `polymarket arbitrage strategy 2026`, `polymarket prediction market alpha`)
+- GitHub Trending / topic browsing (`#polymarket`, `#prediction-markets`)
+- HackerNews / Reddit (`r/algotrading`, `r/polymarket`)
+- Медиум, Substack посты с реальными бэктестами
+- Проверка свежести: репозитории без commits >12 мес → закрашиваем, но фиксируем подход
+- Для каждого инструмента — оценка «инсайт-плотности»: если статья просто пересказывает API docs — мимо
+
+### Артефакты
+
+- `docs/apis-landscape.md` — таблица всех API (категория, URL, free tier, лимиты, auth, оценка для gadalka)
+- `docs/existing-projects.md` — таблица проектов (название, ссылка, статус, подход, declared edge, что переиспользовать)
+- `docs/competing-edges.md` — какие edges уже известны рынку (favorite-longshot bias, cross-platform arb, news lag, ...) и насколько они «вытоптаны»
+- `plans/phase-0-research-notes.md` — выводы и решения: что подключаем в Фазе 0/1, что в бэклог, что игнорируем
+
+### Критерии завершения дня
+
+- ✅ Таблица из ≥15 API с оценкой релевантности для gadalka
+- ✅ Таблица из ≥10 существующих проектов / SDK / signal services
+- ✅ Список ≥3 конкретных edges, уже известных рынку, с оценкой «насколько вытоптано»
+- ✅ Решение: используем существующий SDK для Polymarket или пишем свой клиент
+- ✅ Список новых гипотез, появившихся из чтения чужого опыта
+
+---
+
+## 📅 День 2 — API exploration + dataset map
 
 ### Задачи
 
 - [ ] Поднять Python 3.11+ venv, поставить `requirements.txt`
-- [ ] Базовый HTTP-клиент `src/api/client.py`:
+- [ ] Базовый HTTP-клиент `src/api/client.py` (или адаптер к найденному в Day 1 SDK):
   - `httpx.AsyncClient` с пулом
   - Rate-limiter (token bucket): отдельные buckets под Gamma/CLOB/Data
   - Retry с exponential backoff на 429/5xx (`tenacity`)
   - Локальный кэш ответов в `data/cache/` (по URL + params хэш) — экономит при пере-проходах
-- [ ] **Sample-запросы** ко всем трём API:
+- [ ] **Sample-запросы** ко всем трём API Polymarket:
   - Gamma: `/markets`, `/markets?closed=true`, `/events`, `/events?closed=true`, `/markets/search`
   - CLOB: `/markets/{condition_id}`, `/book`, `/price`, `/midpoint`, `/trades`
   - Data: `/trades`, `/positions`, `/holders`, `/value`
-  - TimeSeries: `/prices-history?market={id}&interval=1h` (КЛЮЧЕВОЙ для Фазы 1)
+  - TimeSeries: `/prices-history?market={id}&interval=1h`
 - [ ] Задокументировать поля каждого ответа в `docs/api-schemas.md`
 - [ ] Проверить geo-блок: работает ли API без VPN из текущей локации
 
@@ -62,7 +190,7 @@
 
 ---
 
-## 📅 День 2 — Historical markets collector
+## 📅 День 3 — Historical markets collector
 
 ### Задачи
 
@@ -91,7 +219,7 @@
 
 ---
 
-## 📅 День 3 — Price history feasibility check ⚠️ КРИТИЧНЫЙ ДЕНЬ
+## 📅 День 4 — Price history feasibility check ⚠️ КРИТИЧНЫЙ ДЕНЬ
 
 Без price-history до резолва **бэктест построить нельзя**. Этот день решает, идём ли мы вообще дальше.
 
@@ -102,13 +230,13 @@
   - Понять: какая максимальная глубина? Какая гранулярность?
   - Замерить: для рынка с volume <$10k — есть ли история, или только для топов?
 - [ ] **Источник 2: On-chain Polygon RPC**
-  - Найти адрес контракта CTF Exchange (`0x4bFb...` — уточнить)
+  - Найти адрес контракта CTF Exchange
   - Через бесплатный RPC (Alchemy free / Chainstack / public) запросить event logs `OrderFilled` для одного condition_id
   - Прикинуть стоимость и время для full reconstruction price-curve по 20 рынкам
 - [ ] **Источник 3: Dune Analytics**
   - Поискать community queries на `polymarket`, `polymarket_polygon`
   - Проверить наличие готовых price snapshots
-- [ ] **Источник 4: pm.wiki, polymarket-analytics, сторонние агрегаторы**
+- [ ] **Источник 4: pm.wiki, polymarket-analytics, сторонние агрегаторы** (из Day 1 каталога)
   - Быстрая проверка, есть ли публичные dumps
 
 ### Критерии успеха
@@ -123,13 +251,13 @@
 
 ### 🚨 Gate: go / no-go
 
-- ✅ Нашли источник pre-resolution price на ≥500 рынков → **GO** в День 4
+- ✅ Нашли источник pre-resolution price на ≥500 рынков → **GO** в День 5
 - ⚠️ Только для топ-100 рынков → **PARTIAL GO** — ограничиваемся high-volume категориями
 - ❌ Никак нельзя получить historical prices → **STOP**, обсуждаем pivot
 
 ---
 
-## 📅 День 4 — EDA на закрытых рынках
+## 📅 День 5 — EDA на закрытых рынках
 
 ### Задачи
 
@@ -162,7 +290,7 @@
 
 ---
 
-## 📅 День 5 — Go/no-go и план Фазы 1
+## 📅 День 6 — Go/no-go и план Фазы 1
 
 ### Задачи
 
@@ -181,12 +309,14 @@
 
 | Риск | Вероятность | Импакт | Митигация |
 |------|-------------|--------|-----------|
-| Geo-блок read API из РФ | Низкая | Высокий | Day 1 проверка; если блок — VPN на собственном VPS |
-| Pre-resolution price недоступна | Средняя | Критичный | Day 3 — fallback через on-chain Polygon |
-| Survivorship bias в metadata | Высокая | Средний | Day 4 — explicitly смотреть только на закрытые-резолвнутые, не отменённые |
-| Look-ahead bias (поля обновляются post-resolution) | Средняя | Высокий | Day 1 — внимательно смотреть какие поля могут меняться после end_date |
+| Geo-блок read API из РФ | Низкая | Высокий | Day 2 проверка; если блок — VPN на собственном VPS |
+| Pre-resolution price недоступна | Средняя | Критичный | Day 4 — fallback через on-chain Polygon |
+| Survivorship bias в metadata | Высокая | Средний | Day 5 — explicitly смотреть только на закрытые-резолвнутые, не отменённые |
+| Look-ahead bias (поля обновляются post-resolution) | Средняя | Высокий | Day 2 — внимательно смотреть какие поля могут меняться после end_date |
 | Polymarket меняет API без уведомления | Низкая | Средний | Сохраняем сырые ответы в parquet, чтобы можно было пере-парсить |
 | Очень мало данных в нужной категории | Средняя | Высокий | Не фиксируем категорию заранее, выбираем по факту из EDA |
+| Edge уже вытоптан конкурентами | Высокая | Высокий | Day 1 landscape research — явно ищем «забитые» зоны и обходим |
+| Изобретаем велосипед | Средняя | Низкий | Day 1 — оценить SDK/готовые компоненты до написания своего |
 
 ## 📊 Известные параметры (для контекста)
 
@@ -210,17 +340,18 @@
 
 - Polymarket официально blocked for US persons (CFTC settlement 2022).
 - Read API доступен глобально, но **trade-flow требует non-US wallet**.
-- Для РФ: торговля не запрещена явно. Доступ к UI / API — проверяем в Day 1.
+- Для РФ: торговля не запрещена явно. Доступ к UI / API — проверяем в Day 2.
 
 ---
 
 ## ✅ Чек-лист завершения Фазы 0
 
-- [ ] API exploration done, схемы зафиксированы
-- [ ] Скачан полный dataset закрытых рынков (≥10k)
-- [ ] Решена feasibility price-history (Gate Day 3)
-- [ ] Сделан EDA, longshot sanity check выполнен
-- [ ] Сформулированы 3 candidate edge-гипотезы для Фазы 1
+- [ ] Day 1: APIs landscape + existing projects map готовы
+- [ ] Day 2: API exploration done, схемы зафиксированы
+- [ ] Day 3: скачан полный dataset закрытых рынков (≥10k)
+- [ ] Day 4: решена feasibility price-history (Gate)
+- [ ] Day 5: сделан EDA, longshot sanity check выполнен
+- [ ] Day 6: сформулированы 3 candidate edge-гипотезы для Фазы 1
 - [ ] Написан `plans/phase-1-backtest.md`
 - [ ] Принято go/no-go решение
 
@@ -231,3 +362,4 @@
 | Дата | Изменение | Автор |
 |------|-----------|-------|
 | 2026-05-23 | Первая версия плана, статус: на верификации | Claude |
+| 2026-05-23 | Добавлен Day 1 — Landscape research (APIs ecosystem + existing projects). Срок 3–5 → 4–6 дней. Остальные дни сдвинуты на +1. | Claude (по запросу пользователя) |
