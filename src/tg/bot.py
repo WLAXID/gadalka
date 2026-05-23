@@ -15,9 +15,13 @@ from __future__ import annotations
 
 import asyncio
 import html
+import shutil
+import tempfile
 import time
+import zipfile
 from collections.abc import Awaitable, Callable
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any as _Any
 
 from aiogram import Bot, Dispatcher, F
@@ -25,7 +29,9 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.exceptions import TelegramBadRequest
 from aiogram.filters import Command
 from aiogram.types import (
+    BufferedInputFile,
     CallbackQuery,
+    FSInputFile,
     Message,
     TelegramObject,
 )
@@ -34,6 +40,7 @@ from loguru import logger
 from src.paper.config import PaperConfig
 from src.paper.state import PaperState
 from src.tg.keyboards import (
+    BTN_DUMP,
     BTN_HEALTH,
     BTN_HELP,
     BTN_PAUSE,
@@ -42,6 +49,7 @@ from src.tg.keyboards import (
     BTN_RESUME,
     BTN_SETTINGS,
     BTN_STATS,
+    inline_dump_choice,
     inline_refresh,
     inline_settings,
     main_keyboard,
@@ -63,7 +71,8 @@ HELP = (
     "/recent — последние резолвы\n"
     "/health — статус loops\n"
     "/pause /resume — пауза/возобновить новые ставки\n"
-    "/settings — настройки\n\n"
+    "/settings — настройки\n"
+    "/dump — скачать БД (DuckDB-файл или CSV-архив)\n\n"
     "<b>Логика:</b>\n"
     "• Каждые 15 мин — скан рынков и новые ставки\n"
     "• Каждый час — проверка резолвов pending\n"
@@ -129,6 +138,8 @@ class GadalkaBot:
         d.message.register(self.on_pause, Command("pause"))
         d.message.register(self.on_resume, Command("resume"))
         d.message.register(self.on_settings, Command("settings"))
+        d.message.register(self.on_dump, Command("dump"))
+        d.message.register(self.on_dump, Command("backup"))
 
         d.message.register(self.on_stats, F.text == BTN_STATS)
         d.message.register(self.on_pending, F.text == BTN_PENDING)
@@ -137,6 +148,7 @@ class GadalkaBot:
         d.message.register(self.on_pause, F.text == BTN_PAUSE)
         d.message.register(self.on_resume, F.text == BTN_RESUME)
         d.message.register(self.on_settings, F.text == BTN_SETTINGS)
+        d.message.register(self.on_dump, F.text == BTN_DUMP)
         d.message.register(self.on_help, F.text == BTN_HELP)
 
         # Inline callbacks
@@ -146,6 +158,9 @@ class GadalkaBot:
         d.callback_query.register(self.cb_refresh_health, F.data == "refresh:health")
         d.callback_query.register(self.cb_settings_toggle, F.data == "settings:toggle")
         d.callback_query.register(self.cb_settings_refresh, F.data == "settings:refresh")
+        d.callback_query.register(self.cb_dump_duckdb, F.data == "dump:duckdb")
+        d.callback_query.register(self.cb_dump_csv, F.data == "dump:csv")
+        d.callback_query.register(self.cb_dump_info, F.data == "dump:info")
 
     # ---- Команды ----
 
@@ -196,6 +211,9 @@ class GadalkaBot:
             reply_markup=inline_settings(self.state.is_paused()),
         )
 
+    async def on_dump(self, m: Message) -> None:
+        await m.answer(self._format_dump_info(), reply_markup=inline_dump_choice())
+
     # ---- Callbacks ----
 
     async def cb_refresh_stats(self, cb: CallbackQuery) -> None:
@@ -224,6 +242,17 @@ class GadalkaBot:
         await self._edit_or_ignore(
             cb, self._format_settings(), inline_settings(self.state.is_paused()),
         )
+
+    async def cb_dump_duckdb(self, cb: CallbackQuery) -> None:
+        await cb.answer("Готовлю DuckDB-снимок…")
+        await self._send_dump_duckdb(cb.message)
+
+    async def cb_dump_csv(self, cb: CallbackQuery) -> None:
+        await cb.answer("Готовлю CSV-архив…")
+        await self._send_dump_csv(cb.message)
+
+    async def cb_dump_info(self, cb: CallbackQuery) -> None:
+        await self._edit_or_ignore(cb, self._format_dump_info(), inline_dump_choice())
 
     async def _edit_or_ignore(self, cb: CallbackQuery, text: str, markup):
         try:
@@ -327,6 +356,70 @@ class GadalkaBot:
             f"🎯 Последний резолв-чек: {_ago(last_resolve)}\n"
             + err_block
         )
+
+    def _format_dump_info(self) -> str:
+        s = self.state.summary_stats()
+        try:
+            size = Path(self.cfg.db_path).stat().st_size
+            size_str = f"{size / 1024:.1f} KB" if size < 1024 * 1024 else f"{size / 1024 / 1024:.2f} MB"
+        except OSError:
+            size_str = "?"
+        return (
+            "🗄 <b>Дамп БД</b>\n"
+            "━━━━━━━━━━━━━━━━━\n"
+            f"📁 Файл: <code>{self.cfg.db_path.name}</code>\n"
+            f"💾 Размер: <b>{size_str}</b>\n"
+            f"📊 Записей: {s['pending'] + s['resolved'] + s['cancelled']} "
+            f"(open {s['pending']}, done {s['resolved']})\n\n"
+            "<i>DuckDB-файл</i> — открывается DuckDB CLI / Python\n"
+            "<i>CSV-архив</i> — 4 таблицы, открывается в любом редакторе"
+        )
+
+    async def _send_dump_duckdb(self, m: Message) -> None:
+        try:
+            with tempfile.TemporaryDirectory() as tmpdir:
+                tmp = Path(tmpdir) / (
+                    f"gadalka_{datetime.now(timezone.utc):%Y%m%d_%H%M%S}.duckdb"
+                )
+                self.state.make_dump(tmp)
+                size = tmp.stat().st_size
+                file = FSInputFile(tmp, filename=tmp.name)
+                await self.bot.send_document(
+                    chat_id=self.owner_id,
+                    document=file,
+                    caption=(
+                        f"🗄 <b>{tmp.name}</b>\n"
+                        f"💾 {size / 1024:.1f} KB"
+                    ),
+                )
+        except Exception as e:
+            logger.exception("[dump] duckdb failed")
+            await m.answer(f"❌ Ошибка: <code>{html.escape(str(e))}</code>")
+
+    async def _send_dump_csv(self, m: Message) -> None:
+        try:
+            with tempfile.TemporaryDirectory() as tmpdir:
+                csv_dir = Path(tmpdir) / "csv"
+                self.state.export_csv_bundle(csv_dir)
+
+                stamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+                zip_path = Path(tmpdir) / f"gadalka_{stamp}.zip"
+                with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
+                    for f in csv_dir.iterdir():
+                        z.write(f, arcname=f.name)
+                size = zip_path.stat().st_size
+                file = FSInputFile(zip_path, filename=zip_path.name)
+                await self.bot.send_document(
+                    chat_id=self.owner_id,
+                    document=file,
+                    caption=(
+                        f"📑 <b>{zip_path.name}</b>\n"
+                        f"💾 {size / 1024:.1f} KB (4 CSV таблицы)"
+                    ),
+                )
+        except Exception as e:
+            logger.exception("[dump] csv failed")
+            await m.answer(f"❌ Ошибка: <code>{html.escape(str(e))}</code>")
 
     def _format_settings(self) -> str:
         return (

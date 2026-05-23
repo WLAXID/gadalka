@@ -10,6 +10,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import threading
 import time
 from dataclasses import dataclass
@@ -331,6 +332,34 @@ class PaperState:
             ).fetchall()
             cols = [d[0] for d in self._conn.description]
         return [dict(zip(cols, r)) for r in rows]
+
+    # ---------- Dump ----------
+
+    def make_dump(self, output_path: Path | str) -> Path:
+        """Сделать консистентный снимок paper.duckdb в output_path.
+
+        CHECKPOINT сбрасывает WAL → копия не теряет недавние записи.
+        Возвращает реальный путь к файлу.
+        """
+        output_path = Path(output_path)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with self._lock:
+            self._conn.execute("CHECKPOINT")
+            # Скопировать сам файл DB
+            shutil.copy(self.db_path, output_path)
+        return output_path
+
+    def export_csv_bundle(self, output_dir: Path | str) -> Path:
+        """Экспорт всех таблиц в CSV-папку. Возвращает путь к директории."""
+        output_dir = Path(output_dir)
+        output_dir.mkdir(parents=True, exist_ok=True)
+        with self._lock:
+            self._conn.execute("CHECKPOINT")
+            for tbl in ("paper_trades", "paper_resolutions",
+                        "paper_events", "paper_settings"):
+                out = output_dir / f"{tbl}.csv"
+                self._conn.execute(f"COPY {tbl} TO '{out.as_posix()}' (HEADER, DELIMITER ',')")
+        return output_dir
 
     def pending_summary(self, limit: int = 20) -> list[dict]:
         with self._lock:

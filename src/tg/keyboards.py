@@ -19,6 +19,7 @@ BTN_HEALTH = "❤️ Здоровье"
 BTN_PAUSE = "⏸ Пауза"
 BTN_RESUME = "▶ Запустить"
 BTN_SETTINGS = "⚙ Настройки"
+BTN_DUMP = "🗄 Дамп БД"
 BTN_HELP = "❓ Помощь"
 
 
@@ -30,10 +31,23 @@ def main_keyboard(paused: bool = False) -> ReplyKeyboardMarkup:
             [KeyboardButton(text=BTN_STATS), KeyboardButton(text=BTN_PENDING)],
             [KeyboardButton(text=BTN_RECENT), KeyboardButton(text=BTN_HEALTH)],
             [KeyboardButton(text=toggle), KeyboardButton(text=BTN_SETTINGS)],
-            [KeyboardButton(text=BTN_HELP)],
+            [KeyboardButton(text=BTN_DUMP), KeyboardButton(text=BTN_HELP)],
         ],
         resize_keyboard=True,
         is_persistent=True,
+    )
+
+
+def inline_dump_choice() -> InlineKeyboardMarkup:
+    """Выбор формата дампа."""
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text="🗄 DuckDB-файл", callback_data="dump:duckdb"),
+                InlineKeyboardButton(text="📑 CSV-архив", callback_data="dump:csv"),
+            ],
+            [InlineKeyboardButton(text="ℹ Инфо", callback_data="dump:info")],
+        ]
     )
 
 
