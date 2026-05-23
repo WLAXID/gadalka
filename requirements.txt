@@ -25,3 +25,7 @@ python-dotenv>=1.0.0
 pydantic>=2.5.0
 rich>=13.7.0             # красивый CLI/логи
 loguru>=0.7.0            # логирование
+
+# Telegram бот (Фаза 2)
+aiogram>=3.4.0           # async Telegram bot framework
+aiofiles>=23.2.0         # для асинхронного fs

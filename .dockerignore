@@ -1,0 +1,49 @@
+# Не тащим в образ:
+.git/
+.gitignore
+.dockerignore
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Секреты — никогда в образе
+.env
+.env.*
+!.env.example
+api_keys.json
+api_keys.*.json
+keys/
+secrets/
+*.key
+*.pem
+credentials.json
+wallets/
+
+# Данные — на томах
+data/
+*.parquet
+*.duckdb
+*.duckdb.wal
+*.sqlite
+*.db
+logs/
+
+# Локальное барахло
+.claude/
+.vscode/
+.idea/
+.ipynb_checkpoints/
+notebooks/
+plans/
+docs/
+README.md
+*.md
+
+# Тяжёлое
+samples/
+*.png
+*.jpg
