@@ -10,7 +10,6 @@
 from __future__ import annotations
 
 import json
-import shutil
 import threading
 import time
 from dataclasses import dataclass
@@ -167,10 +166,19 @@ class PaperState:
         end_date_iso: str | None,
         volume: float | None,
     ) -> int | None:
-        """Вставка идемпотентная: если ставка для (condition_id, token_id) есть — None."""
-        if self.has_trade_for(condition_id, token_id):
-            return None
+        """Вставка идемпотентная: если ставка для (condition_id, token_id) есть — None.
+
+        Проверка + insert под одним lock, чтобы между ними не вклинился
+        другой writer (UNIQUE-constraint всё равно защитит, но IntegrityError
+        дороже).
+        """
         with self._lock:
+            exists = self._conn.execute(
+                "SELECT 1 FROM paper_trades WHERE condition_id = ? AND token_id = ?",
+                [condition_id, token_id],
+            ).fetchone()
+            if exists is not None:
+                return None
             trade_id = self._conn.execute(
                 "SELECT nextval('paper_trades_seq')"
             ).fetchone()[0]
@@ -338,15 +346,28 @@ class PaperState:
     def make_dump(self, output_path: Path | str) -> Path:
         """Сделать консистентный снимок paper.duckdb в output_path.
 
-        CHECKPOINT сбрасывает WAL → копия не теряет недавние записи.
-        Возвращает реальный путь к файлу.
+        Используем DuckDB ATTACH + COPY FROM DATABASE, потому что
+        shutil.copy живого файла с writelock падает на Windows
+        (PermissionError). DuckDB сам пишет новый файл атомарно.
         """
         output_path = Path(output_path)
         output_path.parent.mkdir(parents=True, exist_ok=True)
+        # ATTACH откажется писать в существующий файл
+        if output_path.exists():
+            output_path.unlink()
+        dest = output_path.as_posix().replace("'", "''")
         with self._lock:
             self._conn.execute("CHECKPOINT")
-            # Скопировать сам файл DB
-            shutil.copy(self.db_path, output_path)
+            # Имя текущей БД в DuckDB = имя файла без расширения, а не "main"
+            src_db = self._conn.execute("SELECT current_database()").fetchone()[0]
+            src_q = src_db.replace('"', '""')
+            self._conn.execute(f"ATTACH '{dest}' AS dump_db")
+            try:
+                self._conn.execute(
+                    f'COPY FROM DATABASE "{src_q}" TO dump_db'
+                )
+            finally:
+                self._conn.execute("DETACH dump_db")
         return output_path
 
     def export_csv_bundle(self, output_dir: Path | str) -> Path:

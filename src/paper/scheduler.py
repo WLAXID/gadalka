@@ -134,18 +134,28 @@ class PaperScheduler:
                 r = await self._resolver.resolve_all(self._client)
                 self._last_resolve_ts = int(time.time())
                 self.state.set_setting("last_resolve_ts", str(self._last_resolve_ts))
-                if r["resolved"] > 0:
-                    # Уведомляем о крупных движениях
-                    recent = self.state.recent_resolutions(limit=r["resolved"])
+                total_new = r["resolved"] + r["cancelled"]
+                if total_new > 0:
+                    # cancelled тоже резолвы — учитываем оба в limit'е
+                    recent = self.state.recent_resolutions(limit=total_new)
                     for tr in recent:
-                        if abs(tr.get("pnl") or 0) > 0.1:
-                            emoji = "✅" if (tr.get("pnl") or 0) > 0 else "❌"
-                            await self.notifier(
-                                f"{emoji} <b>Резолв #{tr['trade_id']}</b>\n"
-                                f"<i>{_short(tr.get('market_question') or '', 80)}</i>\n"
-                                f"PnL: <b>{tr['pnl']:+.4f}</b> "
-                                f"(резолв: {'YES' if tr.get('resolved_yes') else 'NO'})"
-                            )
+                        pnl = tr.get("pnl") or 0
+                        # Cancelled (resolved_yes=None) — всегда уведомляем
+                        # Resolved — только если PnL сдвинулся заметно
+                        is_cancelled = tr.get("resolved_yes") is None
+                        if not is_cancelled and abs(pnl) <= 0.1:
+                            continue
+                        if is_cancelled:
+                            emoji = "⚪"
+                            outcome = "ОТМЕНЁН"
+                        else:
+                            emoji = "✅" if pnl > 0 else "❌"
+                            outcome = "YES" if tr.get("resolved_yes") else "NO"
+                        await self.notifier(
+                            f"{emoji} <b>Резолв #{tr['trade_id']}</b>\n"
+                            f"<i>{_short(tr.get('market_question') or '', 80)}</i>\n"
+                            f"PnL: <b>{pnl:+.4f}</b> (резолв: {outcome})"
+                        )
             except Exception as e:
                 logger.exception("[resolve] error")
                 self.state.log_event("error", "resolve", f"{type(e).__name__}: {e}")

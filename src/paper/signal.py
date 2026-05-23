@@ -1,13 +1,18 @@
 """Генератор сигналов: ходит в Polymarket API и решает нужно ли войти.
 
-Алгоритм H1 baseline:
-1. Достать все active рынки через `gamma_markets(active=True, closed=False)`
-2. Для каждого с volumeNum >= 100, получить `clob_prices_history(token_id_yes, interval=1h)`
-3. Найти цену за T-24h до now
-4. Если цена в [low, high] И нет уже открытой ставки → создать paper trade
+Алгоритм H1 live (упрощённая версия бэктестовой стратегии):
+1. Достать топ-100 active рынков через `gamma_markets(active=True, closed=False)`
+   с сортировкой по volumeNum DESC.
+2. Отфильтровать: volumeNum >= min_market_volume, enableOrderBook=True,
+   валидный clobTokenIds, не уже взятый condition_id.
+3. Прочитать текущую цену YES из `outcomePrices[0]`.
+4. Если цена в [strategy_low, strategy_high) → создать paper trade.
 
-NB: используем "now - 24h" а не "close_ts - 24h" потому что мы ловим
-рынок ДО резолва (т.е. до close_ts).
+Прим: бэктест смотрел цену за T-24h до closedTime. В live мы используем
+текущую цену из outcomePrices как proxy — edge был стабилен по всем
+горизонтам T-1h..T-7d на исторических данных (см. Phase 1 findings).
+Поле Signal.price_at_t24h оставлено для обратной совместимости с
+форматтерами; хранит ту же current_mid.
 """
 
 from __future__ import annotations
@@ -54,8 +59,6 @@ class ScanStats:
     near_below: list[dict] = field(default_factory=list)
     near_above: list[dict] = field(default_factory=list)
     duration_s: float = 0.0
-    # Первые 3 уникальные ошибки prices-history — для дебага
-    sample_errors: list[str] = field(default_factory=list)
 
 
 class SignalGenerator:

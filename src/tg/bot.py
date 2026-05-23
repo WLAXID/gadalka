@@ -58,6 +58,10 @@ from src.tg.keyboards import (
 )
 
 
+# Telegram message limit = 4096 chars. Берём с запасом.
+_TG_MAX = 3900
+
+
 WELCOME = (
     "👋 <b>Привет!</b> Я — гадалка.\n\n"
     "Слежу за рынками <a href='https://polymarket.com'>Polymarket</a> "
@@ -397,8 +401,9 @@ class GadalkaBot:
         for r in rows:
             end = (r.get("end_date_iso") or "?")[:10]
             q = _short(r.get("market_question") or "", 65)
+            price_cents = (r.get("entry_price") or 0) * 100
             lines.append(
-                f"<b>#{r['trade_id']}</b>  поставил по <b>{r['entry_price']:.3f}¢</b>  "
+                f"<b>#{r['trade_id']}</b>  поставил по <b>{price_cents:.1f}¢</b>  "
                 f"закрытие до {end}\n"
                 f"  объём рынка ${(r.get('volume') or 0):,.0f}\n"
                 f"  <i>{html.escape(q)}</i>"
@@ -723,7 +728,7 @@ class GadalkaBot:
             "\n"
             "<b>⏱ Периоды</b>\n"
             f"   Сканирование рынков: каждые <b>{self.cfg.etl_interval_s // 60} мин</b>\n"
-            f"   Проверка закрытий: каждый <b>{self.cfg.resolve_interval_s // 60} мин</b>\n"
+            f"   Проверка закрытий: каждые <b>{self.cfg.resolve_interval_s // 60} мин</b>\n"
             f"   Ежедневный отчёт: <b>{self.cfg.daily_report_time} UTC</b>\n"
             "\n"
             f"<b>⚡ Сейчас:</b> "
@@ -756,7 +761,3 @@ def _short(text: str, n: int) -> str:
     if not text:
         return ""
     return text if len(text) <= n else text[: n - 1] + "…"
-
-
-# Telegram message limit = 4096 chars. Берём с запасом.
-_TG_MAX = 3900
