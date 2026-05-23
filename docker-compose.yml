@@ -27,6 +27,7 @@ services:
       - .env
     environment:
       PAPER_DB_PATH: "/app/data/paper.duckdb"
+      PAPER_BACKUP_DIR: "/app/data/backups"
       TZ: "UTC"
     volumes:
       # БД paper-трейдера — именованный том (переживает down/up/обновление)
@@ -37,11 +38,22 @@ services:
     healthcheck:
       # read_only=True — иначе единственный writer-lock уже у paper-trader,
       # и healthcheck постоянно бы падал → Docker крутил бы рестарты.
-      test: ["CMD", "python", "-c", "import duckdb; duckdb.connect('/app/data/paper.duckdb', read_only=True).execute('SELECT 1')"]
+      # SELECT FROM paper_trades — проверка реальной schema-integrity,
+      # не просто файл открывается (corruption могла дропнуть таблицы).
+      test: ["CMD", "python", "-c", "import duckdb; duckdb.connect('/app/data/paper.duckdb', read_only=True).execute('SELECT COUNT(*) FROM paper_trades LIMIT 1')"]
       interval: 60s
       timeout: 10s
       retries: 3
-      start_period: 30s
+      # 120s даёт время на ALTER TABLE миграции и recovery-from-backup
+      # при первом запуске после обновления / corrupt'а.
+      start_period: 120s
+    # Log rotation: за месяц без присмотра stdout не должен сожрать диск.
+    # 5 файлов × 10 МБ = max 50 МБ на контейнер.
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
 
 volumes:
   gadalka-data:

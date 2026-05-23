@@ -153,13 +153,58 @@ class GadalkaBot:
     # ---------- Notifier ----------
 
     async def notify(self, text: str) -> None:
-        """Push-сообщение владельцу. Используется scheduler'ом."""
+        """Push-сообщение владельцу с timeout — не должно блокировать scheduler.
+
+        Если Telegram повис на 30+ сек, без timeout ETL-loop встал бы колом,
+        а heartbeat бы пытался кричать через тот же мёртвый канал.
+        """
         try:
-            await self.bot.send_message(
-                chat_id=self.owner_id, text=text, parse_mode="HTML",
+            await asyncio.wait_for(
+                self.bot.send_message(
+                    chat_id=self.owner_id, text=text, parse_mode="HTML",
+                ),
+                timeout=10,
             )
+        except asyncio.TimeoutError:
+            logger.warning("[tg] notify timed out (>10s)")
         except Exception as e:
             logger.warning(f"[tg] notify failed: {e}")
+
+    # ---------- Liveness ----------
+
+    async def is_alive(self) -> bool:
+        """Быстрый getMe — проверка что polling-task работоспособен.
+
+        Используется watchdog'ом scheduler'а для авто-рестарта.
+        """
+        try:
+            await asyncio.wait_for(self.bot.get_me(), timeout=10)
+            polling_alive = self._task is not None and not self._task.done()
+            return polling_alive
+        except Exception:
+            return False
+
+    async def restart_polling(self) -> None:
+        """Перезапустить long-polling task. Вызывается watchdog'ом."""
+        logger.warning("[tg] restarting polling task")
+        if self._task and not self._task.done():
+            try:
+                await self.dp.stop_polling()
+            except Exception:
+                pass
+            self._task.cancel()
+            try:
+                await asyncio.wait_for(self._task, timeout=5)
+            except (asyncio.TimeoutError, asyncio.CancelledError, Exception):
+                pass
+        try:
+            await self.bot.delete_webhook(drop_pending_updates=True)
+        except Exception as e:
+            logger.warning("[tg] delete_webhook failed: {}", e)
+        self._task = asyncio.create_task(
+            self.dp.start_polling(self.bot, handle_signals=False),
+            name="tg-polling",
+        )
 
     # ---------- Handlers ----------
 
@@ -439,8 +484,10 @@ class GadalkaBot:
         import json as _json
         last_etl = self.state.get_setting("last_etl_ts")
         last_resolve = self.state.get_setting("last_resolve_ts")
+        last_backup = self.state.get_setting("last_backup_ts")
         last_scan_raw = self.state.get_setting("last_scan_stats")
         paused = self.state.is_paused()
+        stats = self.state.summary_stats()
         now = int(time.time())
 
         def _ago(ts_str: str | None) -> str:
@@ -452,10 +499,14 @@ class GadalkaBot:
                     return f"{ago} сек назад"
                 if ago < 3600:
                     return f"{ago // 60} мин назад"
-                return f"{ago // 3600} ч назад"
+                if ago < 86400:
+                    return f"{ago // 3600} ч назад"
+                return f"{ago // 86400} дн назад"
             except Exception:
                 return "?"
 
+        lo = self.cfg.strategy_low
+        hi = self.cfg.strategy_high
         lines = [
             "🩺 <b>Состояние</b>",
             "━━━━━━━━━━━━━━━━━",
@@ -465,7 +516,16 @@ class GadalkaBot:
             "<b>Когда что делал в последний раз:</b>",
             f"  🔍 Сканировал рынки: {_ago(last_etl)}",
             f"  ✅ Проверял закрылись ли ставки: {_ago(last_resolve)}",
+            f"  💾 Backup БД: {_ago(last_backup)}",
         ]
+
+        # Метрики качества за 24h
+        lines.extend([
+            "",
+            "<b>За последние 24 часа:</b>",
+            f"  ❌ Ошибок: <b>{stats.get('error_count_24h', 0)}</b>",
+            f"  📈 Точек траектории цен: <b>{stats.get('trace_points_24h', 0)}</b>",
+        ])
 
         if last_scan_raw:
             try:
@@ -474,13 +534,28 @@ class GadalkaBot:
                     "",
                     "<b>Что видел в последний раз:</b>",
                     f"  📊 Просмотрел рынков: <b>{s.get('total_active', 0)}</b>",
-                    f"  🎯 Подходят по цене (50¢–85¢): <b>{s.get('in_range', 0)}</b>",
-                    f"  ⏬ Слишком дёшево (&lt;50¢): {s.get('skip_below', 0)}",
-                    f"  ⏫ Слишком дорого (≥85¢): {s.get('skip_above', 0)}",
+                    f"  🎯 Подходят по цене ({int(lo*100)}¢–{int(hi*100)}¢): "
+                    f"<b>{s.get('in_range', 0)}</b>",
+                    f"  ⏬ Слишком дёшево (&lt;{int(lo*100)}¢): "
+                    f"{s.get('skip_below', 0)}",
+                    f"  ⏫ Слишком дорого (≥{int(hi*100)}¢): "
+                    f"{s.get('skip_above', 0)}",
                 ])
+                if s.get("skip_ttl_too_far", 0) > 0:
+                    lines.append(
+                        f"  📅 Резолв слишком далеко "
+                        f"(&gt;{self.cfg.max_market_ttl_days}d): "
+                        f"{s.get('skip_ttl_too_far', 0)}"
+                    )
+                if s.get("skip_event_taken", 0) > 0:
+                    lines.append(
+                        f"  🔗 Уже взято на этом event: "
+                        f"{s.get('skip_event_taken', 0)}"
+                    )
                 if s.get("skip_no_history", 0) > 0:
                     lines.append(
-                        f"  ⏳ Слишком новые рынки (&lt;24ч): {s.get('skip_no_history', 0)}"
+                        f"  ⏳ Нет outcomePrices: "
+                        f"{s.get('skip_no_history', 0)}"
                     )
             except Exception:
                 pass
@@ -748,13 +823,20 @@ class GadalkaBot:
 
     async def stop(self) -> None:
         if self._task and not self._task.done():
-            await self.dp.stop_polling()
+            # stop_polling может зависнуть на network — timeout обязателен
+            try:
+                await asyncio.wait_for(self.dp.stop_polling(), timeout=5)
+            except (asyncio.TimeoutError, Exception):
+                pass
             self._task.cancel()
             try:
-                await self._task
-            except asyncio.CancelledError:
+                await asyncio.wait_for(self._task, timeout=5)
+            except (asyncio.TimeoutError, asyncio.CancelledError, Exception):
                 pass
-        await self.bot.session.close()
+        try:
+            await self.bot.session.close()
+        except Exception:
+            pass
 
 
 def _short(text: str, n: int) -> str:
