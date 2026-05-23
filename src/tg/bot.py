@@ -446,12 +446,12 @@ class GadalkaBot:
                     "<b>Что видел в последний раз:</b>",
                     f"  📊 Просмотрел рынков: <b>{s.get('total_active', 0)}</b>",
                     f"  🎯 Подходят по цене (50¢–85¢): <b>{s.get('in_range', 0)}</b>",
-                    f"  ⏬ Слишком дёшево (<50¢): {s.get('skip_below', 0)}",
+                    f"  ⏬ Слишком дёшево (&lt;50¢): {s.get('skip_below', 0)}",
                     f"  ⏫ Слишком дорого (≥85¢): {s.get('skip_above', 0)}",
                 ])
                 if s.get("skip_no_history", 0) > 0:
                     lines.append(
-                        f"  ⏳ Слишком новые рынки (<24ч): {s.get('skip_no_history', 0)}"
+                        f"  ⏳ Слишком новые рынки (&lt;24ч): {s.get('skip_no_history', 0)}"
                     )
             except Exception:
                 pass
@@ -562,6 +562,14 @@ class GadalkaBot:
                 "Стратегия ищет середнячков — это редко: 1-2 раза в день. "
                 "Жди или загляни через час.</i>"
             )
+
+        # Если no_history был большой — показать первые ошибки
+        sample_errs = s.get("sample_errors") or []
+        if s.get("skip_no_history", 0) > 0 and sample_errs:
+            lines.append("")
+            lines.append("<b>⚠ Технические причины пропуска (для дебага):</b>")
+            for err in sample_errs:
+                lines.append(f"  • <code>{html.escape(_short(err, 110))}</code>")
 
         return "\n".join(lines)
 
