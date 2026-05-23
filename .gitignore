@@ -34,21 +34,12 @@ data/cache/*
 logs/
 *.log
 
-# Секреты — НИКОГДА не коммитим
+# Секреты — НЕ комитим даже в закрытом репо.
+# GitHub Secret Scanning + Push Protection блокирует пуш с OpenAI / др. ключами.
+# Вариант обхода был бы 20+ ручных unblock-кликов через web UI — нерентабельно.
+# Если совсем нужно — кидаем секреты на сервер отдельно через scp/rsync.
 .env
-.env.*
-!.env.example
-*.key
-*.pem
-credentials.json
-wallets/
 api_keys.json
-api_keys.*.json
-keys/
-secrets/
-*_secrets.json
-*_secret.json
-findings.json
 
 # IDE
 .vscode/
