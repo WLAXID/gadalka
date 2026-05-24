@@ -1,0 +1,72 @@
+======================================================================
+  Strategy grid search на репрезентативной выборке
+======================================================================
+[load] Загружаю pool...
+[load] 23,307 markets (volume>=$10k, with resolved_yes)
+[load] coverage: {'p_t1h': 0.9570086240185353, 'p_t6h': 0.9570086240185353, 'p_t24h': 0.8669498433946883, 'p_t3d': 0.6189556785515081, 'p_t7d': 0.3619513450894581}
+
+[run] 6 групп стратегий параллельно (ThreadPool 4)...
+  [done] D_volume: 4 стратегий
+  [done] C_momentum: 6 стратегий
+  [done] F_lifetime: 4 стратегий
+  [done] B_horizons: 10 стратегий
+  [done] G_combo: 8 стратегий
+  [done] A_price_bands: 20 стратегий
+  [done] E_category: 24 стратегий
+
+======================================================================
+  RESULTS
+======================================================================
+
+=== ТОП-20 стратегий по EV/$ ===
+                               strategy    n  win_rate  wilson_lo   ev_$  total_pnl
+    COMBO: crypto + drift>+10pp BUY YES  129    0.7210     0.6380 0.1376    13.7400
+               crypto   YES [0.15,0.50]  415    0.3490     0.3050 0.1133    14.5700
+               price[0.01,0.10] BUY YES 2947    0.0440     0.0370 0.1014    11.7400
+                      H1 + $1M+ BUY YES  161    0.7020     0.6270 0.0689     7.2400
+          MEAN-REV: drift<-20pp BUY YES  510    0.1140     0.0890 0.0632     3.4000
+               price[0.20,0.30] BUY YES 1361    0.2700     0.2470 0.0520    17.9100
+          MOMENTUM: drift>+15pp BUY YES  343    0.6360     0.5830 0.0515    10.6100
+                sport    NO [0.50,0.85] 1678    0.4200     0.3960 0.0457    30.3900
+           H1 + lifetime 7d-30d BUY YES  581    0.6940     0.6550 0.0446    17.0800
+               price[0.30,0.40] BUY YES 1291    0.3700     0.3440 0.0366    16.6500
+               politics YES [0.15,0.50]  610    0.3340     0.2980 0.0344     6.6900
+                weather  NO [0.15,0.50]  194    0.7320     0.6660 0.0332     4.5400
+               other    YES [0.15,0.50] 1344    0.3270     0.3030 0.0282    11.8900
+               crypto   YES [0.50,0.85] 2242    0.5410     0.5210 0.0184    21.6900
+              H1[0.50,0.85]@T-3d BUY NO 3211    0.4270     0.4100 0.0167    22.2100
+               price[0.90,0.99] BUY YES  785    0.9120     0.8900 0.0099     7.5000
+COMBO: vol>=$100k + extreme fav BUY YES  415    0.8990     0.8660 0.0079     3.1200
+               price[0.80,0.90] BUY YES  532    0.8670     0.8350 0.0068     3.1000
+                price[0.70,0.80] BUY NO  743    0.2640     0.2330 0.0034     0.6500
+                price[0.60,0.70] BUY NO  848    0.3640     0.3330 0.0031     0.9400
+
+=== БОТТОМ-10 (хуже всех) ===
+                          strategy    n  win_rate    ev_$
+          price[0.10,0.20] BUY YES 1352    0.1430 -0.0639
+          sport    YES [0.50,0.85] 1678    0.5800 -0.0644
+           crypto   NO [0.50,0.85] 2242    0.4590 -0.0655
+           crypto   NO [0.15,0.50]  415    0.6510 -0.0794
+      MEAN-REV: drift>+20pp BUY NO  505    0.2000 -0.0877
+      MOMENTUM: drift<-15pp BUY NO  200    0.6300 -0.0879
+          weather  YES [0.15,0.50]  194    0.2680 -0.1415
+           price[0.80,0.90] BUY NO  532    0.1330 -0.1492
+COMBO: crypto + drift>+20pp BUY NO   89    0.1010 -0.4856
+           price[0.90,0.99] BUY NO  785    0.0230 -0.5067
+
+=== ТОП-5 со значимостью (n>=100 и wilson_lo>0.5) ===
+                           strategy    n  win_rate  wilson_lo   ev_$  total_pnl         group
+COMBO: crypto + drift>+10pp BUY YES  129    0.7210     0.6380 0.1376    13.7400       G_combo
+           crypto   YES [0.15,0.50]  415    0.3490     0.3050 0.1133    14.5700    E_category
+           price[0.01,0.10] BUY YES 2947    0.0440     0.0370 0.1014    11.7400 A_price_bands
+                  H1 + $1M+ BUY YES  161    0.7020     0.6270 0.0689     7.2400      D_volume
+      MEAN-REV: drift<-20pp BUY YES  510    0.1140     0.0890 0.0632     3.4000    C_momentum
+           price[0.20,0.30] BUY YES 1361    0.2700     0.2470 0.0520    17.9100 A_price_bands
+      MOMENTUM: drift>+15pp BUY YES  343    0.6360     0.5830 0.0515    10.6100    C_momentum
+            sport    NO [0.50,0.85] 1678    0.4200     0.3960 0.0457    30.3900    E_category
+       H1 + lifetime 7d-30d BUY YES  581    0.6940     0.6550 0.0446    17.0800    F_lifetime
+           price[0.30,0.40] BUY YES 1291    0.3700     0.3440 0.0366    16.6500 A_price_bands
+
+💾 Saved 72 стратегий → X:\.projects\gadalka\data\wide_backtest\strategy_grid_results.parquet
+
+Done за 5.5s

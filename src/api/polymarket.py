@@ -193,8 +193,17 @@ class PolymarketClient:
         tag_id: int | None = None,
         archived: bool | None = None,
         condition_ids: list[str] | None = None,
+        end_date_min: str | None = None,
+        end_date_max: str | None = None,
+        start_date_min: str | None = None,
+        start_date_max: str | None = None,
     ) -> list[dict]:
-        """GET /markets — список рынков с фильтрами."""
+        """GET /markets — список рынков с фильтрами.
+
+        Hard cap: offset > 10000 → 422. Для обхода используем
+        end_date_min/end_date_max разбивку (проверено probe_gamma_filters).
+        Формат дат: "YYYY-MM-DD".
+        """
         params: dict[str, Any] = {
             "limit": limit,
             "offset": offset,
@@ -211,8 +220,15 @@ class PolymarketClient:
             params["tag_id"] = tag_id
         if condition_ids:
             params["condition_ids"] = ",".join(condition_ids)
+        if end_date_min is not None:
+            params["end_date_min"] = end_date_min
+        if end_date_max is not None:
+            params["end_date_max"] = end_date_max
+        if start_date_min is not None:
+            params["start_date_min"] = start_date_min
+        if start_date_max is not None:
+            params["start_date_max"] = start_date_max
         data = await self._request("GET", f"{GAMMA_BASE}/markets", params=params)
-        # Gamma /markets возвращает массив
         return data if isinstance(data, list) else []
 
     async def gamma_market_by_id(self, market_id: str | int) -> dict:

@@ -65,6 +65,7 @@ class ScanStats:
     skip_no_history: int = 0
     skip_below: int = 0
     skip_above: int = 0
+    skip_wrong_category: int = 0
     in_range: int = 0
     near_below: list[dict] = field(default_factory=list)
     near_above: list[dict] = field(default_factory=list)
@@ -83,6 +84,44 @@ def _parse_end_date(end_iso: str | None) -> int | None:
         return int(dt.timestamp())
     except (ValueError, TypeError):
         return None
+
+
+def _categorize_question(q: str | None) -> str:
+    """Грубая категоризация рынка по ключевым словам в question.
+
+    Используется для category_filter. Если фильтр включен — open trade
+    только если категория совпадает. См. plans/phase-2-strategies-pivot.md.
+    """
+    if not q or not isinstance(q, str):
+        return "other"
+    ql = q.lower()
+    if any(w in ql for w in (
+        "bitcoin", "btc", "ethereum", "eth", "crypto", "solana", "sol ",
+        "fdv", "token", "memecoin", "altcoin", "defi", "nft", "dogecoin",
+        "doge", "above $", "below $",
+    )):
+        return "crypto"
+    if any(w in ql for w in (
+        "nba", "nfl", "fifa", "world cup", "olympics", "champion",
+        "uefa", "f1", "ufc", "wimbledon", "tennis", "match", "vs.",
+        " vs ", "premier", "playoff", "finals", "tournament", "league",
+        "roland garros", "wta", "atp", "open",
+    )):
+        return "sport"
+    if any(w in ql for w in (
+        "trump", "biden", "election", "vote", "senate", "congress",
+        "president", "putin", "ukraine", "russia", "israel", "iran",
+        "nominee", "primary",
+    )):
+        return "politics"
+    if any(w in ql for w in ("weather", "hurricane", "temperature")):
+        return "weather"
+    if any(w in ql for w in (
+        "fed ", "interest rate", "cpi", "inflation", "gdp", "recession",
+        "stocks", "s&p",
+    )):
+        return "economy"
+    return "other"
 
 
 def _extract_event_id(market: dict) -> str | None:
@@ -209,6 +248,14 @@ class SignalGenerator:
                 stats.skip_ttl_too_far += 1
                 continue
 
+            # Category filter (опционально). Включён если PAPER_CATEGORY_FILTER задан.
+            # Пропускаем рынки чья категория не совпадает с фильтром.
+            if self.cfg.category_filter:
+                cat = _categorize_question(m.get("question"))
+                if cat != self.cfg.category_filter:
+                    stats.skip_wrong_category += 1
+                    continue
+
             event_id = _extract_event_id(m)
 
             if (condition_id, token_yes) in taken_keys:
@@ -313,8 +360,9 @@ class SignalGenerator:
         stats.duration_s = time.time() - t_start
         logger.info(
             "[signal] {n} signals; below={b} above={a} ttl_far={t} "
-            "event_taken={e} taken={tk} (за {d:.1f}s)",
+            "wrong_cat={c} event_taken={e} taken={tk} (за {d:.1f}s)",
             n=stats.in_range,
+            c=stats.skip_wrong_category,
             b=stats.skip_below,
             a=stats.skip_above,
             t=stats.skip_ttl_too_far,

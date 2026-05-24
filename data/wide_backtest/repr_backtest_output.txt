@@ -1,0 +1,54 @@
+======================================================================
+  Wide backtest на РЕПРЕЗЕНТАТИВНОЙ выборке (sharded markets)
+======================================================================
+[load] markets: 54,142  prices points: 2,795,994
+[load] Загружаю H1 trades...
+[load] H1 [0.50, 0.85] @ T-24h: 5,760 trades
+  [done] wilson
+  [done] split
+  [done] year
+  [done] main
+
+======================================================================
+  RESULTS
+======================================================================
+
+=== Main: H1 / H1_INVERSE / H_low / H_all на REPR выборке ===
+Total trade pool: 20,206 (T-24h, volume>=10k)
+                          strategy     n  win_rate    ev_$  total_pnl
+           H1 [0.50, 0.85] BUY YES  5760    0.5770 -0.0215   -72.4800
+    H1 INVERSE [0.50, 0.85] BUY NO  5760    0.4230 -0.0213   -52.5600
+         H_low [0.15, 0.50] BUY NO  4694    0.6650 -0.0353  -113.4000
+ H_low_invert [0.15, 0.50] BUY YES  4694    0.3350  0.0103    15.7800
+H_extreme_fav [0.85, 0.99] BUY YES  1041    0.9050  0.0064     6.3400
+H_extreme_dog [0.01, 0.15] BUY YES  3610    0.0560 -0.0024    -0.4800
+         H_all BUY YES (no filter) 20206    0.2990 -0.0098   -65.0700
+          H_all BUY NO (no filter) 20206    0.4300 -0.0208  -287.9700
+
+=== Wilson 95% CI на H1 REPR ===
+n=5760, wins=3323, win-rate=0.5769
+95% CI: [0.5641, 0.5896]
+Break-even (avg buy_cost): 0.5849
+Margin к break-even: -0.80pp
+⚠ CI lower bound НЕ выше BE — edge может быть шумом
+
+=== Past-endDate vs Future-endDate (snapshot 2026-05-24) ===
+bucket    n  win_rate    ev_$
+  past  316    0.5730 -0.0365
+future 5444    0.5770 -0.0206
+
+ВАЖНО:
+- Старая выборка была 100% future-endDate (только досрочные UMA)
+- Новая включает обе категории
+- Если past-endDate даёт МЕНЬШИЙ EV — selection bias подтверждён
+
+
+=== Per-year breakdown ===
+             n  win_rate    ev_$  total_pnl
+year                                       
+2023  189.0000    0.5080 -0.0821    -8.5200
+2024 1346.0000    0.6630 -0.0062    -5.5500
+2025 3651.0000    0.5420 -0.0349   -71.0600
+2026  574.0000    0.6170  0.0374    12.6500
+
+Done за 1.6s

@@ -1,0 +1,72 @@
+======================================================================
+  Manifold Markets cross-validation
+======================================================================
+[1] Fetching resolved BINARY markets (target 2000)...
+  fetched page, total resolved BINARY = 91
+  fetched page, total resolved BINARY = 250
+  fetched page, total resolved BINARY = 482
+  fetched page, total resolved BINARY = 608
+  fetched page, total resolved BINARY = 893
+  fetched page, total resolved BINARY = 1159
+  fetched page, total resolved BINARY = 1426
+  fetched page, total resolved BINARY = 1705
+  fetched page, total resolved BINARY = 2034
+[1] Got 2000 resolved BINARY markets
+[2] Fetching bets history (concurrency=20)...
+    bets fetched for 50/2000 markets
+    bets fetched for 100/2000 markets
+    bets fetched for 150/2000 markets
+    bets fetched for 200/2000 markets
+    bets fetched for 250/2000 markets
+    bets fetched for 300/2000 markets
+    bets fetched for 350/2000 markets
+    bets fetched for 400/2000 markets
+    bets fetched for 450/2000 markets
+    bets fetched for 500/2000 markets
+    bets fetched for 550/2000 markets
+    bets fetched for 600/2000 markets
+    bets fetched for 650/2000 markets
+    bets fetched for 700/2000 markets
+    bets fetched for 750/2000 markets
+    bets fetched for 800/2000 markets
+    bets fetched for 850/2000 markets
+    bets fetched for 900/2000 markets
+    bets fetched for 950/2000 markets
+    bets fetched for 1000/2000 markets
+    bets fetched for 1050/2000 markets
+    bets fetched for 1100/2000 markets
+    bets fetched for 1150/2000 markets
+    bets fetched for 1200/2000 markets
+    bets fetched for 1250/2000 markets
+    bets fetched for 1300/2000 markets
+    bets fetched for 1350/2000 markets
+    bets fetched for 1400/2000 markets
+    bets fetched for 1450/2000 markets
+    bets fetched for 1500/2000 markets
+    bets fetched for 1550/2000 markets
+    bets fetched for 1600/2000 markets
+    bets fetched for 1650/2000 markets
+    bets fetched for 1700/2000 markets
+    bets fetched for 1750/2000 markets
+    bets fetched for 1800/2000 markets
+    bets fetched for 1850/2000 markets
+    bets fetched for 1900/2000 markets
+    bets fetched for 1950/2000 markets
+    bets fetched for 2000/2000 markets
+
+[3] Markets с T-24h coverage: 1114
+[3] H1 [0.50, 0.85] sample: 282
+
+=== H1 BUY YES в [0.50, 0.85] @ T-24h на Manifold ===
+n: 282
+win-rate: 0.5035
+EV/$:     -0.1950
+H1 INVERSE BUY NO: EV/$ +0.2829
+
+=== Сравнение с Polymarket ===
+Polymarket H1 EV/$: ~+0.2003 (win=0.823, n=299)
+Manifold H1 EV/$:    -0.1950 (win=0.5035, n=282)
+⚠ Отрицательный — наш Polymarket edge скорее всего artifact
+
+💾 Saved 1114 trades to X:\.projects\gadalka\data\wide_backtest\manifold_h1_trades.parquet
+Done за 44.9s

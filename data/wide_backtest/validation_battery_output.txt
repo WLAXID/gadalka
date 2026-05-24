@@ -1,0 +1,70 @@
+======================================================================
+  Validation battery — 5 проверок параллельно
+======================================================================
+[load] Загружаю trades с multi-horizons...
+[load] 2,459 trades total (after volume filter)
+[load] H1 subset: 299 trades
+
+[run] 4 checks параллельно (ThreadPool 4 workers)...
+  [done] exit
+  [done] multi
+  [done] bayes
+  [done] perm
+
+======================================================================
+  RESULTS
+======================================================================
+
+=== 1+2. Multiple strategies на одной выборке ===
+                                           strategy    n  win_rate    ev_$  total_pnl
+                            H1 [0.50, 0.85] BUY YES  299    0.8230  0.2003    40.8000
+                          H_low [0.15, 0.50] BUY NO  333    0.5860 -0.1293   -28.7800
+H_low_invert [0.15,0.50] BUY YES (inverse of H_low)  333    0.4140  0.1886    21.6200
+     H1 INVERSE [0.50, 0.85] BUY NO (inverse of H1)  299    0.1770 -0.4713   -46.6800
+                 H_extreme_fav [0.85, 0.99] BUY YES  229    0.9300  0.0348     7.5500
+      H_extreme_dog [0.01, 0.15] BUY YES (longshot)  448    0.0360 -0.2250    -4.5600
+             H_all [0.00, 1.00] BUY YES (no filter) 2459    0.2490  0.0865    61.8500
+              H_all [0.00, 1.00] BUY NO (no filter) 2459    0.2560 -0.0556   -98.6000
+
+Интерпретация:
+- Если только H1 в плюсе, остальные ≈ 0 или минус → edge реальный
+- Если H1 INVERSE даёт ~+EV — выборка скомпрометирована (selection bias)
+- Если H_all в плюсе — наш фильтр [0.50, 0.85] не главный driver edge
+
+
+=== 3. Permutation test (5000 random shuffles) ===
+Real EV/$:           +0.2003
+Null mean:           +0.1999
+Null std:            0.0001
+Null p05 / p95:      [+0.1998, +0.2001]
+P-value (real >= null): 0.0000
+✅ p<0.01 — наш EV статистически значимо отличается от шума
+
+=== 5. Early exit analysis ===
+Что если выйти из позиции на T-12h / T-6h / T-1h вместо ждать резолв?
+     exit_strategy   n    ev_$  win_rate
+hold to resolution 299  0.2003    0.8230
+     exit at T-12h 299 -0.0043    0.3650
+      exit at T-6h 299  0.0175    0.4780
+      exit at T-1h 299  0.0988    0.6760
+
+- Если ранний выход даёт больший EV → захватываем drift, можем закрываться раньше
+- Если меньший — edge именно в финальном резолве, надо ждать
+
+
+=== 8. Bayesian posterior на win-rate ===
+Observed: n=299, wins=246, raw win-rate=0.8227
+Break-even win-rate ≈ 0.6813
+
+                                         prior  post_mean_wr  post_p05_wr  post_p95_wr  P(wr > BE)  EV_post_median  EV_post_p05
+                       uninformative Beta(1,1)        0.8206       0.7831       0.8560      1.0000          0.2057       0.1494
+                         skeptical Beta(50,50)        0.7419       0.7055       0.7773      0.9963          0.0896       0.0355
+                strong skeptical Beta(100,100)        0.6934       0.6589       0.7271      0.7267          0.0184      -0.0329
+market efficient Beta(50,30) — пользу фавориту        0.7810       0.7452       0.8150      1.0000          0.1468       0.0939
+
+- Uninformative (Beta(1,1)) — наша эмпирическая оценка
+- Skeptical priors — если бы мы заранее не верили в edge
+- Если даже с strong skeptical prior P(wr > BE) > 95% → edge почти точно реален
+
+
+Done за 55.5s

@@ -66,9 +66,14 @@ class PaperConfig:
     resolve_interval_s: int
     daily_report_time: str  # HH:MM UTC
 
-    # --- Strategy (H1 baseline) ---
+    # --- Strategy ---
     strategy_low: float
     strategy_high: float
+    # Опциональный фильтр по категории рынка (по ключевым словам в question).
+    # Допустимые значения: "" (off), "crypto", "sport", "politics", "weather", "economy".
+    # Включён после wide backtest (24.05) → crypto underdog единственный survivor.
+    # См. plans/phase-2-strategies-pivot.md.
+    category_filter: str = ""
 
     # --- Trace / heartbeat / backup ---
     trace_interval_s: int = 3600          # как часто снимаем mid для pending
@@ -133,4 +138,5 @@ class PaperConfig:
             stuck_pending_after_days=_env_int("PAPER_STUCK_PENDING_AFTER_DAYS", 7),
             pending_growth_alert=_env_int("PAPER_PENDING_GROWTH_ALERT", 200),
             scan_max_markets=_env_int("PAPER_SCAN_MAX_MARKETS", 10000),
+            category_filter=_env("PAPER_CATEGORY_FILTER", ""),
         )

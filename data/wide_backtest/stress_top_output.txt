@@ -1,0 +1,39 @@
+======================================================================
+  Stress test для топ-стратегий (репрезентативная выборка)
+======================================================================
+[load] Загружаю pool...
+[load] 23,307 markets
+
+[run] 8 стратегий × 4 сценария × 1500 MC = 48,000 прогонов  (4 workers)
+
+  [done] H1 + vol>$1M BUY YES  (n=161)
+  [done] CRYPTO underdog [0.15,0.50] YES  (n=415)
+  [done] CRYPTO + drift>+10pp BUY YES  (n=129)
+  [done] MOMENTUM: drift>+15pp BUY YES  (n=343)
+  [done] MEAN-REV: drift<-20pp BUY YES  (n=510)
+  [done] price [0.20,0.30] BUY YES  (n=1361)
+  [done] LONGSHOTS [0.01,0.10] BUY YES  (n=2947)
+  [done] SPORT NO [0.50,0.85]  (n=1678)
+
+======================================================================
+  RESULTS
+======================================================================
+
+                       strategy    n side  raw_ev  optimistic_median  realistic_median  realistic_p05  realistic_p_positive  harsh_median  worst_median
+   CRYPTO + drift>+10pp BUY YES  129  yes +0.1425            +0.1158           +0.0768        +0.0334               +0.9960       +0.0160       -0.0879
+CRYPTO underdog [0.15,0.50] YES  415  yes +0.1169            +0.0913           +0.0549        +0.0115               +0.9810       -0.0038       -0.1052
+  LONGSHOTS [0.01,0.10] BUY YES 2947  yes +0.1032            +0.0777           +0.0409        -0.0076               +0.9190       -0.0172       -0.1147
+           H1 + vol>$1M BUY YES  161  yes +0.0779            +0.0541           +0.0170        -0.0233               +0.7390       -0.0345       -0.1293
+  MEAN-REV: drift<-20pp BUY YES  510  yes +0.0654            +0.0427           +0.0097        -0.0568               +0.5990       -0.0462       -0.1379
+  MOMENTUM: drift>+15pp BUY YES  343  yes +0.0541            +0.0307           -0.0038        -0.0327               +0.4130       -0.0566       -0.1477
+      price [0.20,0.30] BUY YES 1361  yes +0.0538            +0.0298           -0.0040        -0.0317               +0.3950       -0.0560       -0.1469
+           SPORT NO [0.50,0.85] 1678   no +0.0482            +0.0242           -0.0091        -0.0271               +0.1730       -0.0616       -0.1506
+
+=== ВЫЖИВАНИЕ в realistic сценарии (cancel=5%, flip=5%, slip<=1%) ===
+Стратегии где P(EV>0) >= 0.95 в realistic:
+                       strategy   n side  realistic_median  realistic_p05  realistic_p_positive
+   CRYPTO + drift>+10pp BUY YES 129  yes           +0.0768        +0.0334               +0.9960
+CRYPTO underdog [0.15,0.50] YES 415  yes           +0.0549        +0.0115               +0.9810
+
+💾 Saved → stress_test_top_strategies.parquet
+Done за 20.8s

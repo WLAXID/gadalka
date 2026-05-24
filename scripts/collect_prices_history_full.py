@@ -108,11 +108,16 @@ async def main(args) -> None:
     print("  FULL prices-history pull (с явным start_ts)")
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
-    # 1. Найти самый свежий markets parquet
-    markets_files = sorted((ROOT / "data" / "raw").glob("markets_*.parquet"))
-    if not markets_files:
-        raise SystemExit("Нет markets parquet — сначала запусти collect_dataset.py")
-    markets_path = markets_files[-1]
+    # 1. Источник markets — параметр или самый свежий
+    if args.markets_file:
+        markets_path = ROOT / "data" / "raw" / args.markets_file
+        if not markets_path.exists():
+            raise SystemExit(f"Не найден файл {markets_path}")
+    else:
+        markets_files = sorted((ROOT / "data" / "raw").glob("markets_*.parquet"))
+        if not markets_files:
+            raise SystemExit("Нет markets parquet")
+        markets_path = markets_files[-1]
     print(f"📥 Markets source: {markets_path.name}")
 
     tokens, start_ts_by_condition = build_tokens_with_start_ts(
@@ -169,5 +174,7 @@ if __name__ == "__main__":
                        help="Токенов на один parquet")
     parser.add_argument("--out-subdir", default="prices_history_full",
                        help="Подпапка в data/raw/ для результатов")
+    parser.add_argument("--markets-file", default=None,
+                       help="Имя файла в data/raw/ (например markets_processed_2026-05-24.parquet)")
     args = parser.parse_args()
     asyncio.run(main(args))

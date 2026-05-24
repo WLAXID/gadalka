@@ -1,0 +1,1388 @@
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  FULL prices-history pull (с явным start_ts)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📥 Markets source: markets_processed_2026-05-24.parquet
+📊 Будем тянуть 108,284 token-историй (54,142 рынков с start_ts)
+💾 Out: X:\.projects\gadalka\data\raw\prices_history_repr
+
+  Batch 1/217 (500 tokens)
+[32m2026-05-24 16:18:14.761[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:18:28.879[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (35.4 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0000.parquet → 0 точек (3 KB)  ETA 52.6 мин
+
+  Batch 2/217 (500 tokens)
+[32m2026-05-24 16:18:28.912[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:18:41.870[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (38.6 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0001.parquet → 0 точек (3 KB)  ETA 49.4 мин
+
+  Batch 3/217 (500 tokens)
+[32m2026-05-24 16:18:41.874[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:18:55.780[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (36.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0002.parquet → 0 точек (3 KB)  ETA 49.3 мин
+
+  Batch 4/217 (500 tokens)
+[32m2026-05-24 16:18:55.784[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:19:17.801[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (22.7 req/s, ETA 0s, errors=5)[0m
+[32m2026-05-24 16:19:17.801[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 5 из 500[0m
+[32m2026-05-24 16:19:17.801[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x4b1cb435de66c3eaee 76774244490342818734: ConnectTimeout: [0m
+[32m2026-05-24 16:19:17.801[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x6c11c9bd1f87bde6bf 41040676687958596153: ConnectTimeout: [0m
+[32m2026-05-24 16:19:17.801[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xf176683ce78d9455be 55077225751503367957: ConnectTimeout: [0m
+    💾 batch_0003.parquet → 0 точек (3 KB)  ETA 56.3 мин
+
+  Batch 5/217 (500 tokens)
+[32m2026-05-24 16:19:17.805[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:19:32.565[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (33.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0004.parquet → 0 точек (3 KB)  ETA 55.3 мин
+
+  Batch 6/217 (500 tokens)
+[32m2026-05-24 16:19:32.570[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:19:46.106[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (36.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0005.parquet → 0 точек (3 KB)  ETA 53.8 мин
+
+  Batch 7/217 (500 tokens)
+[32m2026-05-24 16:19:46.110[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:20:05.465[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (25.8 req/s, ETA 0s, errors=6)[0m
+[32m2026-05-24 16:20:05.465[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 6 из 500[0m
+[32m2026-05-24 16:20:05.465[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xf07b63b17fd05dca62 83353104178504144596: ConnectTimeout: [0m
+[32m2026-05-24 16:20:05.465[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x614c18ba41a31826a2 11285287320138381587: ConnectTimeout: [0m
+[32m2026-05-24 16:20:05.465[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x9642ebfa140fa95ca9 49793488208982550527: ConnectTimeout: [0m
+    💾 batch_0006.parquet → 0 точек (3 KB)  ETA 55.6 мин
+
+  Batch 8/217 (500 tokens)
+[32m2026-05-24 16:20:05.469[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:20:39.337[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (14.8 req/s, ETA 0s, errors=23)[0m
+[32m2026-05-24 16:20:39.337[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 23 из 500[0m
+[32m2026-05-24 16:20:39.337[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xf3fbc8dae7e93fbcdc 84773710457605064263: ConnectTimeout: [0m
+[32m2026-05-24 16:20:39.337[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xe7ec526adab36a03bb 19539795777570943011: ConnectTimeout: [0m
+[32m2026-05-24 16:20:39.337[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xb86e29843557224b21 nan: ConnectTimeout: [0m
+    💾 batch_0007.parquet → 0 точек (3 KB)  ETA 63.1 мин
+
+  Batch 9/217 (500 tokens)
+[32m2026-05-24 16:20:39.341[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:21:06.431[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (18.5 req/s, ETA 0s, errors=17)[0m
+[32m2026-05-24 16:21:06.431[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 17 из 500[0m
+[32m2026-05-24 16:21:06.431[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x74c625e655d8b11524 81684217312103632199: ConnectTimeout: [0m
+[32m2026-05-24 16:21:06.431[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xed3cb3795eb1b7240c 82078566906695699213: ConnectTimeout: [0m
+[32m2026-05-24 16:21:06.431[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xea25879aef77e6f979 11230111622397852577: ConnectTimeout: [0m
+    💾 batch_0008.parquet → 0 точек (3 KB)  ETA 66.3 мин
+
+  Batch 10/217 (500 tokens)
+[32m2026-05-24 16:21:06.436[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:22:46.495[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (5.0 req/s, ETA 0s, errors=114)[0m
+[32m2026-05-24 16:22:46.496[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 114 из 500[0m
+[32m2026-05-24 16:22:46.496[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xa84db2b7e18ea49bd0 53812428320333407405: ConnectTimeout: [0m
+[32m2026-05-24 16:22:46.496[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x9d54642ea9286c493f 27723926654546612769: ConnectTimeout: [0m
+[32m2026-05-24 16:22:46.496[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x10a2d3b284b2f26404 12273124675876747772: ConnectTimeout: [0m
+    💾 batch_0009.parquet → 0 точек (3 KB)  ETA 93.9 мин
+
+  Batch 11/217 (500 tokens)
+[32m2026-05-24 16:22:46.500[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:23:20.615[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (14.7 req/s, ETA 0s, errors=37)[0m
+[32m2026-05-24 16:23:20.615[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 37 из 500[0m
+[32m2026-05-24 16:23:20.615[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x3b133d1ce5f9267b13 31544512005176363592: ConnectTimeout: [0m
+[32m2026-05-24 16:23:20.615[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x93e5215b23313d9247 19882044627567253391: ConnectTimeout: [0m
+[32m2026-05-24 16:23:20.615[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x05f1b7e72e3f2a4330 10419723955975213290: ConnectTimeout: [0m
+    💾 batch_0010.parquet → 0 точек (3 KB)  ETA 95.6 мин
+
+  Batch 12/217 (500 tokens)
+[32m2026-05-24 16:23:20.619[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:23:36.408[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (31.7 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0011.parquet → 0 точек (3 KB)  ETA 91.7 мин
+
+  Batch 13/217 (500 tokens)
+[32m2026-05-24 16:23:36.412[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:23:57.721[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (23.5 req/s, ETA 0s, errors=10)[0m
+[32m2026-05-24 16:23:57.721[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 10 из 500[0m
+[32m2026-05-24 16:23:57.721[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xb878f0698bbe19360b 27630251307789378627: ConnectTimeout: [0m
+[32m2026-05-24 16:23:57.721[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x5508a0625ddc048de3 28465289694998994530: ConnectTimeout: [0m
+[32m2026-05-24 16:23:57.722[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x5508a0625ddc048de3 13033179017323791261: ConnectTimeout: [0m
+    💾 batch_0012.parquet → 0 точек (3 KB)  ETA 89.8 мин
+
+  Batch 14/217 (500 tokens)
+[32m2026-05-24 16:23:57.725[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:24:46.206[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (10.3 req/s, ETA 0s, errors=41)[0m
+[32m2026-05-24 16:24:46.206[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 41 из 500[0m
+[32m2026-05-24 16:24:46.206[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xc91798a966ebf486cf 19464560718092142767: ConnectTimeout: [0m
+[32m2026-05-24 16:24:46.206[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x9926c97a235b5db9d7 79013746446153241998: ConnectTimeout: [0m
+[32m2026-05-24 16:24:46.206[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x6bae689b5769d05d2a 76875014564279644723: ConnectTimeout: [0m
+    💾 batch_0013.parquet → 0 точек (3 KB)  ETA 94.7 мин
+
+  Batch 15/217 (500 tokens)
+[32m2026-05-24 16:24:46.210[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:25:00.621[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (34.7 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0014.parquet → 0 точек (3 KB)  ETA 91.2 мин
+
+  Batch 16/217 (500 tokens)
+[32m2026-05-24 16:25:00.625[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:25:14.930[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (35.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0015.parquet → 2,837 точек (7 KB)  ETA 88.1 мин
+
+  Batch 17/217 (500 tokens)
+[32m2026-05-24 16:25:15.299[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:25:32.818[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (28.5 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0016.parquet → 8,198 точек (11 KB)  ETA 86.0 мин
+
+  Batch 18/217 (500 tokens)
+[32m2026-05-24 16:25:32.830[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:25:46.869[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (35.6 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0017.parquet → 316 точек (5 KB)  ETA 83.4 мин
+
+  Batch 19/217 (500 tokens)
+[32m2026-05-24 16:25:46.875[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:26:02.268[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (32.5 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0018.parquet → 11,791 точек (15 KB)  ETA 81.3 мин
+
+  Batch 20/217 (500 tokens)
+[32m2026-05-24 16:26:02.284[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:27:01.610[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (8.4 req/s, ETA 0s, errors=42)[0m
+[32m2026-05-24 16:27:01.610[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 42 из 500[0m
+[32m2026-05-24 16:27:01.610[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xdd42e83a5365621cb1 32047176487972589606: ConnectTimeout: [0m
+[32m2026-05-24 16:27:01.610[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xfe47e323bf0a784cfa 41949781242708308501: ConnectTimeout: [0m
+[32m2026-05-24 16:27:01.610[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xb588de0af8c3bfaeda 53054702990824026515: ConnectTimeout: [0m
+    💾 batch_0019.parquet → 67,651 точек (72 KB)  ETA 86.6 мин
+
+  Batch 21/217 (500 tokens)
+[32m2026-05-24 16:27:01.658[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:29:15.910[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.7 req/s, ETA 0s, errors=152)[0m
+[32m2026-05-24 16:29:15.910[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 152 из 500[0m
+[32m2026-05-24 16:29:15.910[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x3ce43c563aaedcd849 10272017232078058239: ConnectError: [0m
+[32m2026-05-24 16:29:15.910[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x331ad95a35e4486fc5 10267500375930749469: ConnectError: [0m
+[32m2026-05-24 16:29:15.911[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x2d7b8db2d56065c9b2 31635436205271325889: ConnectError: [0m
+    💾 batch_0020.parquet → 50,674 точек (58 KB)  ETA 102.9 мин
+
+  Batch 22/217 (500 tokens)
+[32m2026-05-24 16:29:15.960[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:30:27.664[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (7.0 req/s, ETA 0s, errors=65)[0m
+[32m2026-05-24 16:30:27.665[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 65 из 500[0m
+[32m2026-05-24 16:30:27.665[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x6f754b2165a61c8e01 93842161839601596791: ConnectTimeout: [0m
+[32m2026-05-24 16:30:27.665[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x97f86990f22eecfb7e 52657539159476533844: ConnectTimeout: [0m
+[32m2026-05-24 16:30:27.665[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x0b5da5fd835e312293 24985010418729224562: ConnectTimeout: [0m
+    💾 batch_0021.parquet → 51,894 точек (60 KB)  ETA 108.3 мин
+
+  Batch 23/217 (500 tokens)
+[32m2026-05-24 16:30:27.746[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:31:23.840[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (8.9 req/s, ETA 0s, errors=38)[0m
+[32m2026-05-24 16:31:23.841[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 38 из 500[0m
+[32m2026-05-24 16:31:23.841[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x9fe7d984a2dba9174e 40511272327338314002: ConnectTimeout: [0m
+[32m2026-05-24 16:31:23.841[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x0a4c27b9fd5b3f6b0b 10224628371286475210: ConnectTimeout: [0m
+[32m2026-05-24 16:31:23.841[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x225428b8093c46e2d7 48260940820355013543: ConnectTimeout: [0m
+    💾 batch_0022.parquet → 47,910 точек (69 KB)  ETA 111.0 мин
+
+  Batch 24/217 (500 tokens)
+[32m2026-05-24 16:31:23.886[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:32:49.024[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (5.9 req/s, ETA 0s, errors=78)[0m
+[32m2026-05-24 16:32:49.024[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 78 из 500[0m
+[32m2026-05-24 16:32:49.024[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xa87f04b6c75d45283d 49863846667449976486: ConnectTimeout: [0m
+[32m2026-05-24 16:32:49.024[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xcf7331afdcd9ab52c9 10015635407398101108: ConnectTimeout: [0m
+[32m2026-05-24 16:32:49.024[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x933ab68f049fd355cb 61956022638809221748: ConnectTimeout: [0m
+    💾 batch_0023.parquet → 36,623 точек (61 KB)  ETA 117.2 мин
+
+  Batch 25/217 (500 tokens)
+[32m2026-05-24 16:32:49.067[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:33:44.107[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (9.1 req/s, ETA 0s, errors=41)[0m
+[32m2026-05-24 16:33:44.107[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 41 из 500[0m
+[32m2026-05-24 16:33:44.107[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xd7f5cc8acb87fb1691 83331845924073741249: ConnectTimeout: [0m
+[32m2026-05-24 16:33:44.107[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xcfa0e97c396686ef55 22685978133141032255: ConnectTimeout: [0m
+[32m2026-05-24 16:33:44.107[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xfa9b8bbdcc585d094d 13604605040415382409: ConnectTimeout: [0m
+    💾 batch_0024.parquet → 30,065 точек (59 KB)  ETA 119.0 мин
+
+  Batch 26/217 (500 tokens)
+[32m2026-05-24 16:33:44.150[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:34:24.497[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (12.4 req/s, ETA 0s, errors=21)[0m
+[32m2026-05-24 16:34:24.498[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 21 из 500[0m
+[32m2026-05-24 16:34:24.498[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x9671a70fba353fedaa 57505666267634928336: ConnectTimeout: [0m
+[32m2026-05-24 16:34:24.498[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x13d8928775a36fdc09 79425562667575805683: ConnectTimeout: [0m
+[32m2026-05-24 16:34:24.498[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x2c71058a6ecdf21fc8 21320424171040947010: ConnectTimeout: [0m
+    💾 batch_0025.parquet → 22,974 точек (60 KB)  ETA 118.8 мин
+
+  Batch 27/217 (500 tokens)
+[32m2026-05-24 16:34:24.538[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:35:06.744[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (11.8 req/s, ETA 0s, errors=29)[0m
+[32m2026-05-24 16:35:06.744[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 29 из 500[0m
+[32m2026-05-24 16:35:06.744[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x7f2c7d767891496d55 99957315278221126194: ConnectTimeout: [0m
+[32m2026-05-24 16:35:06.744[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xd901fbaea5d6240ea5 34962348466321871448: ConnectTimeout: [0m
+[32m2026-05-24 16:35:06.744[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x124b1223bcdd26e616 98245655009769678085: ConnectTimeout: [0m
+    💾 batch_0026.parquet → 13,667 точек (59 KB)  ETA 118.7 мин
+
+  Batch 28/217 (500 tokens)
+[32m2026-05-24 16:35:06.786[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:36:36.610[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (5.6 req/s, ETA 0s, errors=87)[0m
+[32m2026-05-24 16:36:36.610[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 87 из 500[0m
+[32m2026-05-24 16:36:36.610[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xbe88325b92f4b3119b 48960647592492081087: ConnectTimeout: [0m
+[32m2026-05-24 16:36:36.610[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x9ab7f98102f3c4f083 51612939357978528879: ConnectTimeout: [0m
+[32m2026-05-24 16:36:36.610[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x7199b6087815e1b858 99998836741638814000: ConnectTimeout: [0m
+    💾 batch_0027.parquet → 3,749 точек (53 KB)  ETA 124.0 мин
+
+  Batch 29/217 (500 tokens)
+[32m2026-05-24 16:36:36.646[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:37:40.588[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (7.8 req/s, ETA 0s, errors=65)[0m
+[32m2026-05-24 16:37:40.588[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 65 из 500[0m
+[32m2026-05-24 16:37:40.588[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x55e2739c14e4c80afa 94518693664441192819: ConnectError: [0m
+[32m2026-05-24 16:37:40.588[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x0e631d199aa633857a 43605080897872699038: ConnectError: [0m
+[32m2026-05-24 16:37:40.588[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x5fb4981e6cc615b4b1 18198866161670340775: ConnectTimeout: [0m
+    💾 batch_0028.parquet → 24,976 точек (91 KB)  ETA 126.0 мин
+
+  Batch 30/217 (500 tokens)
+[32m2026-05-24 16:37:40.627[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:38:43.279[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (8.0 req/s, ETA 0s, errors=51)[0m
+[32m2026-05-24 16:38:43.279[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 51 из 500[0m
+[32m2026-05-24 16:38:43.279[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x165ddb6bf549e57056 35145857835212656476: ConnectTimeout: [0m
+[32m2026-05-24 16:38:43.279[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xb229bffca48739dbb5 91563023116608062907: ConnectTimeout: [0m
+[32m2026-05-24 16:38:43.279[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x30d3acd0142f6d96a6 10614252926480772743: ConnectTimeout: [0m
+    💾 batch_0029.parquet → 9,724 точек (71 KB)  ETA 127.7 мин
+
+  Batch 31/217 (500 tokens)
+[32m2026-05-24 16:38:43.322[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:39:19.693[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (13.7 req/s, ETA 0s, errors=17)[0m
+[32m2026-05-24 16:39:19.693[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 17 из 500[0m
+[32m2026-05-24 16:39:19.693[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x01ce830f6deea34863 65629387738692984598: ConnectTimeout: [0m
+[32m2026-05-24 16:39:19.693[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x3cbf636e94290ab6ba 10277880402412452244: ConnectTimeout: [0m
+[32m2026-05-24 16:39:19.693[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x2c036ace5d40ae6eb0 46733414475480054708: ConnectTimeout: [0m
+    💾 batch_0030.parquet → 11,927 точек (76 KB)  ETA 126.5 мин
+
+  Batch 32/217 (500 tokens)
+[32m2026-05-24 16:39:19.738[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:40:00.207[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (12.4 req/s, ETA 0s, errors=27)[0m
+[32m2026-05-24 16:40:00.207[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 27 из 500[0m
+[32m2026-05-24 16:40:00.207[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xba82ff41ae15e0b1bf 21719659419107302800: ConnectTimeout: [0m
+[32m2026-05-24 16:40:00.207[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xa12f059ea2d271583d 29343667107595614710: ConnectTimeout: [0m
+[32m2026-05-24 16:40:00.207[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x10131fe96c4719a80e 87971193770350659157: ConnectTimeout: [0m
+    💾 batch_0031.parquet → 7,620 точек (71 KB)  ETA 125.8 мин
+
+  Batch 33/217 (500 tokens)
+[32m2026-05-24 16:40:00.248[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:41:00.753[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (8.3 req/s, ETA 0s, errors=54)[0m
+[32m2026-05-24 16:41:00.753[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 54 из 500[0m
+[32m2026-05-24 16:41:00.753[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xb2da2574b5eb809f80 40716311587372348085: ConnectTimeout: [0m
+[32m2026-05-24 16:41:00.753[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x8050b4c7c3e910f867 70361714588204637078: ConnectTimeout: [0m
+[32m2026-05-24 16:41:00.754[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xb96361b12a0d6baa6b 88460193544364772280: ConnectTimeout: [0m
+    💾 batch_0032.parquet → 8,860 точек (69 KB)  ETA 127.0 мин
+
+  Batch 34/217 (500 tokens)
+[32m2026-05-24 16:41:00.792[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:41:34.260[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (14.9 req/s, ETA 0s, errors=9)[0m
+[32m2026-05-24 16:41:34.260[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 9 из 500[0m
+[32m2026-05-24 16:41:34.260[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xb375fa3ec9a08336c3 31161278146238803099: ConnectTimeout: [0m
+[32m2026-05-24 16:41:34.260[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x1202951195530e5294 59703129728779469551: ConnectTimeout: [0m
+[32m2026-05-24 16:41:34.260[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x6b9e2db15bc3019826 32628956052866504760: ConnectTimeout: [0m
+    💾 batch_0033.parquet → 62,045 точек (132 KB)  ETA 125.6 мин
+
+  Batch 35/217 (500 tokens)
+[32m2026-05-24 16:41:34.314[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:42:09.884[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (14.1 req/s, ETA 0s, errors=20)[0m
+[32m2026-05-24 16:42:09.884[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 20 из 500[0m
+[32m2026-05-24 16:42:09.884[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x81de1b212c3dad3efb 64306530364284136135: ConnectTimeout: [0m
+[32m2026-05-24 16:42:09.884[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x4c64274634742515e5 81518378452244077733: ConnectTimeout: [0m
+[32m2026-05-24 16:42:09.884[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x8d6c650649ae35cc77 60428400250766222009: ConnectTimeout: [0m
+    💾 batch_0034.parquet → 17,033 точек (84 KB)  ETA 124.4 мин
+
+  Batch 36/217 (500 tokens)
+[32m2026-05-24 16:42:09.922[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:44:16.137[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (4.0 req/s, ETA 0s, errors=157)[0m
+[32m2026-05-24 16:44:16.138[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 157 из 500[0m
+[32m2026-05-24 16:44:16.138[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x1a4a25d45ef3a9e7d8 10662298597192446889: ConnectTimeout: [0m
+[32m2026-05-24 16:44:16.138[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x98841d5d46f3409d43 68817189492827189010: ConnectTimeout: [0m
+[32m2026-05-24 16:44:16.138[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x1a4a25d45ef3a9e7d8 18627572673945212218: ConnectTimeout: [0m
+    💾 batch_0035.parquet → 14,840 точек (68 KB)  ETA 130.9 мин
+
+  Batch 37/217 (500 tokens)
+[32m2026-05-24 16:44:16.171[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:44:28.459[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (40.7 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0036.parquet → 23,220 точек (87 KB)  ETA 127.6 мин
+
+  Batch 38/217 (500 tokens)
+[32m2026-05-24 16:44:28.504[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:44:40.326[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (42.3 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0037.parquet → 26,940 точек (94 KB)  ETA 124.5 мин
+
+  Batch 39/217 (500 tokens)
+[32m2026-05-24 16:44:40.384[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:44:52.483[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (41.3 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0038.parquet → 18,558 точек (82 KB)  ETA 121.6 мин
+
+  Batch 40/217 (500 tokens)
+[32m2026-05-24 16:44:52.530[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:45:05.042[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (40.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0039.parquet → 19,952 точек (84 KB)  ETA 118.8 мин
+
+  Batch 41/217 (500 tokens)
+[32m2026-05-24 16:45:05.086[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:45:18.395[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (37.6 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0040.parquet → 24,002 точек (94 KB)  ETA 116.2 мин
+
+  Batch 42/217 (500 tokens)
+[32m2026-05-24 16:45:18.439[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:45:33.077[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (34.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0041.parquet → 18,306 точек (85 KB)  ETA 113.8 мин
+
+  Batch 43/217 (500 tokens)
+[32m2026-05-24 16:45:33.121[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:45:46.556[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (37.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0042.parquet → 8,706 точек (71 KB)  ETA 111.4 мин
+
+  Batch 44/217 (500 tokens)
+[32m2026-05-24 16:45:46.595[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:46:00.934[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (34.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0043.parquet → 11,094 точек (76 KB)  ETA 109.2 мин
+
+  Batch 45/217 (500 tokens)
+[32m2026-05-24 16:46:00.975[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:46:17.521[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (30.2 req/s, ETA 0s, errors=2)[0m
+[32m2026-05-24 16:46:17.521[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 2 из 500[0m
+[32m2026-05-24 16:46:17.521[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x7064a115bdf1661235 90407804524594622311: ConnectTimeout: [0m
+[32m2026-05-24 16:46:17.521[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x156a37a9f2d84a6ec5 10874878943047997628: ConnectTimeout: [0m
+    💾 batch_0044.parquet → 39,544 точек (110 KB)  ETA 107.2 мин
+
+  Batch 46/217 (500 tokens)
+[32m2026-05-24 16:46:17.570[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:46:32.679[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (33.1 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0045.parquet → 20,652 точек (88 KB)  ETA 105.2 мин
+
+  Batch 47/217 (500 tokens)
+[32m2026-05-24 16:46:32.729[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:46:46.437[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (36.5 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0046.parquet → 14,278 точек (82 KB)  ETA 103.2 мин
+
+  Batch 48/217 (500 tokens)
+[32m2026-05-24 16:46:46.477[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:47:02.998[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (30.3 req/s, ETA 0s, errors=3)[0m
+[32m2026-05-24 16:47:02.998[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 3 из 500[0m
+[32m2026-05-24 16:47:02.998[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x23ea3f2d38758419d3 11111365200604994479: ConnectTimeout: [0m
+[32m2026-05-24 16:47:02.998[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x3af8649c178f907f76 31353776179423623407: ConnectTimeout: [0m
+[32m2026-05-24 16:47:02.998[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x196e290132123baae9 91890571054559469779: ConnectTimeout: [0m
+    💾 batch_0047.parquet → 11,785 точек (78 KB)  ETA 101.4 мин
+
+  Batch 49/217 (500 tokens)
+[32m2026-05-24 16:47:03.043[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:47:21.469[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (27.1 req/s, ETA 0s, errors=2)[0m
+[32m2026-05-24 16:47:21.470[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 2 из 500[0m
+[32m2026-05-24 16:47:21.470[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x531afbdb54c871c23f 47055039144129984261: ConnectTimeout: [0m
+[32m2026-05-24 16:47:21.470[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x21e0ef600527ed8581 47114146260140900788: ConnectTimeout: [0m
+    💾 batch_0048.parquet → 12,518 точек (78 KB)  ETA 99.8 мин
+
+  Batch 50/217 (500 tokens)
+[32m2026-05-24 16:47:21.520[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:47:41.969[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (24.5 req/s, ETA 0s, errors=3)[0m
+[32m2026-05-24 16:47:41.969[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 3 из 500[0m
+[32m2026-05-24 16:47:41.969[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x08fbe3be22b176f9fd 96571759762520201953: ConnectTimeout: [0m
+[32m2026-05-24 16:47:41.969[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x87880db1fb138631d6 31785047103819927558: ConnectTimeout: [0m
+[32m2026-05-24 16:47:41.970[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xa20b568eb6f55446d3 31308500026406291468: ConnectTimeout: [0m
+    💾 batch_0049.parquet → 20,836 точек (96 KB)  ETA 98.4 мин
+
+  Batch 51/217 (500 tokens)
+[32m2026-05-24 16:47:42.009[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:48:06.614[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (20.3 req/s, ETA 0s, errors=5)[0m
+[32m2026-05-24 16:48:06.614[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 5 из 500[0m
+[32m2026-05-24 16:48:06.614[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xf639484aa861c4c6ba 27145999692268933269: ConnectTimeout: [0m
+[32m2026-05-24 16:48:06.614[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xf4e291c497086e47f9 10536129646060637975: ConnectTimeout: [0m
+[32m2026-05-24 16:48:06.614[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x3811331444a54036b2 75333411756583853533: ConnectTimeout: [0m
+    💾 batch_0050.parquet → 9,330 точек (70 KB)  ETA 97.2 мин
+
+  Batch 52/217 (500 tokens)
+[32m2026-05-24 16:48:06.650[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:48:27.397[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (24.1 req/s, ETA 0s, errors=4)[0m
+[32m2026-05-24 16:48:27.397[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 4 из 500[0m
+[32m2026-05-24 16:48:27.398[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xd184690d1ce781fb82 84840568214545387656: ConnectTimeout: [0m
+[32m2026-05-24 16:48:27.398[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x8da8d9c24a0a6c4331 68942428319753341044: ConnectTimeout: [0m
+[32m2026-05-24 16:48:27.398[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x8da8d9c24a0a6c4331 14788809845073560950: ConnectTimeout: [0m
+    💾 batch_0051.parquet → 11,592 точек (75 KB)  ETA 95.9 мин
+
+  Batch 53/217 (500 tokens)
+[32m2026-05-24 16:48:27.436[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:48:50.921[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (21.3 req/s, ETA 0s, errors=8)[0m
+[32m2026-05-24 16:48:50.921[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 8 из 500[0m
+[32m2026-05-24 16:48:50.921[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xa0a3213a241d0e1157 52261600096591676324: ConnectTimeout: [0m
+[32m2026-05-24 16:48:50.921[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x158bef7cf4b9990e61 81420886256354123633: ConnectTimeout: [0m
+[32m2026-05-24 16:48:50.921[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x0c0fc1af5f345885d6 92167770552472908120: ConnectTimeout: [0m
+    💾 batch_0052.parquet → 9,110 точек (71 KB)  ETA 94.7 мин
+
+  Batch 54/217 (500 tokens)
+[32m2026-05-24 16:48:50.957[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:49:13.016[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (22.7 req/s, ETA 0s, errors=12)[0m
+[32m2026-05-24 16:49:13.016[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 12 из 500[0m
+[32m2026-05-24 16:49:13.016[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xf71366b12602a78136 56877806652652437381: ConnectTimeout: [0m
+[32m2026-05-24 16:49:13.016[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x5b2c66fd4600a003e5 46764409716380462323: ConnectTimeout: [0m
+[32m2026-05-24 16:49:13.016[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xf71366b12602a78136 69613600894750137846: ConnectTimeout: [0m
+    💾 batch_0053.parquet → 6,461 точек (72 KB)  ETA 93.5 мин
+
+  Batch 55/217 (500 tokens)
+[32m2026-05-24 16:49:13.056[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:49:28.628[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (32.1 req/s, ETA 0s, errors=4)[0m
+[32m2026-05-24 16:49:28.628[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 4 из 500[0m
+[32m2026-05-24 16:49:28.628[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x782abf611e0b61afc7 40086487751367027382: ConnectTimeout: [0m
+[32m2026-05-24 16:49:28.628[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x5d472b70e7591081c8 73150152987196756713: ConnectTimeout: [0m
+[32m2026-05-24 16:49:28.628[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xbc14a620cc73cc8c4a 26077883871673157392: ConnectTimeout: [0m
+    💾 batch_0054.parquet → 27,903 точек (97 KB)  ETA 92.0 мин
+
+  Batch 56/217 (500 tokens)
+[32m2026-05-24 16:49:28.671[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:49:50.326[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (23.1 req/s, ETA 0s, errors=4)[0m
+[32m2026-05-24 16:49:50.326[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 4 из 500[0m
+[32m2026-05-24 16:49:50.326[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x33f99150905860f73f 94589591706921785930: ConnectTimeout: [0m
+[32m2026-05-24 16:49:50.326[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x015cd7131994d93657 20404681975585477604: ConnectTimeout: [0m
+[32m2026-05-24 16:49:50.326[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x0dfc5226c22e3c631b 41946391045644840566: ConnectTimeout: [0m
+    💾 batch_0055.parquet → 20,534 точек (89 KB)  ETA 90.9 мин
+
+  Batch 57/217 (500 tokens)
+[32m2026-05-24 16:49:50.375[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:50:04.530[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (35.3 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0056.parquet → 44,593 точек (129 KB)  ETA 89.4 мин
+
+  Batch 58/217 (500 tokens)
+[32m2026-05-24 16:50:04.578[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:50:29.579[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (20.0 req/s, ETA 0s, errors=9)[0m
+[32m2026-05-24 16:50:29.579[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 9 из 500[0m
+[32m2026-05-24 16:50:29.579[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xe604e2580d3a112d38 29150952022193451669: ConnectTimeout: [0m
+[32m2026-05-24 16:50:29.579[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xb5a87e2a85485cec85 10542652459413981251: ConnectTimeout: [0m
+[32m2026-05-24 16:50:29.579[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x0f95af9db08ac27acc 25212026786603443505: ConnectTimeout: [0m
+    💾 batch_0057.parquet → 3,153 точек (62 KB)  ETA 88.4 мин
+
+  Batch 59/217 (500 tokens)
+[32m2026-05-24 16:50:29.620[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:50:49.931[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (24.6 req/s, ETA 0s, errors=1)[0m
+[32m2026-05-24 16:50:49.931[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 1 из 500[0m
+[32m2026-05-24 16:50:49.931[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xfe6a73ac74cd2d461b 10807105300270005788: ConnectTimeout: [0m
+    💾 batch_0058.parquet → 5,184 точек (68 KB)  ETA 87.3 мин
+
+  Batch 60/217 (500 tokens)
+[32m2026-05-24 16:50:49.978[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:51:09.058[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (26.2 req/s, ETA 0s, errors=7)[0m
+[32m2026-05-24 16:51:09.058[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 7 из 500[0m
+[32m2026-05-24 16:51:09.058[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xec8d981e3a67122aff 40230551695686049074: ConnectTimeout: [0m
+[32m2026-05-24 16:51:09.058[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x753863f6dc8bca0e6a 52717994146535922660: ConnectTimeout: [0m
+[32m2026-05-24 16:51:09.058[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xd9ea0651c68e1c000c 68581476794738395701: ConnectTimeout: [0m
+    💾 batch_0059.parquet → 3,982 точек (60 KB)  ETA 86.1 мин
+
+  Batch 61/217 (500 tokens)
+[32m2026-05-24 16:51:09.098[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:51:48.047[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (12.8 req/s, ETA 0s, errors=12)[0m
+[32m2026-05-24 16:51:48.047[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 12 из 500[0m
+[32m2026-05-24 16:51:48.047[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x99f07a52a18756f9bf 54616774508032815719: ConnectTimeout: [0m
+[32m2026-05-24 16:51:48.047[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x4b4ae10c1d90462c8c 11674814469304699298: ConnectTimeout: [0m
+[32m2026-05-24 16:51:48.047[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x2757f3f1d1501ce3e5 48151102277260648186: ConnectTimeout: [0m
+    💾 batch_0060.parquet → 5,237 точек (68 KB)  ETA 85.8 мин
+
+  Batch 62/217 (500 tokens)
+[32m2026-05-24 16:51:48.082[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:52:36.281[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (10.4 req/s, ETA 0s, errors=84)[0m
+[32m2026-05-24 16:52:36.281[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 84 из 500[0m
+[32m2026-05-24 16:52:36.281[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x3351143487cf80b2d8 29255820967343989402: ConnectTimeout: [0m
+[32m2026-05-24 16:52:36.281[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xe80b99ed8dda6754f2 22296916438238757645: ConnectTimeout: [0m
+[32m2026-05-24 16:52:36.281[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xc25f29f37a79a3fbd2 22865396792110138302: ConnectTimeout: [0m
+    💾 batch_0061.parquet → 16,552 точек (77 KB)  ETA 85.9 мин
+
+  Batch 63/217 (500 tokens)
+[32m2026-05-24 16:52:36.320[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:52:46.471[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (49.3 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0062.parquet → 4,874 точек (67 KB)  ETA 84.4 мин
+
+  Batch 64/217 (500 tokens)
+[32m2026-05-24 16:52:46.509[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:53:08.542[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (22.7 req/s, ETA 0s, errors=9)[0m
+[32m2026-05-24 16:53:08.542[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 9 из 500[0m
+[32m2026-05-24 16:53:08.542[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x2ee83f63bb01ffa7f9 48802587520564456790: ConnectTimeout: [0m
+[32m2026-05-24 16:53:08.542[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x8c77972e5a9768d27c 53828710664236722003: ConnectTimeout: [0m
+[32m2026-05-24 16:53:08.542[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x1f88598dcb25db5128 56400336533758758333: ConnectTimeout: [0m
+    💾 batch_0063.parquet → 4,478 точек (63 KB)  ETA 83.4 мин
+
+  Batch 65/217 (500 tokens)
+[32m2026-05-24 16:53:08.577[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:53:22.351[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (36.3 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0064.parquet → 3,246 точек (62 KB)  ETA 82.2 мин
+
+  Batch 66/217 (500 tokens)
+[32m2026-05-24 16:53:22.394[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:53:37.611[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (32.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0065.parquet → 4,138 точек (65 KB)  ETA 81.0 мин
+
+  Batch 67/217 (500 tokens)
+[32m2026-05-24 16:53:37.652[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:53:52.520[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (33.6 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0066.parquet → 5,114 точек (66 KB)  ETA 79.8 мин
+
+  Batch 68/217 (500 tokens)
+[32m2026-05-24 16:53:52.568[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:54:30.842[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (13.1 req/s, ETA 0s, errors=28)[0m
+[32m2026-05-24 16:54:30.842[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 28 из 500[0m
+[32m2026-05-24 16:54:30.842[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x47ac1e1483628fbff1 10808923076406649597: ConnectTimeout: [0m
+[32m2026-05-24 16:54:30.842[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xd912e1dca1226c8483 74742433789492462425: ConnectTimeout: [0m
+[32m2026-05-24 16:54:30.842[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x9d9af72951dbe6f2ef 88256202896891756480: ConnectTimeout: [0m
+    💾 batch_0067.parquet → 6,387 точек (61 KB)  ETA 79.5 мин
+
+  Batch 69/217 (500 tokens)
+[32m2026-05-24 16:54:30.882[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:54:47.422[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (30.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0068.parquet → 3,736 точек (65 KB)  ETA 78.4 мин
+
+  Batch 70/217 (500 tokens)
+[32m2026-05-24 16:54:47.468[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:55:04.413[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (29.5 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0069.parquet → 9,364 точек (75 KB)  ETA 77.4 мин
+
+  Batch 71/217 (500 tokens)
+[32m2026-05-24 16:55:04.468[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:56:01.226[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (8.8 req/s, ETA 0s, errors=46)[0m
+[32m2026-05-24 16:56:01.226[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 46 из 500[0m
+[32m2026-05-24 16:56:01.226[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x68be90ba4adbfa22f8 90407888898239288077: ConnectTimeout: [0m
+[32m2026-05-24 16:56:01.226[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x9f8d91153de939c69f 14299972832469100381: ConnectTimeout: [0m
+[32m2026-05-24 16:56:01.226[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x2f54e7565d279296c2 39152945347768051279: ConnectTimeout: [0m
+    💾 batch_0070.parquet → 13,262 точек (78 KB)  ETA 77.7 мин
+
+  Batch 72/217 (500 tokens)
+[32m2026-05-24 16:56:01.265[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:56:38.538[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (13.4 req/s, ETA 0s, errors=36)[0m
+[32m2026-05-24 16:56:38.538[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 36 из 500[0m
+[32m2026-05-24 16:56:38.538[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x3ac24c11b1a469a2ca 40659046589563795491: ConnectError: [0m
+[32m2026-05-24 16:56:38.538[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x1e78417296f5699529 15756678907717184232: ConnectError: [0m
+[32m2026-05-24 16:56:38.538[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xa3c6ac7332e208e66e 54227540772378013343: ConnectTimeout: [0m
+    💾 batch_0071.parquet → 10,417 точек (73 KB)  ETA 77.3 мин
+
+  Batch 73/217 (500 tokens)
+[32m2026-05-24 16:56:38.582[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:57:12.141[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (14.9 req/s, ETA 0s, errors=17)[0m
+[32m2026-05-24 16:57:12.141[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 17 из 500[0m
+[32m2026-05-24 16:57:12.142[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x9ae18c9ef87b6835f6 43982800571234907834: ConnectTimeout: [0m
+[32m2026-05-24 16:57:12.142[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xb1f31f6b0f9d1c34b3 49736512764778582468: ConnectTimeout: [0m
+[32m2026-05-24 16:57:12.142[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x0f25969b4bfa2bc056 60040280506709586890: ConnectTimeout: [0m
+    💾 batch_0072.parquet → 31,266 точек (102 KB)  ETA 76.9 мин
+
+  Batch 74/217 (500 tokens)
+[32m2026-05-24 16:57:12.185[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 16:58:45.135[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (5.4 req/s, ETA 0s, errors=88)[0m
+[32m2026-05-24 16:58:45.135[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 88 из 500[0m
+[32m2026-05-24 16:58:45.135[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x8ebedd688fce55ed99 41853832363296288386: ConnectTimeout: [0m
+[32m2026-05-24 16:58:45.135[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x547171b466f04230c9 68388345708992267048: ConnectTimeout: [0m
+[32m2026-05-24 16:58:45.135[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xf6106065ec5d5dae7e 47985835438034722961: ConnectTimeout: [0m
+    💾 batch_0073.parquet → 86,733 точек (143 KB)  ETA 78.3 мин
+
+  Batch 75/217 (500 tokens)
+[32m2026-05-24 16:58:45.192[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:00:12.987[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (5.7 req/s, ETA 0s, errors=83)[0m
+[32m2026-05-24 17:00:12.987[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 83 из 500[0m
+[32m2026-05-24 17:00:12.987[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xe8331e50e19c7bef93 91713213294749395291: ConnectTimeout: [0m
+[32m2026-05-24 17:00:12.987[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x1c7104429575ddc9dd 11192321208714351739: ConnectTimeout: [0m
+[32m2026-05-24 17:00:12.987[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x9d455df75bf78e1b54 93495926230117968980: ConnectTimeout: [0m
+    💾 batch_0074.parquet → 112,602 точек (172 KB)  ETA 79.5 мин
+
+  Batch 76/217 (500 tokens)
+[32m2026-05-24 17:00:13.048[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:01:26.660[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (6.8 req/s, ETA 0s, errors=86)[0m
+[32m2026-05-24 17:01:26.660[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 86 из 500[0m
+[32m2026-05-24 17:01:26.660[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x673bc2e3150161fc6d 73509254372240515476: ConnectError: [0m
+[32m2026-05-24 17:01:26.660[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x4d8b10ad2ff7dddaec 69816942391509367752: ConnectError: [0m
+[32m2026-05-24 17:01:26.660[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x4d8b10ad2ff7dddaec 10777493161289984939: ConnectError: [0m
+    💾 batch_0075.parquet → 110,567 точек (177 KB)  ETA 80.2 мин
+
+  Batch 77/217 (500 tokens)
+[32m2026-05-24 17:01:26.719[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:02:14.929[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (10.4 req/s, ETA 0s, errors=1)[0m
+[32m2026-05-24 17:02:14.929[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 1 из 500[0m
+[32m2026-05-24 17:02:14.929[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xdb4d88fe8662a2fe57 28789769720363367807: ConnectTimeout: [0m
+    💾 batch_0076.parquet → 66,108 точек (131 KB)  ETA 80.0 мин
+
+  Batch 78/217 (500 tokens)
+[32m2026-05-24 17:02:14.984[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:02:38.492[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (21.3 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0077.parquet → 6,815 точек (76 KB)  ETA 79.1 мин
+
+  Batch 79/217 (500 tokens)
+[32m2026-05-24 17:02:38.533[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:03:06.392[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (17.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0078.parquet → 3,070 точек (60 KB)  ETA 78.4 мин
+
+  Batch 80/217 (500 tokens)
+[32m2026-05-24 17:03:06.429[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:03:30.437[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (20.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0079.parquet → 5,664 точек (67 KB)  ETA 77.5 мин
+
+  Batch 81/217 (500 tokens)
+[32m2026-05-24 17:03:30.476[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:04:13.294[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (11.7 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0080.parquet → 17,926 точек (91 KB)  ETA 77.2 мин
+
+  Batch 82/217 (500 tokens)
+[32m2026-05-24 17:04:13.335[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:04:40.573[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (18.4 req/s, ETA 0s, errors=1)[0m
+[32m2026-05-24 17:04:40.573[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 1 из 500[0m
+[32m2026-05-24 17:04:40.573[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xc09e45ebc80a586b59 13721615372796840481: ConnectTimeout: [0m
+    💾 batch_0081.parquet → 6,408 точек (69 KB)  ETA 76.5 мин
+
+  Batch 83/217 (500 tokens)
+[32m2026-05-24 17:04:40.610[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:06:00.744[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (6.2 req/s, ETA 0s, errors=57)[0m
+[32m2026-05-24 17:06:00.744[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 57 из 500[0m
+[32m2026-05-24 17:06:00.744[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xb3f7463d33ebe2c53e 43080526877786094583: ConnectTimeout: [0m
+[32m2026-05-24 17:06:00.744[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x467e553e6fb7747625 96279158627200835332: ConnectTimeout: [0m
+[32m2026-05-24 17:06:00.744[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xf2671e1e9789b1eb65 97361196125853008658: ConnectTimeout: [0m
+    💾 batch_0082.parquet → 18,229 точек (86 KB)  ETA 77.1 мин
+
+  Batch 84/217 (500 tokens)
+[32m2026-05-24 17:06:00.781[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:06:23.311[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (22.2 req/s, ETA 0s, errors=3)[0m
+[32m2026-05-24 17:06:23.312[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 3 из 500[0m
+[32m2026-05-24 17:06:23.312[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xfb67ff2023775fe600 86288010127763921038: ConnectTimeout: [0m
+[32m2026-05-24 17:06:23.312[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xe857bb26a7c5b3ac65 10452991603996342300: ConnectTimeout: [0m
+[32m2026-05-24 17:06:23.312[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x73957b07d24cbda2f1 10041247336055190604: ConnectTimeout: [0m
+    💾 batch_0083.parquet → 7,519 точек (68 KB)  ETA 76.2 мин
+
+  Batch 85/217 (500 tokens)
+[32m2026-05-24 17:06:23.348[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:07:03.417[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (12.5 req/s, ETA 0s, errors=12)[0m
+[32m2026-05-24 17:07:03.417[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 12 из 500[0m
+[32m2026-05-24 17:07:03.417[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x894517b7efcd05c228 11029013962843226496: ConnectTimeout: [0m
+[32m2026-05-24 17:07:03.417[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x99c90bc879652ffc19 34726822276618891628: ConnectTimeout: [0m
+[32m2026-05-24 17:07:03.417[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xb3c778bc132209002f 59356096973305482618: ConnectTimeout: [0m
+    💾 batch_0084.parquet → 14,881 точек (80 KB)  ETA 75.8 мин
+
+  Batch 86/217 (500 tokens)
+[32m2026-05-24 17:07:03.456[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:08:29.287[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (5.8 req/s, ETA 0s, errors=52)[0m
+[32m2026-05-24 17:08:29.287[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 52 из 500[0m
+[32m2026-05-24 17:08:29.287[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x479a1581a10479308d 58218979541725529979: ConnectTimeout: [0m
+[32m2026-05-24 17:08:29.287[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x21051ba5fe9f277fd2 66463415133047565832: ConnectTimeout: [0m
+[32m2026-05-24 17:08:29.287[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x1d30e18679afbede74 97556461333242860539: ConnectTimeout: [0m
+    💾 batch_0085.parquet → 9,682 точек (73 KB)  ETA 76.5 мин
+
+  Batch 87/217 (500 tokens)
+[32m2026-05-24 17:08:29.323[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:09:46.321[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (6.5 req/s, ETA 0s, errors=81)[0m
+[32m2026-05-24 17:09:46.321[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 81 из 500[0m
+[32m2026-05-24 17:09:46.321[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xaa115473d249603302 11372378671074967124: ConnectTimeout: [0m
+[32m2026-05-24 17:09:46.321[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x0453efcdf2717e3bdd 50951753791619328287: ConnectTimeout: [0m
+[32m2026-05-24 17:09:46.321[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x0aee45b3f8defa4c0e 14219643705646450646: ConnectTimeout: [0m
+    💾 batch_0086.parquet → 37,806 точек (115 KB)  ETA 77.0 мин
+
+  Batch 88/217 (500 tokens)
+[32m2026-05-24 17:09:46.381[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:09:57.142[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (46.5 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0087.parquet → 25,180 точек (98 KB)  ETA 75.8 мин
+
+  Batch 89/217 (500 tokens)
+[32m2026-05-24 17:09:57.189[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:10:29.294[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (15.6 req/s, ETA 0s, errors=1)[0m
+[32m2026-05-24 17:10:29.294[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 1 из 500[0m
+[32m2026-05-24 17:10:29.294[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x9a719a13e4590a0131 57951063264290556185: ReadTimeout: [0m
+    💾 batch_0088.parquet → 6,366 точек (69 KB)  ETA 75.1 мин
+
+  Batch 90/217 (500 tokens)
+[32m2026-05-24 17:10:29.331[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:10:40.085[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (46.5 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0089.parquet → 18,168 точек (87 KB)  ETA 74.0 мин
+
+  Batch 91/217 (500 tokens)
+[32m2026-05-24 17:10:40.126[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:10:50.789[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (46.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0090.parquet → 20,182 точек (89 KB)  ETA 72.8 мин
+
+  Batch 92/217 (500 tokens)
+[32m2026-05-24 17:10:50.831[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:11:01.165[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (48.4 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0091.parquet → 5,718 точек (67 KB)  ETA 71.7 мин
+
+  Batch 93/217 (500 tokens)
+[32m2026-05-24 17:11:01.205[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:11:15.152[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (35.8 req/s, ETA 0s, errors=21)[0m
+[32m2026-05-24 17:11:15.152[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 21 из 500[0m
+[32m2026-05-24 17:11:15.152[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x8ba89eb8c6d78a8424 62545764895085171149: ConnectError: [0m
+[32m2026-05-24 17:11:15.152[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x8ac98c10676ba2e6d3 43628857780361800287: ConnectError: [0m
+[32m2026-05-24 17:11:15.152[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x9c28c35658af516894 76837391759420724348: ConnectError: [0m
+    💾 batch_0092.parquet → 22,582 точек (98 KB)  ETA 70.7 мин
+
+  Batch 94/217 (500 tokens)
+[32m2026-05-24 17:11:15.192[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:11:25.545[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (48.3 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0093.parquet → 9,802 точек (77 KB)  ETA 69.6 мин
+
+  Batch 95/217 (500 tokens)
+[32m2026-05-24 17:11:25.590[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:11:36.445[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (46.1 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0094.parquet → 26,176 точек (103 KB)  ETA 68.5 мин
+
+  Batch 96/217 (500 tokens)
+[32m2026-05-24 17:11:36.489[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:11:47.089[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (47.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0095.parquet → 21,472 точек (93 KB)  ETA 67.5 мин
+
+  Batch 97/217 (500 tokens)
+[32m2026-05-24 17:11:47.131[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:11:58.036[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (45.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0096.parquet → 23,446 точек (98 KB)  ETA 66.5 мин
+
+  Batch 98/217 (500 tokens)
+[32m2026-05-24 17:11:58.082[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:12:08.326[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (48.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0097.parquet → 10,062 точек (79 KB)  ETA 65.5 мин
+
+  Batch 99/217 (500 tokens)
+[32m2026-05-24 17:12:08.367[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:12:19.460[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (45.1 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0098.parquet → 29,850 точек (106 KB)  ETA 64.5 мин
+
+  Batch 100/217 (500 tokens)
+[32m2026-05-24 17:12:19.514[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:12:29.867[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (48.3 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0099.parquet → 20,052 точек (95 KB)  ETA 63.5 мин
+
+  Batch 101/217 (500 tokens)
+[32m2026-05-24 17:12:29.908[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:12:40.187[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (48.6 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0100.parquet → 9,896 точек (77 KB)  ETA 62.5 мин
+
+  Batch 102/217 (500 tokens)
+[32m2026-05-24 17:12:40.228[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:12:50.249[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (49.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0101.parquet → 3,702 точек (62 KB)  ETA 61.6 мин
+
+  Batch 103/217 (500 tokens)
+[32m2026-05-24 17:12:50.288[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:13:00.271[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (50.1 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0102.parquet → 4,886 точек (66 KB)  ETA 60.6 мин
+
+  Batch 104/217 (500 tokens)
+[32m2026-05-24 17:13:00.311[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:13:10.382[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (49.6 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0103.parquet → 3,602 точек (61 KB)  ETA 59.7 мин
+
+  Batch 105/217 (500 tokens)
+[32m2026-05-24 17:13:10.419[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:13:20.340[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (50.4 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0104.parquet → 4,860 точек (64 KB)  ETA 58.8 мин
+
+  Batch 106/217 (500 tokens)
+[32m2026-05-24 17:13:20.411[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:13:31.260[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (46.1 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0105.parquet → 23,778 точек (89 KB)  ETA 57.9 мин
+
+  Batch 107/217 (500 tokens)
+[32m2026-05-24 17:13:31.345[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:13:41.469[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (49.4 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0106.parquet → 5,518 точек (64 KB)  ETA 57.0 мин
+
+  Batch 108/217 (500 tokens)
+[32m2026-05-24 17:13:41.519[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:13:52.096[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (47.3 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0107.parquet → 17,232 точек (84 KB)  ETA 56.1 мин
+
+  Batch 109/217 (500 tokens)
+[32m2026-05-24 17:13:52.140[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:14:02.616[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (47.7 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0108.parquet → 13,536 точек (87 KB)  ETA 55.3 мин
+
+  Batch 110/217 (500 tokens)
+[32m2026-05-24 17:14:02.660[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:16:49.466[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.0 req/s, ETA 0s, errors=48)[0m
+[32m2026-05-24 17:16:49.467[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 48 из 500[0m
+[32m2026-05-24 17:16:49.467[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x95723c075f2eb88974 12898082940941222960: ConnectError: [0m
+[32m2026-05-24 17:16:49.467[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x0faa9834a621710ebb 33006037080880875865: ConnectError: [0m
+[32m2026-05-24 17:16:49.467[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xad8bfe690b0c308b75 61945509625456288003: ConnectError: [0m
+    💾 batch_0109.parquet → 10,785 точек (71 KB)  ETA 57.0 мин
+
+  Batch 111/217 (500 tokens)
+[32m2026-05-24 17:16:49.503[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:19:28.090[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0110.parquet → 6,062 точек (67 KB)  ETA 58.5 мин
+
+  Batch 112/217 (500 tokens)
+[32m2026-05-24 17:19:28.127[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:22:04.301[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0111.parquet → 5,022 точек (65 KB)  ETA 59.8 мин
+
+  Batch 113/217 (500 tokens)
+[32m2026-05-24 17:22:04.338[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:24:38.580[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0112.parquet → 6,140 точек (68 KB)  ETA 61.1 мин
+
+  Batch 114/217 (500 tokens)
+[32m2026-05-24 17:24:38.619[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:27:23.433[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0113.parquet → 3,844 точек (63 KB)  ETA 62.5 мин
+
+  Batch 115/217 (500 tokens)
+[32m2026-05-24 17:27:23.476[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:30:11.073[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0114.parquet → 9,248 точек (75 KB)  ETA 63.8 мин
+
+  Batch 116/217 (500 tokens)
+[32m2026-05-24 17:30:11.112[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:32:54.184[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.1 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0115.parquet → 4,034 точек (59 KB)  ETA 65.0 мин
+
+  Batch 117/217 (500 tokens)
+[32m2026-05-24 17:32:54.218[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:35:28.502[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0116.parquet → 5,096 точек (65 KB)  ETA 66.0 мин
+
+  Batch 118/217 (500 tokens)
+[32m2026-05-24 17:35:28.539[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:38:03.048[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0117.parquet → 6,578 точек (66 KB)  ETA 67.0 мин
+
+  Batch 119/217 (500 tokens)
+[32m2026-05-24 17:38:03.085[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:40:50.384[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0118.parquet → 7,374 точек (64 KB)  ETA 68.0 мин
+
+  Batch 120/217 (500 tokens)
+[32m2026-05-24 17:40:50.422[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:43:16.604[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.4 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0119.parquet → 3,298 точек (62 KB)  ETA 68.7 мин
+
+  Batch 121/217 (500 tokens)
+[32m2026-05-24 17:43:16.644[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:45:55.152[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0120.parquet → 3,718 точек (60 KB)  ETA 69.6 мин
+
+  Batch 122/217 (500 tokens)
+[32m2026-05-24 17:45:55.190[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:48:29.547[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0121.parquet → 2,104 точек (59 KB)  ETA 70.3 мин
+
+  Batch 123/217 (500 tokens)
+[32m2026-05-24 17:48:29.600[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:50:50.662[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.5 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0122.parquet → 2,716 точек (60 KB)  ETA 70.8 мин
+
+  Batch 124/217 (500 tokens)
+[32m2026-05-24 17:50:50.700[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:53:20.441[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.3 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0123.parquet → 3,126 точек (62 KB)  ETA 71.3 мин
+
+  Batch 125/217 (500 tokens)
+[32m2026-05-24 17:53:20.479[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:55:58.836[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0124.parquet → 2,104 точек (58 KB)  ETA 71.9 мин
+
+  Batch 126/217 (500 tokens)
+[32m2026-05-24 17:55:58.871[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 17:58:50.657[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0125.parquet → 12,004 точек (79 KB)  ETA 72.7 мин
+
+  Batch 127/217 (500 tokens)
+[32m2026-05-24 17:58:50.697[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:01:20.447[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.3 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0126.parquet → 3,350 точек (62 KB)  ETA 73.1 мин
+
+  Batch 128/217 (500 tokens)
+[32m2026-05-24 18:01:20.486[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:04:14.275[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0127.parquet → 8,228 точек (78 KB)  ETA 73.7 мин
+
+  Batch 129/217 (500 tokens)
+[32m2026-05-24 18:04:14.311[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:07:06.062[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0128.parquet → 2,990 точек (61 KB)  ETA 74.3 мин
+
+  Batch 130/217 (500 tokens)
+[32m2026-05-24 18:07:06.095[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:10:04.164[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0129.parquet → 4,060 точек (65 KB)  ETA 74.8 мин
+
+  Batch 131/217 (500 tokens)
+[32m2026-05-24 18:10:04.199[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:12:38.660[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0130.parquet → 5,054 точек (67 KB)  ETA 75.1 мин
+
+  Batch 132/217 (500 tokens)
+[32m2026-05-24 18:12:38.697[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:15:12.489[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.3 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0131.parquet → 2,562 точек (60 KB)  ETA 75.3 мин
+
+  Batch 133/217 (500 tokens)
+[32m2026-05-24 18:15:12.522[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:17:48.459[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0132.parquet → 3,332 точек (57 KB)  ETA 75.5 мин
+
+  Batch 134/217 (500 tokens)
+[32m2026-05-24 18:17:48.534[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:20:26.789[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0133.parquet → 2,950 точек (61 KB)  ETA 75.7 мин
+
+  Batch 135/217 (500 tokens)
+[32m2026-05-24 18:20:26.865[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:23:05.589[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0134.parquet → 3,738 точек (64 KB)  ETA 75.8 мин
+
+  Batch 136/217 (500 tokens)
+[32m2026-05-24 18:23:05.636[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:25:52.993[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0135.parquet → 3,700 точек (62 KB)  ETA 76.0 мин
+
+  Batch 137/217 (500 tokens)
+[32m2026-05-24 18:25:53.032[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:28:49.221[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0136.parquet → 9,330 точек (71 KB)  ETA 76.3 мин
+
+  Batch 138/217 (500 tokens)
+[32m2026-05-24 18:28:49.256[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:31:39.587[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0137.parquet → 10,672 точек (72 KB)  ETA 76.4 мин
+
+  Batch 139/217 (500 tokens)
+[32m2026-05-24 18:31:39.623[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:34:50.536[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.6 req/s, ETA 0s, errors=12)[0m
+[32m2026-05-24 18:34:50.537[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 12 из 500[0m
+[32m2026-05-24 18:34:50.537[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x13bc2d4d5787a9f2c1 26789333235836723234: ConnectTimeout: [0m
+[32m2026-05-24 18:34:50.537[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x00aba4cc8f81ff4a5a 14825225546816480208: ConnectTimeout: [0m
+[32m2026-05-24 18:34:50.537[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x2d1a0d6aa6577f8319 53900806517614601726: ConnectTimeout: [0m
+    💾 batch_0138.parquet → 12,296 точек (73 KB)  ETA 76.7 мин
+
+  Batch 140/217 (500 tokens)
+[32m2026-05-24 18:34:50.577[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:37:36.469[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0139.parquet → 4,764 точек (65 KB)  ETA 76.7 мин
+
+  Batch 141/217 (500 tokens)
+[32m2026-05-24 18:37:36.504[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:40:19.613[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.1 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0140.parquet → 7,194 точек (65 KB)  ETA 76.6 мин
+
+  Batch 142/217 (500 tokens)
+[32m2026-05-24 18:40:19.648[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:43:06.412[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0141.parquet → 2,808 точек (59 KB)  ETA 76.5 мин
+
+  Batch 143/217 (500 tokens)
+[32m2026-05-24 18:43:06.449[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:45:45.032[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0142.parquet → 2,700 точек (61 KB)  ETA 76.3 мин
+
+  Batch 144/217 (500 tokens)
+[32m2026-05-24 18:45:45.069[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:48:23.487[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0143.parquet → 3,172 точек (62 KB)  ETA 76.1 мин
+
+  Batch 145/217 (500 tokens)
+[32m2026-05-24 18:48:23.523[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:50:53.160[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.3 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0144.parquet → 3,162 точек (62 KB)  ETA 75.8 мин
+
+  Batch 146/217 (500 tokens)
+[32m2026-05-24 18:50:53.196[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:53:28.831[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0145.parquet → 5,166 точек (64 KB)  ETA 75.5 мин
+
+  Batch 147/217 (500 tokens)
+[32m2026-05-24 18:53:28.867[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:55:59.764[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.3 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0146.parquet → 4,242 точек (61 KB)  ETA 75.1 мин
+
+  Batch 148/217 (500 tokens)
+[32m2026-05-24 18:55:59.801[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 18:58:38.007[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.2 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0147.parquet → 3,696 точек (61 KB)  ETA 74.8 мин
+
+  Batch 149/217 (500 tokens)
+[32m2026-05-24 18:58:38.044[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:01:31.303[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0148.parquet → 3,294 точек (61 KB)  ETA 74.5 мин
+
+  Batch 150/217 (500 tokens)
+[32m2026-05-24 19:01:31.341[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:04:17.911[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0149.parquet → 3,686 точек (64 KB)  ETA 74.2 мин
+
+  Batch 151/217 (500 tokens)
+[32m2026-05-24 19:04:17.949[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:07:01.407[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.1 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0150.parquet → 3,432 точек (62 KB)  ETA 73.8 мин
+
+  Batch 152/217 (500 tokens)
+[32m2026-05-24 19:07:01.444[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:09:45.608[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0151.parquet → 3,548 точек (70 KB)  ETA 73.3 мин
+
+  Batch 153/217 (500 tokens)
+[32m2026-05-24 19:09:45.645[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:12:38.268[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0152.parquet → 10,938 точек (70 KB)  ETA 73.0 мин
+
+  Batch 154/217 (500 tokens)
+[32m2026-05-24 19:12:38.307[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:15:32.016[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0153.parquet → 17,944 точек (75 KB)  ETA 72.5 мин
+
+  Batch 155/217 (500 tokens)
+[32m2026-05-24 19:15:32.059[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:18:27.390[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0154.parquet → 6,016 точек (65 KB)  ETA 72.1 мин
+
+  Batch 156/217 (500 tokens)
+[32m2026-05-24 19:18:27.429[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:21:08.829[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.1 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0155.parquet → 3,624 точек (60 KB)  ETA 71.5 мин
+
+  Batch 157/217 (500 tokens)
+[32m2026-05-24 19:21:08.868[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:23:59.245[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0156.parquet → 9,466 точек (74 KB)  ETA 71.0 мин
+
+  Batch 158/217 (500 tokens)
+[32m2026-05-24 19:23:59.283[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:26:59.612[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0157.parquet → 14,496 точек (81 KB)  ETA 70.5 мин
+
+  Batch 159/217 (500 tokens)
+[32m2026-05-24 19:26:59.651[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:30:03.831[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.7 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0158.parquet → 42,641 точек (144 KB)  ETA 70.0 мин
+
+  Batch 160/217 (500 tokens)
+[32m2026-05-24 19:30:03.877[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:32:55.400[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0159.parquet → 7,558 точек (69 KB)  ETA 69.4 мин
+
+  Batch 161/217 (500 tokens)
+[32m2026-05-24 19:32:55.444[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:35:50.383[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0160.parquet → 10,550 точек (74 KB)  ETA 68.7 мин
+
+  Batch 162/217 (500 tokens)
+[32m2026-05-24 19:35:50.426[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:38:31.988[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.1 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0161.parquet → 3,002 точек (61 KB)  ETA 68.0 мин
+
+  Batch 163/217 (500 tokens)
+[32m2026-05-24 19:38:32.065[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:41:17.702[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0162.parquet → 4,512 точек (64 KB)  ETA 67.3 мин
+
+  Batch 164/217 (500 tokens)
+[32m2026-05-24 19:41:17.747[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:43:01.151[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (4.8 req/s, ETA 0s, errors=12)[0m
+[32m2026-05-24 19:43:01.151[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 12 из 500[0m
+[32m2026-05-24 19:43:01.152[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xed9839f0073ce6a1d6 87644750366024691944: ConnectError: [0m
+[32m2026-05-24 19:43:01.152[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x3ae32f111b27b12298 75845448677666717190: ConnectError: [0m
+[32m2026-05-24 19:43:01.152[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xba38649fb720c23469 10705806184884855337: ConnectError: [0m
+    💾 batch_0163.parquet → 4,177 точек (62 KB)  ETA 66.2 мин
+
+  Batch 165/217 (500 tokens)
+[32m2026-05-24 19:43:01.198[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:43:35.871[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (14.4 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0164.parquet → 4,080 точек (63 KB)  ETA 64.7 мин
+
+  Batch 166/217 (500 tokens)
+[32m2026-05-24 19:43:35.906[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:46:31.706[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0165.parquet → 6,753 точек (78 KB)  ETA 64.0 мин
+
+  Batch 167/217 (500 tokens)
+[32m2026-05-24 19:46:31.749[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:49:20.350[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0166.parquet → 12,564 точек (108 KB)  ETA 63.2 мин
+
+  Batch 168/217 (500 tokens)
+[32m2026-05-24 19:49:20.389[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:52:10.416[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0167.parquet → 1,116 точек (40 KB)  ETA 62.4 мин
+
+  Batch 169/217 (500 tokens)
+[32m2026-05-24 19:52:10.441[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:55:11.169[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0168.parquet → 18,556 точек (111 KB)  ETA 61.6 мин
+
+  Batch 170/217 (500 tokens)
+[32m2026-05-24 19:55:11.194[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 19:58:09.225[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0169.parquet → 27,463 точек (144 KB)  ETA 60.8 мин
+
+  Batch 171/217 (500 tokens)
+[32m2026-05-24 19:58:09.265[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:01:10.514[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0170.parquet → 22,313 точек (132 KB)  ETA 60.0 мин
+
+  Batch 172/217 (500 tokens)
+[32m2026-05-24 20:01:10.555[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:04:11.200[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0171.parquet → 30,761 точек (159 KB)  ETA 59.1 мин
+
+  Batch 173/217 (500 tokens)
+[32m2026-05-24 20:04:11.240[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:07:05.974[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0172.parquet → 818 точек (24 KB)  ETA 58.2 мин
+
+  Batch 174/217 (500 tokens)
+[32m2026-05-24 20:07:05.990[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:10:09.492[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.7 req/s, ETA 0s, errors=1)[0m
+[32m2026-05-24 20:10:09.492[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 1 из 500[0m
+[32m2026-05-24 20:10:09.492[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x7d67c9ef461058e3ea 50119355924503010268: ReadTimeout: [0m
+    💾 batch_0173.parquet → 891 точек (31 KB)  ETA 57.3 мин
+
+  Batch 175/217 (500 tokens)
+[32m2026-05-24 20:10:09.512[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:12:53.758[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0174.parquet → 2,428 точек (36 KB)  ETA 56.3 мин
+
+  Batch 176/217 (500 tokens)
+[32m2026-05-24 20:12:53.778[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:15:54.408[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0175.parquet → 4,200 точек (50 KB)  ETA 55.4 мин
+
+  Batch 177/217 (500 tokens)
+[32m2026-05-24 20:15:54.432[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:18:56.794[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.7 req/s, ETA 0s, errors=38)[0m
+[32m2026-05-24 20:18:56.794[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 38 из 500[0m
+[32m2026-05-24 20:18:56.794[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x8bce1c6647317b8831 11549677477703580945: ConnectTimeout: [0m
+[32m2026-05-24 20:18:56.794[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xea6ce867e5dd538274 69315833605947498822: ConnectTimeout: [0m
+[32m2026-05-24 20:18:56.794[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xb06f4eab33dfbe1137 52301267616999774278: ConnectTimeout: [0m
+    💾 batch_0176.parquet → 2,850 точек (43 KB)  ETA 54.4 мин
+
+  Batch 178/217 (500 tokens)
+[32m2026-05-24 20:18:56.818[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:21:56.284[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0177.parquet → 2,172 точек (41 KB)  ETA 53.4 мин
+
+  Batch 179/217 (500 tokens)
+[32m2026-05-24 20:21:56.306[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:24:49.869[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0178.parquet → 1,292 точек (39 KB)  ETA 52.3 мин
+
+  Batch 180/217 (500 tokens)
+[32m2026-05-24 20:24:49.893[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:27:44.803[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0179.parquet → 3,738 точек (62 KB)  ETA 51.3 мин
+
+  Batch 181/217 (500 tokens)
+[32m2026-05-24 20:27:44.834[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:30:50.909[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.7 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0180.parquet → 1,246 точек (34 KB)  ETA 50.2 мин
+
+  Batch 182/217 (500 tokens)
+[32m2026-05-24 20:30:50.933[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:33:50.321[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0181.parquet → 986 точек (36 KB)  ETA 49.2 мин
+
+  Batch 183/217 (500 tokens)
+[32m2026-05-24 20:33:50.347[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:36:48.618[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0182.parquet → 844 точек (25 KB)  ETA 48.0 мин
+
+  Batch 184/217 (500 tokens)
+[32m2026-05-24 20:36:48.637[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:40:09.782[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.5 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0183.parquet → 1,282 точек (28 KB)  ETA 47.0 мин
+
+  Batch 185/217 (500 tokens)
+[32m2026-05-24 20:40:09.805[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:43:12.393[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.7 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0184.parquet → 2,243 точек (43 KB)  ETA 45.8 мин
+
+  Batch 186/217 (500 tokens)
+[32m2026-05-24 20:43:12.417[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:46:27.768[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.6 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0185.parquet → 1,902 точек (34 KB)  ETA 44.7 мин
+
+  Batch 187/217 (500 tokens)
+[32m2026-05-24 20:46:27.786[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:49:30.549[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.7 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0186.parquet → 4,566 точек (57 KB)  ETA 43.5 мин
+
+  Batch 188/217 (500 tokens)
+[32m2026-05-24 20:49:30.577[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:53:10.643[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.3 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0187.parquet → 3,036 точек (42 KB)  ETA 42.4 мин
+
+  Batch 189/217 (500 tokens)
+[32m2026-05-24 20:53:10.668[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:56:31.164[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.5 req/s, ETA 0s, errors=42)[0m
+[32m2026-05-24 20:56:31.164[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 42 из 500[0m
+[32m2026-05-24 20:56:31.164[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xded26aab1e2143d6f5 19213036254701440757: ConnectTimeout: [0m
+[32m2026-05-24 20:56:31.164[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xb2eea2b466af30526f 56982363430058507212: ConnectTimeout: [0m
+[32m2026-05-24 20:56:31.164[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x3a2ddcbc9206e1cb92 14726828938017514145: ConnectTimeout: [0m
+    💾 batch_0188.parquet → 5,879 точек (67 KB)  ETA 41.2 мин
+
+  Batch 190/217 (500 tokens)
+[32m2026-05-24 20:56:31.199[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 20:59:46.107[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.6 req/s, ETA 0s, errors=17)[0m
+[32m2026-05-24 20:59:46.107[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 17 из 500[0m
+[32m2026-05-24 20:59:46.107[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x6f55123d129f96e981 63093500922498471358: ConnectError: [0m
+[32m2026-05-24 20:59:46.107[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x9bfa63a32e678f3968 95224557572015417440: ConnectError: [0m
+[32m2026-05-24 20:59:46.107[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xa919d37250ce3cb1bf 42770146781269468322: ConnectError: [0m
+    💾 batch_0189.parquet → 1,254 точек (31 KB)  ETA 40.0 мин
+
+  Batch 191/217 (500 tokens)
+[32m2026-05-24 20:59:46.129[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:03:28.001[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.3 req/s, ETA 0s, errors=46)[0m
+[32m2026-05-24 21:03:28.001[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 46 из 500[0m
+[32m2026-05-24 21:03:28.001[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x1ee2b461ca591c4eea 84696222463285783366: ConnectTimeout: [0m
+[32m2026-05-24 21:03:28.001[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xb9d67864fb1379bedc 95664142814061798299: ConnectTimeout: [0m
+[32m2026-05-24 21:03:28.001[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x7222da5b9f58ad564d 30442011233912113764: ConnectTimeout: [0m
+    💾 batch_0190.parquet → 15,317 точек (96 KB)  ETA 38.8 мин
+
+  Batch 192/217 (500 tokens)
+[32m2026-05-24 21:03:28.042[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:06:53.388[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.4 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0191.parquet → 8,197 точек (77 KB)  ETA 37.6 мин
+
+  Batch 193/217 (500 tokens)
+[32m2026-05-24 21:06:53.426[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:10:02.541[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.6 req/s, ETA 0s, errors=13)[0m
+[32m2026-05-24 21:10:02.541[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 13 из 500[0m
+[32m2026-05-24 21:10:02.541[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x6d43b449cd9267c287 85216579985782696797: ConnectTimeout: [0m
+[32m2026-05-24 21:10:02.541[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x353089bb58de0edaae 76953353562055257640: ConnectTimeout: [0m
+[32m2026-05-24 21:10:02.541[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x0a04cb8cd6d5ed7190 69718168296023410773: ConnectTimeout: [0m
+    💾 batch_0192.parquet → 1,395 точек (50 KB)  ETA 36.3 мин
+
+  Batch 194/217 (500 tokens)
+[32m2026-05-24 21:10:02.583[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:13:00.809[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0193.parquet → 1,056 точек (39 KB)  ETA 34.9 мин
+
+  Batch 195/217 (500 tokens)
+[32m2026-05-24 21:13:00.834[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:15:51.935[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0194.parquet → 1,041 точек (33 KB)  ETA 33.6 мин
+
+  Batch 196/217 (500 tokens)
+[32m2026-05-24 21:15:51.956[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:18:49.294[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.8 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0195.parquet → 1,904 точек (32 KB)  ETA 32.2 мин
+
+  Batch 197/217 (500 tokens)
+[32m2026-05-24 21:18:49.311[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:21:36.201[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0196.parquet → 1,728 точек (34 KB)  ETA 30.8 мин
+
+  Batch 198/217 (500 tokens)
+[32m2026-05-24 21:21:36.222[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:24:28.542[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0197.parquet → 3,160 точек (47 KB)  ETA 29.4 мин
+
+  Batch 199/217 (500 tokens)
+[32m2026-05-24 21:24:28.570[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:27:33.755[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.7 req/s, ETA 0s, errors=12)[0m
+[32m2026-05-24 21:27:33.756[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 12 из 500[0m
+[32m2026-05-24 21:27:33.756[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x76cd07b8b7c115a26a 61552559098259730144: ConnectTimeout: [0m
+[32m2026-05-24 21:27:33.756[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xca8c89e3692c649e93 13687861134791426182: ConnectTimeout: [0m
+[32m2026-05-24 21:27:33.756[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x857eb0d83be16f9029 87520613913665845126: ConnectTimeout: [0m
+    💾 batch_0198.parquet → 5,019 точек (54 KB)  ETA 28.0 мин
+
+  Batch 200/217 (500 tokens)
+[32m2026-05-24 21:27:33.794[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:30:25.302[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0199.parquet → 3,262 точек (50 KB)  ETA 26.5 мин
+
+  Batch 201/217 (500 tokens)
+[32m2026-05-24 21:30:25.325[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:33:20.632[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0200.parquet → 4,358 точек (58 KB)  ETA 25.1 мин
+
+  Batch 202/217 (500 tokens)
+[32m2026-05-24 21:33:20.659[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:36:09.547[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0201.parquet → 2,336 точек (43 KB)  ETA 23.6 мин
+
+  Batch 203/217 (500 tokens)
+[32m2026-05-24 21:36:09.570[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:38:57.863[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0202.parquet → 3,062 точек (54 KB)  ETA 22.1 мин
+
+  Batch 204/217 (500 tokens)
+[32m2026-05-24 21:38:57.893[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:42:05.248[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.7 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0203.parquet → 3,486 точек (55 KB)  ETA 20.6 мин
+
+  Batch 205/217 (500 tokens)
+[32m2026-05-24 21:42:05.277[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:44:54.640[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (3.0 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0204.parquet → 1,687 точек (53 KB)  ETA 19.1 мин
+
+  Batch 206/217 (500 tokens)
+[32m2026-05-24 21:44:54.670[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:48:11.302[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.5 req/s, ETA 0s, errors=12)[0m
+[32m2026-05-24 21:48:11.302[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 12 из 500[0m
+[32m2026-05-24 21:48:11.302[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xaf450b695902d5fa96 10585527051697560013: ConnectTimeout: [0m
+[32m2026-05-24 21:48:11.302[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x284d558b68bce0d2ab 78106792411071594610: ConnectTimeout: [0m
+[32m2026-05-24 21:48:11.303[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x4b071acdc8a52548b5 96440985094548627913: ConnectTimeout: [0m
+    💾 batch_0205.parquet → 1,146 точек (43 KB)  ETA 17.6 мин
+
+  Batch 207/217 (500 tokens)
+[32m2026-05-24 21:48:11.327[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:51:20.115[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.6 req/s, ETA 0s, errors=1)[0m
+[32m2026-05-24 21:51:20.115[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 1 из 500[0m
+[32m2026-05-24 21:51:20.115[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x30a8ed0d01b7e8b253 57216346243194048494: ReadTimeout: [0m
+    💾 batch_0206.parquet → 67,546 точек (275 KB)  ETA 16.1 мин
+
+  Batch 208/217 (500 tokens)
+[32m2026-05-24 21:51:20.164[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:54:14.023[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.9 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0207.parquet → 12,141 точек (104 KB)  ETA 14.5 мин
+
+  Batch 209/217 (500 tokens)
+[32m2026-05-24 21:54:14.066[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 21:57:36.928[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.5 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0208.parquet → 12,592 точек (94 KB)  ETA 13.0 мин
+
+  Batch 210/217 (500 tokens)
+[32m2026-05-24 21:57:36.964[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 22:00:47.084[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.6 req/s, ETA 0s, errors=47)[0m
+[32m2026-05-24 22:00:47.084[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 47 из 500[0m
+[32m2026-05-24 22:00:47.084[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x2717c64fefbacccc45 78502925677675457458: ConnectTimeout: [0m
+[32m2026-05-24 22:00:47.084[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x6a12068003a55b0b1a 29168501670501613156: ConnectTimeout: [0m
+[32m2026-05-24 22:00:47.084[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x2b0997b89f7dafe78e 66705126176679767150: ConnectTimeout: [0m
+    💾 batch_0209.parquet → 27,883 точек (175 KB)  ETA 11.4 мин
+
+  Batch 211/217 (500 tokens)
+[32m2026-05-24 22:00:47.121[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 22:04:00.179[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.6 req/s, ETA 0s, errors=61)[0m
+[32m2026-05-24 22:04:00.179[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 61 из 500[0m
+[32m2026-05-24 22:04:00.179[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xa1e8bdd6dda71e9308 86981591401410840753: ConnectError: [0m
+[32m2026-05-24 22:04:00.179[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x02c2725c5c90f28bca 87966525852936820651: ConnectError: [0m
+[32m2026-05-24 22:04:00.179[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xff7290e188ccbc8fe7 99061375313678298254: ConnectError: [0m
+    💾 batch_0210.parquet → 33,915 точек (190 KB)  ETA 9.8 мин
+
+  Batch 212/217 (500 tokens)
+[32m2026-05-24 22:04:00.221[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 22:07:35.318[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.3 req/s, ETA 0s, errors=56)[0m
+[32m2026-05-24 22:07:35.318[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 56 из 500[0m
+[32m2026-05-24 22:07:35.318[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x874085a677b2158231 35654582745473759276: ConnectTimeout: [0m
+[32m2026-05-24 22:07:35.318[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x3ac1f604bfb50602f2 10572216025141016229: ConnectTimeout: [0m
+[32m2026-05-24 22:07:35.319[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x1d76a03419421f6428 70385290224863676497: ConnectTimeout: [0m
+    💾 batch_0211.parquet → 51,242 точек (253 KB)  ETA 8.2 мин
+
+  Batch 213/217 (500 tokens)
+[32m2026-05-24 22:07:35.365[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 22:10:55.194[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.5 req/s, ETA 0s, errors=123)[0m
+[32m2026-05-24 22:10:55.195[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 123 из 500[0m
+[32m2026-05-24 22:10:55.195[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xf07363b5ffe66e94ac 62426355244280610424: ConnectTimeout: [0m
+[32m2026-05-24 22:10:55.195[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x4b9942d14b42f941d5 52880812932735908222: ConnectTimeout: [0m
+[32m2026-05-24 22:10:55.195[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xf07363b5ffe66e94ac 10557130148548072915: ConnectTimeout: [0m
+    💾 batch_0212.parquet → 38,312 точек (195 KB)  ETA 6.6 мин
+
+  Batch 214/217 (500 tokens)
+[32m2026-05-24 22:10:55.237[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 22:14:14.652[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.5 req/s, ETA 0s, errors=6)[0m
+[32m2026-05-24 22:14:14.652[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 6 из 500[0m
+[32m2026-05-24 22:14:14.652[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xa6b64203e0a5b8fe5c 42032148014319111208: ConnectError: [0m
+[32m2026-05-24 22:14:14.652[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xdc13d90bd2182879a0 86670117330207890907: ConnectError: [0m
+[32m2026-05-24 22:14:14.652[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x6c2597f2413b4e13b0 25016600001866946605: ConnectError: [0m
+    💾 batch_0213.parquet → 30,028 точек (183 KB)  ETA 5.0 мин
+
+  Batch 215/217 (500 tokens)
+[32m2026-05-24 22:14:14.698[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 22:17:48.633[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.3 req/s, ETA 0s, errors=90)[0m
+[32m2026-05-24 22:17:48.633[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 90 из 500[0m
+[32m2026-05-24 22:17:48.633[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x2f634f78a9008c2d58 31735602732277824871: ConnectTimeout: [0m
+[32m2026-05-24 22:17:48.633[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x4ecbaedba19f24df3c 88314486769527014432: ConnectTimeout: [0m
+[32m2026-05-24 22:17:48.633[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xb22e4178c4a0b8c898 35815011840703751462: ConnectTimeout: [0m
+    💾 batch_0214.parquet → 24,702 точек (148 KB)  ETA 3.3 мин
+
+  Batch 216/217 (500 tokens)
+[32m2026-05-24 22:17:48.678[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 500 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 22:21:29.883[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...500/500  (2.3 req/s, ETA 0s, errors=53)[0m
+[32m2026-05-24 22:21:29.883[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m151[0m - [33m[1mОшибок: 53 из 500[0m
+[32m2026-05-24 22:21:29.883[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x2c3d236be3f096da26 89143253455707201991: ConnectTimeout: [0m
+[32m2026-05-24 22:21:29.883[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0x96baf085241cc80671 86588941359651725797: ConnectTimeout: [0m
+[32m2026-05-24 22:21:29.883[0m | [33m[1mWARNING [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m154[0m - [33m[1m  0xc517b6dcbae1b769dc 83528779085238081400: ConnectTimeout: [0m
+    💾 batch_0215.parquet → 49,536 точек (239 KB)  ETA 1.7 мин
+
+  Batch 217/217 (284 tokens)
+[32m2026-05-24 22:21:29.930[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m103[0m - [1mСкачиваем prices-history: 284 tokens, concurrency=12, interval=max[0m
+[32m2026-05-24 22:23:26.214[0m | [1mINFO    [0m | [36msrc.collectors.prices_history[0m:[36mcollect_for_tokens[0m:[36m141[0m - [1m  ...284/284  (2.4 req/s, ETA 0s, errors=0)[0m
+    💾 batch_0216.parquet → 7,653 точек (70 KB)  ETA 0.0 мин
+
+✅ Готово за 365.2 мин
+
+Дальше:
+  1. Проверь покрытие: python scripts/run_wide_backtest.py
+  2. Если ок — переименуй data/raw/prices_history_repr → prices_history (сделать backup старого!)
