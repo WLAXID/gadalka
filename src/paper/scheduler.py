@@ -179,16 +179,25 @@ class PaperScheduler:
                         f"already_taken={scan_stats.skip_already_taken}"
                     ),
                 )
+                new_trades: list[dict] = []
                 for s in signals:
-                    await self._open_trade(s)
+                    info = await self._open_trade(s)
+                    if info is not None:
+                        new_trades.append(info)
+                if new_trades:
+                    await self._notify_new_trades_batch(new_trades)
                 self.state.set_setting("last_etl_ts", str(self._last_etl_ts))
             except Exception as e:
                 logger.exception("[etl] error")
                 self.state.log_event("error", "etl", f"{type(e).__name__}: {e}")
             await self._sleep(self.cfg.etl_interval_s)
 
-    async def _open_trade(self, s: Signal) -> None:
-        """Создать paper-trade + (best-effort) снимок orderbook."""
+    async def _open_trade(self, s: Signal) -> dict | None:
+        """Создать paper-trade + (best-effort) снимок orderbook.
+
+        Возвращает dict с инфой о ставке (для batch-нотификации) или None
+        если ставка не создалась.
+        """
         cost_model = CostModel(
             fee_rate=self.cfg.fee_rate,
             spread_pct=self.cfg.spread_pct,
@@ -209,7 +218,7 @@ class PaperScheduler:
             event_id=s.event_id,
         )
         if trade_id is None:
-            return
+            return None
 
         # Best-effort снимок orderbook: ошибка не валит весь trade
         try:
@@ -229,15 +238,81 @@ class PaperScheduler:
                 f"{type(e).__name__}: {e}",
             )
 
-        await self._notify_safe(
-            f"📍 <b>Новая ставка #{trade_id}</b>\n"
-            f"<i>{_short(s.question, 100)}</i>\n"
-            f"💵 цена YES: {s.current_mid:.4f}\n"
-            f"📊 volume: ${s.volume:,.0f}"
-        )
+        # Per-trade нотификации ОТКЛЮЧЕНЫ — спам мешает (см. ETL batch ниже).
+        # Возвращаем инфу батчу для одного сообщения за весь scan.
         self.state.log_event(
             "info", "scheduler", f"new trade #{trade_id} on {s.slug}",
         )
+        return {
+            "trade_id": trade_id,
+            "question": s.question,
+            "price": s.current_mid,
+            "volume": s.volume,
+        }
+
+    async def _notify_resolutions_batch(self, resolutions: list[dict]) -> None:
+        """Одно сообщение со сводкой резолвов за цикл."""
+        # Игнорируем шумные мелкие резолвы (|pnl| <= 0.1), как раньше
+        kept = [
+            r for r in resolutions
+            if r.get("resolved_yes") is None or abs(r.get("pnl") or 0) > 0.1
+        ]
+        if not kept:
+            return
+
+        wins = sum(1 for r in kept if (r.get("pnl") or 0) > 0)
+        losses = sum(1 for r in kept
+                     if r.get("resolved_yes") is not None
+                     and (r.get("pnl") or 0) <= 0)
+        cancelled = sum(1 for r in kept if r.get("resolved_yes") is None)
+        total_pnl = sum((r.get("pnl") or 0) for r in kept)
+
+        head = (
+            f"📊 <b>Резолвы за цикл: {len(kept)}</b>\n"
+            f"✅ {wins}  ❌ {losses}  ⚪ {cancelled}  •  "
+            f"PnL: <b>{total_pnl:+.4f}</b>"
+        )
+
+        MAX_SHOW = 5
+        lines = []
+        for tr in kept[:MAX_SHOW]:
+            pnl = tr.get("pnl") or 0
+            is_cancelled = tr.get("resolved_yes") is None
+            if is_cancelled:
+                emoji, outcome = "⚪", "ОТМЕНЁН"
+            else:
+                emoji = "✅" if pnl > 0 else "❌"
+                outcome = "YES" if tr.get("resolved_yes") else "NO"
+            lines.append(
+                f"{emoji} #{tr['trade_id']}  "
+                f"<i>{_short(tr.get('market_question') or '', 60)}</i>\n"
+                f"   {pnl:+.4f}  •  {outcome}"
+            )
+        if len(kept) > MAX_SHOW:
+            lines.append(f"… и ещё {len(kept) - MAX_SHOW} резолвов")
+
+        msg = head + "\n\n" + "\n\n".join(lines)
+        await self._notify_safe(msg)
+
+    async def _notify_new_trades_batch(self, trades: list[dict]) -> None:
+        """Одно сообщение за весь scan с краткой сводкой новых ставок."""
+        n = len(trades)
+        head = f"📍 <b>Новых ставок за скан: {n}</b>"
+
+        # Показываем до 5 строк подробнее, остальное скрываем
+        MAX_SHOW = 5
+        lines = []
+        for tr in trades[:MAX_SHOW]:
+            lines.append(
+                f"#{tr['trade_id']}  "
+                f"<i>{_short(tr['question'], 60)}</i>\n"
+                f"   {tr['price']:.4f}  •  ${tr['volume']:,.0f}"
+            )
+        if n > MAX_SHOW:
+            lines.append(f"… и ещё {n - MAX_SHOW} ставок")
+
+        msg = head + "\n\n" + "\n\n".join(lines)
+        await self._notify_safe(msg)
 
     async def _resolve_loop(self) -> None:
         while not self._stop.is_set():
@@ -250,22 +325,7 @@ class PaperScheduler:
                 total_new = r["resolved"] + r["cancelled"]
                 if total_new > 0:
                     recent = self.state.recent_resolutions(limit=total_new)
-                    for tr in recent:
-                        pnl = tr.get("pnl") or 0
-                        is_cancelled = tr.get("resolved_yes") is None
-                        if not is_cancelled and abs(pnl) <= 0.1:
-                            continue
-                        if is_cancelled:
-                            emoji = "⚪"
-                            outcome = "ОТМЕНЁН"
-                        else:
-                            emoji = "✅" if pnl > 0 else "❌"
-                            outcome = "YES" if tr.get("resolved_yes") else "NO"
-                        await self._notify_safe(
-                            f"{emoji} <b>Резолв #{tr['trade_id']}</b>\n"
-                            f"<i>{_short(tr.get('market_question') or '', 80)}</i>\n"
-                            f"PnL: <b>{pnl:+.4f}</b> (резолв: {outcome})"
-                        )
+                    await self._notify_resolutions_batch(recent)
             except Exception as e:
                 logger.exception("[resolve] error")
                 self.state.log_event(
