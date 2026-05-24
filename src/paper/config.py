@@ -94,7 +94,7 @@ class PaperConfig:
     max_market_ttl_days: int = 60    # skip рынки с endDate > now+N дней
     stuck_pending_after_days: int = 7  # warning если pending после endDate+N
     pending_growth_alert: int = 200    # если pending > N → warning в daily
-    scan_max_markets: int = 5000       # safety cap пагинации в скане
+    scan_max_markets: int = 10000      # = hard cap Gamma (offset>10000 ошибка)
 
     @classmethod
     def from_env(cls, env_file: str | Path | None = None) -> "PaperConfig":
@@ -124,5 +124,5 @@ class PaperConfig:
             max_market_ttl_days=_env_int("PAPER_MAX_MARKET_TTL_DAYS", 60),
             stuck_pending_after_days=_env_int("PAPER_STUCK_PENDING_AFTER_DAYS", 7),
             pending_growth_alert=_env_int("PAPER_PENDING_GROWTH_ALERT", 200),
-            scan_max_markets=_env_int("PAPER_SCAN_MAX_MARKETS", 5000),
+            scan_max_markets=_env_int("PAPER_SCAN_MAX_MARKETS", 10000),
         )
