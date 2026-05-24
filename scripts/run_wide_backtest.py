@@ -69,16 +69,37 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 # ============================================================
 
 def connect() -> duckdb.DuckDBPyConnection:
-    """DuckDB с зарегистрированными view-ами на parquet."""
+    """DuckDB с зарегистрированными view-ами на parquet.
+
+    Объединяем оба источника:
+    - prices_history/    — плотный (часовой) на last 30 days
+    - prices_history_full/ — разрежённый (daily) на полную историю до 18 мес
+    UNION даёт DISTINCT автоматически — дубли по (token_id, t) схлопываются.
+    """
     con = duckdb.connect()
     con.execute(
         f"CREATE VIEW markets AS SELECT * FROM "
         f"read_parquet('{ROOT}/data/raw/markets_*.parquet', union_by_name=true)"
     )
-    con.execute(
-        f"CREATE VIEW prices_history AS SELECT * FROM "
-        f"read_parquet('{ROOT}/data/raw/prices_history/*.parquet', union_by_name=true)"
-    )
+    full_dir = ROOT / "data" / "raw" / "prices_history_full"
+    if full_dir.exists() and any(full_dir.glob("*.parquet")):
+        con.execute(
+            f"""CREATE VIEW prices_history AS
+            SELECT condition_id, token_id, outcome, t, p FROM
+              read_parquet('{ROOT}/data/raw/prices_history/*.parquet',
+                           union_by_name=true)
+            UNION
+            SELECT condition_id, token_id, outcome, t, p FROM
+              read_parquet('{ROOT}/data/raw/prices_history_full/*.parquet',
+                           union_by_name=true)
+            """
+        )
+    else:
+        con.execute(
+            f"CREATE VIEW prices_history AS SELECT * FROM "
+            f"read_parquet('{ROOT}/data/raw/prices_history/*.parquet', "
+            f"union_by_name=true)"
+        )
     return con
 
 

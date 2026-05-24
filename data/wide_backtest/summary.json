@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-05-24T08:52:16.448214+00:00",
-  "n_markets": 6847,
-  "period_start": "2026-04-23T18:30:10",
+  "timestamp": "2026-05-24T09:23:24.431254+00:00",
+  "n_markets": 10021,
+  "period_start": "2025-07-01T12:00:07",
   "period_end": "2026-05-23T14:40:05",
   "best_horizon_from_A": 1,
   "best_horizon_label": "T-1h",
