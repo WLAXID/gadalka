@@ -1,8 +1,10 @@
 """Генератор сигналов: ходит в Polymarket API и решает нужно ли войти.
 
 Алгоритм H1 live (упрощённая версия бэктестовой стратегии):
-1. Достать топ-100 active рынков через `gamma_markets(active=True, closed=False)`
-   с сортировкой по volumeNum DESC.
+1. Достать ВСЕ active рынки через `gamma_markets(active=True, closed=False)`
+   с пагинацией по 100 (hard cap Gamma) до пустой страницы или
+   `cfg.scan_max_markets`. Сортировка volumeNum DESC — если упрёмся в cap,
+   приоритет получают крупные рынки.
 2. Отфильтровать:
    - volumeNum >= min_market_volume
    - enableOrderBook=True (без legacy FPMM)
@@ -122,15 +124,36 @@ class SignalGenerator:
 
         signals: list[Signal] = []
 
+        # Пагинируем по всем active. Gamma режет limit до 100 за запрос,
+        # offset до 10k. Сортировка volumeNum DESC — на случай если упрёмся
+        # в cap, первые страницы дают самые ликвидные рынки.
+        markets: list[dict] = []
+        page_size = 100
+        offset = 0
+        cap = self.cfg.scan_max_markets
         try:
-            markets = await client.gamma_markets(
-                active=True, closed=False, limit=100,
-                order="volumeNum", ascending=False,
-            )
+            while len(markets) < cap:
+                page = await client.gamma_markets(
+                    active=True, closed=False,
+                    limit=page_size, offset=offset,
+                    order="volumeNum", ascending=False,
+                )
+                if not page:
+                    break
+                markets.extend(page)
+                if len(page) < page_size:
+                    break
+                offset += len(page)
         except PolymarketError as e:
-            self.state.log_event("error", "signal", f"gamma_markets failed: {e}")
-            stats.duration_s = time.time() - t_start
-            return [], stats
+            # offset > 10000 — hard cap Gamma. Берём что собрали и идём дальше.
+            if "offset exceeds maximum" in str(e).lower():
+                logger.warning(
+                    "[signal] Gamma offset cap, остановились на {n}", n=len(markets)
+                )
+            else:
+                self.state.log_event("error", "signal", f"gamma_markets failed: {e}")
+                stats.duration_s = time.time() - t_start
+                return [], stats
 
         stats.total_active = len(markets)
         logger.info("[signal] получено {n} active рынков", n=len(markets))
