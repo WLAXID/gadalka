@@ -55,13 +55,18 @@ class PricesHistoryCollector:
         token_id: str,
         outcome: str,
         interval: str,
+        start_ts: int | None = None,
     ) -> tuple[list[dict], str | None]:
-        """Скачать историю одного token_id. Возвращает (points, error)."""
+        """Скачать историю одного token_id. Возвращает (points, error).
+
+        Если start_ts передан — API вернёт ПОЛНУЮ историю от этой даты.
+        Без start_ts Polymarket возвращает короткое окно (~30d на 'max').
+        """
         for attempt in range(self._max_retries):
             try:
                 async with self._sem:
                     points = await self._client.clob_prices_history(
-                        market=token_id, interval=interval
+                        market=token_id, interval=interval, start_ts=start_ts,
                     )
                 return points, None
             except PolymarketError as e:
@@ -78,8 +83,13 @@ class PricesHistoryCollector:
         tokens: Iterable[tuple[str, str, str]],
         interval: str = "max",
         progress_every: int = 500,
+        start_ts_by_condition: dict[str, int] | None = None,
     ) -> pd.DataFrame:
         """tokens: iterable of (condition_id, token_id, outcome_name).
+
+        start_ts_by_condition: опциональная карта condition_id → unix_ts.
+        Если задана — API получит start_ts для каждого токена → ПОЛНАЯ
+        history (без этого Polymarket возвращает ~30d).
 
         Возвращает long DataFrame: одна строка = одна (token, ts) точка.
         """
@@ -103,8 +113,12 @@ class PricesHistoryCollector:
         t0 = time.time()
 
         async def _worker(condition_id: str, token_id: str, outcome: str):
+            start_ts = (
+                start_ts_by_condition.get(condition_id)
+                if start_ts_by_condition else None
+            )
             points, err = await self._fetch_one(
-                condition_id, token_id, outcome, interval
+                condition_id, token_id, outcome, interval, start_ts=start_ts,
             )
             return condition_id, token_id, outcome, points, err
 

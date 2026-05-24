@@ -6,21 +6,21 @@
    `cfg.scan_max_markets`. Сортировка volumeNum DESC — если упрёмся в cap,
    приоритет получают крупные рынки.
 2. Отфильтровать:
-   - volumeNum >= min_market_volume
+   - volumeNum >= min_market_volume ($10k по wide backtest 24.05)
    - enableOrderBook=True (без legacy FPMM)
    - валидный clobTokenIds[0]
-   - endDate <= now + max_market_ttl_days (иначе не успеет резолвиться)
+   - endDate <= now + entry_horizon_days (7d — validated edge диапазон)
    - condition_id не уже взят
    - event_id не уже взят (защита от корреляции)
 3. Прочитать текущую цену YES из `outcomePrices[0]`.
 4. Если цена в [strategy_low, strategy_high) → создать paper trade.
 5. Записать все candidate/near-miss в paper_scan_dump для пост-анализа.
 
-Прим: бэктест смотрел цену за T-24h до closedTime. В live мы используем
-текущую цену из outcomePrices как proxy — edge был стабилен по всем
-горизонтам T-1h..T-7d на исторических данных (см. Phase 1 findings).
-Поле Signal.price_at_t24h оставлено для обратной совместимости с
-форматтерами; хранит ту же current_mid.
+Прим: бэктест смотрел цену за T-X до closedTime. Wide backtest 24.05
+показал что edge стабилен на T-1h..T-14d. В live используем текущую
+цену из outcomePrices как proxy + entry_horizon_days=7 чтобы оставаться
+в validated окне. Поле Signal.price_at_t24h хранит ту же current_mid
+для обратной совместимости с форматтерами.
 """
 
 from __future__ import annotations
@@ -165,7 +165,10 @@ class SignalGenerator:
         near_above_acc: list[dict] = []
         scan_dump_rows: list[dict] = []
 
-        ttl_cutoff = now_ts + self.cfg.max_market_ttl_days * 86400
+        # entry_horizon = окно входа, валидированное wide backtest (T-1h..T-14d).
+        # Рынки с endDate дальше этого окна — пропускаем (рано брать, edge не
+        # валидирован). max_market_ttl остаётся для resolver-цикла как safety.
+        entry_cutoff = now_ts + self.cfg.entry_horizon_days * 86400
 
         for m in markets:
             vol = m.get("volumeNum") or 0
@@ -199,9 +202,10 @@ class SignalGenerator:
 
             end_iso = m.get("endDate")
             end_ts = _parse_end_date(end_iso)
-            # Отсечём рынки, которые точно не успеют резолвиться за месяц —
-            # иначе они займут pending и не дадут результата.
-            if end_ts is not None and end_ts > ttl_cutoff:
+            # Entry-горизонт: рынки с endDate за пределами validated окна
+            # пропускаем (edge на T>14d не подтверждён). Поле stats называется
+            # skip_ttl_too_far по совместимости с UI/Telegram бота.
+            if end_ts is not None and end_ts > entry_cutoff:
                 stats.skip_ttl_too_far += 1
                 continue
 

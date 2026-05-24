@@ -87,11 +87,19 @@ class PaperConfig:
 
     # --- Limits / sample correctness ---
     stake_amount: float = 1.0  # фиксированный размер ставки в paper $
-    min_market_volume: float = 100.0
+    # Wide backtest 24.05 (data/wide_backtest): edge стабилен на всех
+    # volume-сегментах, но без фильтра exposure уходит в тысячи trades/day.
+    # $10k — sweet spot: EV +13.2%, медиана 12 trades/day, max 96.
+    min_market_volume: float = 10_000.0
     max_pending_markets: int = 5000  # safety cap
-    # F11: Polymarket часто резолвит ДО endDate (UMA-trigger). Жёсткий
-    # фильтр в 30d отсекал бы такие сигналы — берём 60d как компромисс.
-    max_market_ttl_days: int = 60    # skip рынки с endDate > now+N дней
+    # Entry-окно от резолва. Wide backtest показал что edge жив на T-1h..T-14d,
+    # 7 дней даёт лучший EV/$ среди безопасных горизонтов и достижимое
+    # exposure (см. plans/phase-2-wide-backtest-findings.md).
+    entry_horizon_days: int = 7
+    # F11: Polymarket часто резолвит ДО endDate (UMA-trigger). max_market_ttl
+    # остаётся как safety против рынков что застревают в pending. Это НЕ
+    # entry filter — для входа используется entry_horizon_days.
+    max_market_ttl_days: int = 60
     stuck_pending_after_days: int = 7  # warning если pending после endDate+N
     pending_growth_alert: int = 200    # если pending > N → warning в daily
     scan_max_markets: int = 10000      # = hard cap Gamma (offset>10000 ошибка)
