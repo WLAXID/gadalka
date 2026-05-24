@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-05-24T08:52:16.448214+00:00",
+  "n_markets": 6847,
+  "period_start": "2026-04-23T18:30:10",
+  "period_end": "2026-05-23T14:40:05",
+  "best_horizon_from_A": 1,
+  "best_horizon_label": "T-1h",
+  "best_min_volume_from_B": 0.0
+}
